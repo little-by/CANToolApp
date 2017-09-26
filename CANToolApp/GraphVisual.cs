@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CANToolApp
 {
-    public partial class Form1 : Form
+    public partial class GraphVisual : Form
     {
-        public Form1()
+        public GraphVisual()
         {
             InitializeComponent();
         }

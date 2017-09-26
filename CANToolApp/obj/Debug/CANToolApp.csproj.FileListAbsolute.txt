@@ -1,1 +1,10 @@
 D:\Program Files (x86)\Microsoft Visual Studio 14.0\projects\CANToolApp\CANToolApp\bin\Debug\CANToolApp.exe.config
+D:\Program Files (x86)\Microsoft Visual Studio 14.0\projects\CANToolApp\CANToolApp\bin\Debug\CANToolApp.exe
+D:\Program Files (x86)\Microsoft Visual Studio 14.0\projects\CANToolApp\CANToolApp\bin\Debug\CANToolApp.pdb
+D:\Program Files (x86)\Microsoft Visual Studio 14.0\projects\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csprojResolveAssemblyReference.cache
+D:\Program Files (x86)\Microsoft Visual Studio 14.0\projects\CANToolApp\CANToolApp\obj\Debug\CANToolApp.MainForm.resources
+D:\Program Files (x86)\Microsoft Visual Studio 14.0\projects\CANToolApp\CANToolApp\obj\Debug\CANToolApp.GraphVisual.resources
+D:\Program Files (x86)\Microsoft Visual Studio 14.0\projects\CANToolApp\CANToolApp\obj\Debug\CANToolApp.Properties.Resources.resources
+D:\Program Files (x86)\Microsoft Visual Studio 14.0\projects\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.GenerateResource.Cache
+D:\Program Files (x86)\Microsoft Visual Studio 14.0\projects\CANToolApp\CANToolApp\obj\Debug\CANToolApp.exe
+D:\Program Files (x86)\Microsoft Visual Studio 14.0\projects\CANToolApp\CANToolApp\obj\Debug\CANToolApp.pdb
