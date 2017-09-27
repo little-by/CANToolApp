@@ -8,3 +8,6 @@ D:\Program Files (x86)\Microsoft Visual Studio 14.0\projects\CANToolApp\CANToolA
 D:\Program Files (x86)\Microsoft Visual Studio 14.0\projects\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.GenerateResource.Cache
 D:\Program Files (x86)\Microsoft Visual Studio 14.0\projects\CANToolApp\CANToolApp\obj\Debug\CANToolApp.exe
 D:\Program Files (x86)\Microsoft Visual Studio 14.0\projects\CANToolApp\CANToolApp\obj\Debug\CANToolApp.pdb
+G:\works\gitwork\CANToolApp\CANToolApp\bin\Debug\CANToolApp.exe.config
+G:\works\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.exe
+G:\works\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.pdb
