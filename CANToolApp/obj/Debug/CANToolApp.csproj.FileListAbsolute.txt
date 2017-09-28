@@ -11,3 +11,6 @@ D:\Program Files (x86)\Microsoft Visual Studio 14.0\projects\CANToolApp\CANToolA
 G:\works\gitwork\CANToolApp\CANToolApp\bin\Debug\CANToolApp.exe.config
 G:\works\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.exe
 G:\works\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.pdb
+F:\git\CANToolApp\CANToolApp\bin\Debug\CANToolApp.exe.config
+F:\git\CANToolApp\CANToolApp\obj\Debug\CANToolApp.exe
+F:\git\CANToolApp\CANToolApp\obj\Debug\CANToolApp.pdb
