@@ -21,4 +21,14 @@ C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.MainForm.resou
 C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.GraphVisual.resources
 C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.Properties.Resources.resources
 C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.GenerateResource.Cache
->>>>>>> 0ad704ff960b3770dffc9b36f847e0f2b969f3c4
+E:\CANToolApp\CANToolApp\bin\Debug\CANToolApp.exe.config
+E:\CANToolApp\CANToolApp\bin\Debug\CANToolApp.exe
+E:\CANToolApp\CANToolApp\bin\Debug\CANToolApp.pdb
+E:\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csprojResolveAssemblyReference.cache
+E:\CANToolApp\CANToolApp\obj\Debug\CANToolApp.MainForm.resources
+E:\CANToolApp\CANToolApp\obj\Debug\CANToolApp.GraphVisual.resources
+E:\CANToolApp\CANToolApp\obj\Debug\CANToolApp.Properties.Resources.resources
+E:\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.GenerateResource.Cache
+E:\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.CoreCompileInputs.cache
+E:\CANToolApp\CANToolApp\obj\Debug\CANToolApp.exe
+E:\CANToolApp\CANToolApp\obj\Debug\CANToolApp.pdb

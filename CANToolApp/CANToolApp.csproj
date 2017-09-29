@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CANMessageObject.cs" />
+    <Compile Include="CANSignalObject.cs" />
+    <Compile Include="Decode.cs" />
     <Compile Include="Encode.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
