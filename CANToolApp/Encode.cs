@@ -26,7 +26,7 @@ namespace CANToolApp
             {
                 canstr = "T" + i.ToString().PadLeft(8, '0') + canstr;
             }
-
+            i++;
             return canstr;
 
         }
