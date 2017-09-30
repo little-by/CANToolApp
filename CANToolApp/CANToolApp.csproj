@@ -47,6 +47,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CANMessageObject.cs" />
+    <Compile Include="CANSignalObject.cs" />
+    <Compile Include="ComForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComForm.Designer.cs">
+      <DependentUpon>ComForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Decode.cs" />
     <Compile Include="Encode.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -62,6 +70,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ComForm.resx">
+      <DependentUpon>ComForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
