@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CANToolApp
 {
-    class CANMessageObject
+    public class CANMessageObject
     {
         public CANMessageObject()
         {

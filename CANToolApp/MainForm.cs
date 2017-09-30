@@ -40,8 +40,12 @@ namespace CANToolApp
 
         private void test_Click(object sender, EventArgs e)
         {
-            string str = "T123FABCD400111213";
-            Decode.DecodeCANSignal(str);
+            //string str = "T123FABCD400111213";
+            //Decode.DecodeCANSignal(str);
+            CANMessageObject cmo = new CANMessageObject();
+            cmo.Id = 61;
+
+            Encode.EncodeCANSignal(cmo);
         }
     }
 }
