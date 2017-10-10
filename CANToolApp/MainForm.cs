@@ -27,7 +27,14 @@ namespace CANToolApp
         {
             CANToolApp.SqlHelper.connect();
             SqlDataReader dr=CANToolApp.SqlHelper.query("select * from cantoolapp.canmessage");
-            Console.WriteLine(dr.ToString());
+            Console.WriteLine(dr.FieldCount);
+            while (dr.Read())
+            {
+                for(int i=0;i< dr.FieldCount; i++)
+                {
+                    Console.WriteLine(dr.GetName(i)+":"+ dr[i].ToString());
+                }
+            }
             CANToolApp.SqlHelper.close();
         }
 
