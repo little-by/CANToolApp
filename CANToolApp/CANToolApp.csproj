@@ -70,6 +70,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlHelper.cs" />
     <EmbeddedResource Include="ComForm.resx">
       <DependentUpon>ComForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -25,3 +25,4 @@ C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.Generat
 G:\works\gitwork\CANToolApp\CANToolApp\bin\Debug\CANToolApp.exe.config
 G:\works\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.exe
 G:\works\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.pdb
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.ComForm.resources
