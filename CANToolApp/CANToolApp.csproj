@@ -48,6 +48,13 @@
   <ItemGroup>
     <Compile Include="CANMessageObject.cs" />
     <Compile Include="Encode.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IniFile.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +67,7 @@
     <Compile Include="GraphVisual.Designer.cs">
       <DependentUpon>GraphVisual.cs</DependentUpon>
     </Compile>
+    <Compile Include="Profile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">

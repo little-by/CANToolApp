@@ -37,5 +37,11 @@ namespace CANToolApp
         {
 
         }
+
+        private void cOM口设置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form1 comForm = new Form1();
+            comForm.Show();
+        }
     }
 }

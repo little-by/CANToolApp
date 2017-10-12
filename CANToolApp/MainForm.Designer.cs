@@ -69,19 +69,19 @@
             // 读取ToolStripMenuItem
             // 
             this.读取ToolStripMenuItem.Name = "读取ToolStripMenuItem";
-            this.读取ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.读取ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.读取ToolStripMenuItem.Text = "读取";
             // 
             // 保存为ToolStripMenuItem
             // 
             this.保存为ToolStripMenuItem.Name = "保存为ToolStripMenuItem";
-            this.保存为ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.保存为ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.保存为ToolStripMenuItem.Text = "保存";
             // 
             // 退出ToolStripMenuItem
             // 
             this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
-            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.退出ToolStripMenuItem.Text = "退出";
             // 
             // 设置ToolStripMenuItem
@@ -96,8 +96,9 @@
             // cOM口设置ToolStripMenuItem
             // 
             this.cOM口设置ToolStripMenuItem.Name = "cOM口设置ToolStripMenuItem";
-            this.cOM口设置ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.cOM口设置ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cOM口设置ToolStripMenuItem.Text = "COM口设置";
+            this.cOM口设置ToolStripMenuItem.Click += new System.EventHandler(this.cOM口设置ToolStripMenuItem_Click);
             // 
             // textBox1
             // 
@@ -122,7 +123,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.56847F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.43153F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 133F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 118F));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(14, 20);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
