@@ -31,7 +31,7 @@ namespace CANToolApp
             }
             catch(InvalidOperationException e1)
             {
-                Console.WriteLine("异常："+e1.StackTrace);
+                Console.WriteLine(e1.StackTrace);
             }
             catch (Exception e)
             {
@@ -39,12 +39,10 @@ namespace CANToolApp
             }
             return dr;
         }
-        
         public static void close()
         {
             dr.Close();
             con.Close();
         }
-
     }
 }

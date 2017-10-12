@@ -55,13 +55,11 @@ namespace CANToolApp
                                 int length = (int)Convert.ToUInt32(startAndLength[1]);
                                 Console.WriteLine(length);
                                 string pattern = startAndLength[2];
-
                                 string input_binary = Convert.ToString(Convert.ToInt32(x, 16), 2);
                                 while (input_binary.Length < length)
                                 {
                                     input_binary.Insert(0, "0");
                                 }
-
                                 if (pattern == "0+")
                                 {
                                     int i = 0, j = start;
@@ -96,12 +94,7 @@ namespace CANToolApp
                 }
 
             }
-
-
         }
-
-
-
-
     }
 }
+

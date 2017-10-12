@@ -74,18 +74,7 @@ namespace CANToolApp
             }
         }
 
-        public byte[] DLC1
-        {
-            get
-            {
-                return DLC;
-            }
-
-            set
-            {
-                DLC = value;
-            }
-        }
+       
 
         public char[] NodeName
         {
@@ -97,6 +86,19 @@ namespace CANToolApp
             set
             {
                 nodeName = value;
+            }
+        }
+
+        public byte[] DLC1
+        {
+            get
+            {
+                return DLC;
+            }
+
+            set
+            {
+                DLC = value;
             }
         }
     }

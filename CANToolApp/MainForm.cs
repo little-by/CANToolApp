@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace CANToolApp
 {
@@ -25,7 +26,17 @@ namespace CANToolApp
 
         private void sendBt_Click(object sender, EventArgs e)
         {
-
+            CANToolApp.SqlHelper.connect();
+            SqlDataReader dr=CANToolApp.SqlHelper.query("select * from cantoolapp.canmessage");
+            Console.WriteLine(dr.FieldCount);
+            while (dr.Read())
+            {
+                for(int i=0;i< dr.FieldCount; i++)
+                {
+                    Console.WriteLine(dr.GetName(i)+":"+ dr[i].ToString());
+                }
+            }
+            CANToolApp.SqlHelper.close();
         }
 
         private void showBt_Click(object sender, EventArgs e)

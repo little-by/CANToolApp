@@ -8,9 +8,6 @@ D:\Program Files (x86)\Microsoft Visual Studio 14.0\projects\CANToolApp\CANToolA
 D:\Program Files (x86)\Microsoft Visual Studio 14.0\projects\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.GenerateResource.Cache
 D:\Program Files (x86)\Microsoft Visual Studio 14.0\projects\CANToolApp\CANToolApp\obj\Debug\CANToolApp.exe
 D:\Program Files (x86)\Microsoft Visual Studio 14.0\projects\CANToolApp\CANToolApp\obj\Debug\CANToolApp.pdb
-F:\git\CANToolApp\CANToolApp\bin\Debug\CANToolApp.exe.config
-F:\git\CANToolApp\CANToolApp\obj\Debug\CANToolApp.exe
-F:\git\CANToolApp\CANToolApp\obj\Debug\CANToolApp.pdb
 C:\Users\kotar\gitwork\CANToolApp\CANToolApp\bin\Debug\CANToolApp.exe.config
 C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.exe
 C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.pdb
@@ -32,3 +29,4 @@ E:\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.GenerateResource.Cache
 E:\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.CoreCompileInputs.cache
 E:\CANToolApp\CANToolApp\obj\Debug\CANToolApp.exe
 E:\CANToolApp\CANToolApp\obj\Debug\CANToolApp.pdb
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.ComForm.resources
