@@ -138,5 +138,18 @@ namespace CANToolApp
                 nodeName = value;
             }
         }
+
+        public char Separator
+        {
+            get
+            {
+                return separator;
+            }
+
+            set
+            {
+                separator = value;
+            }
+        }
     }
 }
