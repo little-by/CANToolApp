@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -40,12 +41,8 @@ namespace CANToolApp
 
         private void test_Click(object sender, EventArgs e)
         {
-            //string str = "T123FABCD400111213";
-            //Decode.DecodeCANSignal(str);
-            CANMessageObject cmo = new CANMessageObject();
-            cmo.Id = 61;
-
-            Encode.EncodeCANSignal(cmo);
+            string str = "t35882153547865423425";
+            Decode.DecodeCANSignal(str);
         }
     }
 }
