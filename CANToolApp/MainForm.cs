@@ -61,5 +61,10 @@ namespace CANToolApp
             string signalName = "CDU_HV";
             Encode.EncodeCANSignal(messageName, signalName);
         }
+
+        private void cOM口设置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ComPortForm().Show();
+        }
     }
 }

@@ -113,17 +113,16 @@ public class Decode
         {
             SqlHelper.close();
         }
-
-        //将16进制字符串转化为2进制字符串
-        string bianma(string s)
+    }
+    //将16进制字符串转化为2进制字符串
+    public static string bianma(string s)
+    {
+        byte[] dataByte = Encoding.Unicode.GetBytes(s);
+        StringBuilder result = new StringBuilder(dataByte.Length * 8);
+        foreach (byte b in dataByte)
         {
-            byte[] dataByte = Encoding.Unicode.GetBytes(s);
-            StringBuilder result = new StringBuilder(dataByte.Length * 8);
-            foreach (byte b in dataByte)
-            {
-                result.Append(Convert.ToString(b, 2).PadLeft(8, '0'));
-            }
-            return result.ToString();
+            result.Append(Convert.ToString(b, 2).PadLeft(8, '0'));
         }
+        return result.ToString();
     }
 }

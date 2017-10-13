@@ -1,6 +1,6 @@
 ﻿namespace CANToolApp
 {
-    partial class Form1
+    partial class ComPortForm
     {
         /// <summary>
         /// Required designer variable.

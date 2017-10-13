@@ -12,12 +12,12 @@ using System.Text.RegularExpressions;
 
 namespace CANToolApp
 {
-    public partial class Form1 : Form
+    public partial class ComPortForm : Form
     {
         SerialPort sp1 = new SerialPort();
         //sp1.ReceivedBytesThreshold = 1;//只要有1个字符送达端口时便触发DataReceived事件 
 
-        public Form1()
+        public ComPortForm()
         {
             InitializeComponent();
         }
