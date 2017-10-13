@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.SqlClient;
-using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -8,11 +7,15 @@ namespace CANToolApp
 {
     public class Encode
     {
-        public static void EncodeCANSignal(string messageName, string signalName)
+        /**
+        此函数完成的工作：
+            接收CANMessage的Name和CANSignal的Name
+            返回封装好的字符串
+        */
+        public static string EncodeCANSignal(string messageName, string signalName)
         {
-            string result;
+            string result = "";
             SqlHelper.connect();
-            Console.WriteLine("select * from cantoolapp.canmessage where messagename =" + messageName);
             SqlDataReader msgReader = SqlHelper.query("select * from cantoolapp.canmessage where messagename = '" + messageName + "'");
             if (!msgReader.HasRows)
             {
@@ -31,7 +34,7 @@ namespace CANToolApp
                 {
                     tT = 'T';
                 }
-                string canIdHex = Convert.ToString(canId, 16);
+                string canIdHex = Convert.ToString(canId, 16).PadLeft(tT == 't' ? 3 : 8, '0');
                 int DLC = (int)msgReader[4];
 
                 SqlHelper.close();
@@ -71,7 +74,7 @@ namespace CANToolApp
                         int leftIndex = 0, rightIndex = 0;
                         for (i = 0; i < length; i++)
                         {
-                            data[start] = input_binary[j];
+                            data[j] = input_binary[i];
                             line = j / 8;
                             leftIndex = 7 * (line + 1) + line;
                             rightIndex = 8 * line;
@@ -87,6 +90,7 @@ namespace CANToolApp
                                 }
                             }
                         }
+                        SqlHelper.close();
                         string s = new string(data);
                         StringBuilder shex=new StringBuilder();
                         for(int n = 0; n < s.Length; n = n + 4)
@@ -94,11 +98,10 @@ namespace CANToolApp
                             shex.Append(string.Format("{0:X}", Convert.ToInt32(s.Substring(n, 4), 2)));
                         }
                         result = tT + canIdHex + DLC + shex + "\\r";
-                        MessageBox.Show(result);
-                        SqlHelper.close();
                     }
                 }
-            }     
+            }
+            return result;
         }
     }
 }

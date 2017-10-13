@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace CANToolApp
 {
@@ -51,15 +43,13 @@ namespace CANToolApp
         }
         private void test_Click(object sender, EventArgs e)
         {
-	   //Form1 comForm = new Form1();
-	   //comForm.Show();
-            string str = "t35882153547865423425";
-            Decode.DecodeCANSignal(str);
+            //string str = "t03d82153547865423425";
+            //Decode.DecodeCANSignal(str);
             //string str = "t35882153547865423425";
             //Decode.DecodeCANSignal(str);
-            string messageName = "CDU_1";
-            string signalName = "CDU_HV";
-            Encode.EncodeCANSignal(messageName, signalName);
+            string messageName = "CDU_4";
+            string signalName = "CDU_HVACAirCirCfg";
+            Console.WriteLine(Encode.EncodeCANSignal(messageName, signalName));
         }
 
         private void cOM口设置ToolStripMenuItem_Click(object sender, EventArgs e)
