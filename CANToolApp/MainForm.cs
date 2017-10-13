@@ -55,6 +55,11 @@ namespace CANToolApp
 	   //comForm.Show();
             string str = "t35882153547865423425";
             Decode.DecodeCANSignal(str);
+            //string str = "t35882153547865423425";
+            //Decode.DecodeCANSignal(str);
+            string messageName = "CDU_1";
+            string signalName = "CDU_HV";
+            Encode.EncodeCANSignal(messageName, signalName);
         }
     }
 }
