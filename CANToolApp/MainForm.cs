@@ -31,12 +31,6 @@ namespace CANToolApp
             CANToolApp.SqlHelper.close();
         }
 
-        private void showBt_Click(object sender, EventArgs e)
-        {
-            GraphVisual gvForm = new GraphVisual();
-            gvForm.Show();
-        }
-
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -55,6 +49,18 @@ namespace CANToolApp
         private void cOM口设置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new ComPortForm().Show();
+        }
+
+        private void CurveShowBt_Click(object sender, EventArgs e)
+        {
+            CurveShow csForm = new CurveShow();
+            csForm.Show();
+        }
+
+        private void DashboardShowBt_Click(object sender, EventArgs e)
+        {
+            DashboardShow dsForm = new DashboardShow();
+            dsForm.Show();
         }
     }
 }

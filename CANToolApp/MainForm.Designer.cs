@@ -39,10 +39,11 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.SendBt = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.ShowBt = new System.Windows.Forms.Button();
+            this.DashboardShowBt = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.test = new System.Windows.Forms.Button();
+            this.CurveShowBt = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -100,7 +101,7 @@
             // cOM口设置ToolStripMenuItem
             // 
             this.cOM口设置ToolStripMenuItem.Name = "cOM口设置ToolStripMenuItem";
-            this.cOM口设置ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cOM口设置ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.cOM口设置ToolStripMenuItem.Text = "COM口设置";
             this.cOM口设置ToolStripMenuItem.Click += new System.EventHandler(this.cOM口设置ToolStripMenuItem_Click);
             // 
@@ -127,7 +128,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.56847F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.43153F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 133F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 121F));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(14, 20);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
@@ -140,15 +141,15 @@
             this.tableLayoutPanel1.TabIndex = 3;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
-            // ShowBt
+            // DashboardShowBt
             // 
-            this.ShowBt.Location = new System.Drawing.Point(388, 251);
-            this.ShowBt.Name = "ShowBt";
-            this.ShowBt.Size = new System.Drawing.Size(114, 27);
-            this.ShowBt.TabIndex = 4;
-            this.ShowBt.Text = "图形显示";
-            this.ShowBt.UseVisualStyleBackColor = true;
-            this.ShowBt.Click += new System.EventHandler(this.showBt_Click);
+            this.DashboardShowBt.Location = new System.Drawing.Point(388, 251);
+            this.DashboardShowBt.Name = "DashboardShowBt";
+            this.DashboardShowBt.Size = new System.Drawing.Size(114, 27);
+            this.DashboardShowBt.TabIndex = 4;
+            this.DashboardShowBt.Text = "仪表盘方式显示";
+            this.DashboardShowBt.UseVisualStyleBackColor = true;
+            this.DashboardShowBt.Click += new System.EventHandler(this.DashboardShowBt_Click);
             // 
             // groupBox1
             // 
@@ -173,15 +174,26 @@
             this.test.UseVisualStyleBackColor = true;
             this.test.Click += new System.EventHandler(this.test_Click);
             // 
+            // CurveShowBt
+            // 
+            this.CurveShowBt.Location = new System.Drawing.Point(270, 251);
+            this.CurveShowBt.Name = "CurveShowBt";
+            this.CurveShowBt.Size = new System.Drawing.Size(100, 25);
+            this.CurveShowBt.TabIndex = 7;
+            this.CurveShowBt.Text = "显示变化曲线";
+            this.CurveShowBt.UseVisualStyleBackColor = true;
+            this.CurveShowBt.Click += new System.EventHandler(this.CurveShowBt_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(514, 290);
+            this.Controls.Add(this.CurveShowBt);
             this.Controls.Add(this.test);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.ShowBt);
+            this.Controls.Add(this.DashboardShowBt);
             this.Controls.Add(this.SendBt);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.menuStrip1);
@@ -206,7 +218,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button SendBt;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button ShowBt;
+        private System.Windows.Forms.Button DashboardShowBt;
         private System.Windows.Forms.ToolStripMenuItem 读取ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 保存为ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
@@ -214,6 +226,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Button test;
+        private System.Windows.Forms.Button CurveShowBt;
     }
 }
 

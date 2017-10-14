@@ -1,6 +1,6 @@
 ﻿namespace CANToolApp
 {
-    partial class GraphVisual
+    partial class DashboardShow
     {
         /// <summary>
         /// Required designer variable.
@@ -28,29 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // fileSystemWatcher1
-            // 
-            this.fileSystemWatcher1.EnableRaisingEvents = true;
-            this.fileSystemWatcher1.SynchronizingObject = this;
-            // 
-            // GraphVisual
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(661, 261);
-            this.Name = "GraphVisual";
-            this.Text = "GraphVisual";
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
-            this.ResumeLayout(false);
-
+            this.Text = "DashboardShow";
         }
 
         #endregion
-
-        private System.IO.FileSystemWatcher fileSystemWatcher1;
     }
 }
