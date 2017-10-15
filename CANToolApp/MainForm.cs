@@ -35,16 +35,6 @@ namespace CANToolApp
         {
 
         }
-        private void test_Click(object sender, EventArgs e)
-        {
-            //string str = "t03d82153547865423425";
-            //Decode.DecodeCANSignal(str);
-            //string str = "t35882153547865423425";
-            //Decode.DecodeCANSignal(str);
-            string messageName = "CDU_4";
-            string signalName = "CDU_HVACAirCirCfg";
-            Console.WriteLine(Encode.EncodeCANSignal(messageName, signalName));
-        }
 
         private void cOM口设置ToolStripMenuItem_Click(object sender, EventArgs e)
         {

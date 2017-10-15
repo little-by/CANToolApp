@@ -3,10 +3,11 @@ using System.Text;
 using CANToolApp;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Collections.Generic;
 
 public class Decode
 {
-    public static void DecodeCANSignal(string canMessage)
+    public static Dictionary<string, string> DecodeCANSignal(string canMessage)
     {
         SqlHelper.connect();
         
@@ -15,6 +16,7 @@ public class Decode
         uint DLC = 0;
         int dataLength = 0;
         string data = "";
+        Dictionary<string, string> returnedData = new Dictionary<string, string>();
         try
         {
             if (standardOrExtend == 't')
@@ -38,20 +40,23 @@ public class Decode
 
             string message = "select * from cantoolapp.canmessage where id = " + canId;
             string signal = "select * from cantoolapp.cansignal where canmessageid = " + canId;
-
-            if (!SqlHelper.query(message).HasRows)
+            SqlDataReader messageExist = SqlHelper.query(message);
+            if (!messageExist.HasRows)
             {
-                MessageBox.Show("系统中不存在此message!");
+                //MessageBox.Show("系统中不存在此message!");
+                return returnedData;
             }
             else
             {
+                //MessageBox.Show("系统中存在此message!");
+                returnedData.Add("messageName", (string)messageExist[2]);
                 SqlHelper.close();
                 SqlHelper.connect();
-                MessageBox.Show("系统中存在此message!");
                 SqlDataReader reader = SqlHelper.query(signal);
                 if (!reader.HasRows)
                 {
-                    MessageBox.Show("此Message下不包含信号!");
+                    //MessageBox.Show("此Message下不包含信号!");
+                    return returnedData;
                 }
                 else
                 {
@@ -98,7 +103,7 @@ public class Decode
                             double phy = A * decimalSign + B;
                             Console.WriteLine(phy);
                             MessageBox.Show("" + phy);
-
+                            returnedData.Add((string)reader[1], phy + "");
                         }
                     }
                 }
@@ -112,6 +117,7 @@ public class Decode
         {
             SqlHelper.close();
         }
+        return returnedData;
     }
     //将16进制字符串转化为2进制字符串
     public static string bianma(string s)
