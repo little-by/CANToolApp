@@ -8,3 +8,13 @@ C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.Properties.Res
 C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.GenerateResource.Cache
 C:\Users\kotar\gitwork\CANToolApp\CANToolApp\bin\Debug\CANToolApp.exe
 C:\Users\kotar\gitwork\CANToolApp\CANToolApp\bin\Debug\CANToolApp.pdb
+E:\github\CANToolApp\CANToolApp\bin\Debug\CANToolApp.exe.config
+E:\github\CANToolApp\CANToolApp\obj\Debug\CANToolApp.exe
+E:\github\CANToolApp\CANToolApp\obj\Debug\CANToolApp.pdb
+E:\github\CANToolApp\CANToolApp\bin\Debug\CANToolApp.exe
+E:\github\CANToolApp\CANToolApp\bin\Debug\CANToolApp.pdb
+E:\github\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csprojResolveAssemblyReference.cache
+E:\github\CANToolApp\CANToolApp\obj\Debug\CANToolApp.MainForm.resources
+E:\github\CANToolApp\CANToolApp\obj\Debug\CANToolApp.GraphVisual.resources
+E:\github\CANToolApp\CANToolApp\obj\Debug\CANToolApp.Properties.Resources.resources
+E:\github\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.GenerateResource.Cache
