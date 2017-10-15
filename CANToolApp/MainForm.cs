@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Threading;
 
 namespace CANToolApp
 {
@@ -21,7 +22,17 @@ namespace CANToolApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
+            DataTable table = new DataTable();
+            //DataTable table = (DataTable)dataTable;
+      
+            table.Columns.Add("Name");
+            table.Columns.Add("Value");
+           
+            this.dataGridView.DataSource = table;
 
+            Thread thread = new Thread(new ParameterizedThreadStart(UpdateTableThread.updateUi));
+            thread.Start(table);
         }
 
         private void sendBt_Click(object sender, EventArgs e)
