@@ -18,3 +18,16 @@ E:\project_CanToolApp\CANToolApp\CANToolApp\obj\Debug\CANToolApp.MainForm.resour
 E:\project_CanToolApp\CANToolApp\CANToolApp\obj\Debug\CANToolApp.GraphVisual.resources
 E:\project_CanToolApp\CANToolApp\CANToolApp\obj\Debug\CANToolApp.Properties.Resources.resources
 E:\project_CanToolApp\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.GenerateResource.Cache
+F:\git\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csprojResolveAssemblyReference.cache
+F:\git\CANToolApp\CANToolApp\obj\Debug\CANToolApp.CurveShow.resources
+F:\git\CANToolApp\CANToolApp\obj\Debug\CANToolApp.MainForm.resources
+F:\git\CANToolApp\CANToolApp\obj\Debug\CANToolApp.GraphVisual.resources
+F:\git\CANToolApp\CANToolApp\obj\Debug\CANToolApp.Properties.Resources.resources
+F:\git\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.GenerateResource.Cache
+F:\git\CANToolApp\CANToolApp\bin\Debug\CANToolApp.exe.config
+F:\git\CANToolApp\CANToolApp\bin\Debug\CANToolApp.exe
+F:\git\CANToolApp\CANToolApp\bin\Debug\CANToolApp.pdb
+F:\git\CANToolApp\CANToolApp\obj\Debug\CANToolApp.exe
+F:\git\CANToolApp\CANToolApp\obj\Debug\CANToolApp.pdb
+F:\git\CANToolApp\CANToolApp\bin\Debug\Microsoft.Practices.Prism.dll
+F:\git\CANToolApp\CANToolApp\bin\Debug\Microsoft.Practices.ServiceLocation.dll
