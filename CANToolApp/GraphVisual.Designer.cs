@@ -41,7 +41,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(661, 261);
             this.Name = "GraphVisual";
             this.Text = "GraphVisual";
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
