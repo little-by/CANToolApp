@@ -42,7 +42,6 @@
             this.DashboardShowBt = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.test = new System.Windows.Forms.Button();
             this.CurveShowBt = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -128,7 +127,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.56847F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.43153F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 133F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 121F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 122F));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(14, 20);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
@@ -164,16 +163,6 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // test
-            // 
-            this.test.Location = new System.Drawing.Point(20, 254);
-            this.test.Name = "test";
-            this.test.Size = new System.Drawing.Size(75, 23);
-            this.test.TabIndex = 6;
-            this.test.Text = "test";
-            this.test.UseVisualStyleBackColor = true;
-            this.test.Click += new System.EventHandler(this.test_Click);
-            // 
             // CurveShowBt
             // 
             this.CurveShowBt.Location = new System.Drawing.Point(270, 251);
@@ -191,7 +180,6 @@
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(514, 290);
             this.Controls.Add(this.CurveShowBt);
-            this.Controls.Add(this.test);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.DashboardShowBt);
             this.Controls.Add(this.SendBt);
@@ -225,7 +213,6 @@
         private System.Windows.Forms.ToolStripMenuItem cOM口设置ToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.Button test;
         private System.Windows.Forms.Button CurveShowBt;
     }
 }

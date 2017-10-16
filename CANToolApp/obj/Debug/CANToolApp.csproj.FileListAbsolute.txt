@@ -44,3 +44,6 @@ F:\git\CANToolApp\CANToolApp\bin\Debug\Microsoft.Practices.ServiceLocation.dll
 E:\github\CANToolApp\CANToolApp\bin\Debug\Microsoft.Practices.Prism.dll
 E:\github\CANToolApp\CANToolApp\bin\Debug\Microsoft.Practices.ServiceLocation.dll
 E:\github\CANToolApp\CANToolApp\obj\Debug\CANToolApp.CurveShow.resources
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\bin\Debug\Microsoft.Practices.Prism.dll
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.CurveShow.resources
