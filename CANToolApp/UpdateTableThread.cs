@@ -18,7 +18,7 @@ namespace CANToolApp
             dr[1] = "358";
             table.Rows.Add(dr);
             //Console.WriteLine(str);
-            table.Columns.Add("he");
+            //table.Columns.Add("he");
         } 
 
 

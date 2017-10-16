@@ -25,10 +25,12 @@ namespace CANToolApp
             
             DataTable table = new DataTable();
             //DataTable table = (DataTable)dataTable;
-      
+            
             table.Columns.Add("Name");
             table.Columns.Add("Value");
-           
+            for (int i = 0; i < 10; i++)
+                table.Columns.Add("");
+
             this.dataGridView.DataSource = table;
 
             Thread thread = new Thread(new ParameterizedThreadStart(UpdateTableThread.updateUi));
