@@ -14,3 +14,4 @@ A CANToolApp developed by team25 from TJU
 - *2017/10/13：Encode a signal to a message and analyze the project using the four quadrant method.*
 - *2017/10/14：Create the pages that display the CANSignal.*
 - *2017/10/15：Update the instrument panel to display the CANSignal.*
+- *2017/10/16：Create the Software design description.*
