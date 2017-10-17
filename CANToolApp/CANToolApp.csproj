@@ -97,6 +97,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlHelper.cs" />
+    <EmbeddedResource Include="ComPortForm.resx">
+      <DependentUpon>ComPortForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CurveShow.resx">
       <DependentUpon>CurveShow.cs</DependentUpon>
     </EmbeddedResource>

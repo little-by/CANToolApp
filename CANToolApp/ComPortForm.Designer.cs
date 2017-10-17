@@ -68,6 +68,7 @@
             this.tsDataBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsStopBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsParity = new System.Windows.Forms.ToolStripStatusLabel();
+            this.cbTimeSend = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -78,6 +79,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbTimeSend);
             this.groupBox1.Controls.Add(this.btnSave);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.groupBox3);
@@ -279,6 +281,7 @@
             this.txtSecond.Name = "txtSecond";
             this.txtSecond.Size = new System.Drawing.Size(44, 21);
             this.txtSecond.TabIndex = 18;
+            this.txtSecond.TextChanged += new System.EventHandler(this.txtSecond_TextChanged);
             this.txtSecond.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSecond_KeyPress);
             // 
             // label2
@@ -473,6 +476,17 @@
             this.tsParity.Size = new System.Drawing.Size(86, 17);
             this.tsParity.Text = "停止位:未指定|";
             // 
+            // cbTimeSend
+            // 
+            this.cbTimeSend.AutoSize = true;
+            this.cbTimeSend.Location = new System.Drawing.Point(17, 156);
+            this.cbTimeSend.Name = "cbTimeSend";
+            this.cbTimeSend.Size = new System.Drawing.Size(72, 16);
+            this.cbTimeSend.TabIndex = 33;
+            this.cbTimeSend.Text = "定时发送";
+            this.cbTimeSend.UseVisualStyleBackColor = true;
+            this.cbTimeSend.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // ComPortForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -546,5 +560,6 @@
         private System.Windows.Forms.ToolStripStatusLabel tsParity;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.CheckBox cbTimeSend;
     }
 }
