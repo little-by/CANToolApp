@@ -66,6 +66,9 @@
 
    (3)可以另存为xml和JSON (JavaScript Object Notation)格式，也可以已将xml或Json格式的数据库，转换为CAN信息和信号数据库格式。
 
+系统的用例图如图所示。
+![用例图](http://img.blog.csdn.net/20171017223941928?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvR3N5U3Vuc2hpbmU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
 ### 对性能的规定
 1. 可用性
 - 桌面用户界面应符合Windows 10标准。
