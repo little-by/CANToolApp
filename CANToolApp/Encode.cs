@@ -90,15 +90,44 @@ namespace CANToolApp
                                 }
                             }
                         }
-                        SqlHelper.close();
-                        string s = new string(data);
-                        StringBuilder shex=new StringBuilder();
-                        for(int n = 0; n < s.Length; n = n + 4)
-                        {
-                            shex.Append(string.Format("{0:X}", Convert.ToInt32(s.Substring(n, 4), 2)));
-                        }
-                        result = tT + canIdHex + DLC + shex + "\\r";
                     }
+                    else if (pattern == "1+")
+                    {
+                        int i = 0, j = start;
+                        int line = 0;
+                        int leftIndex = 0, rightIndex = 0;
+                        for (i = 0; i < length; i++)
+                        {
+                            data[j] = input_binary[i];
+                            line = j / 8;
+                            leftIndex = 7 * (line + 1) + line;
+                            rightIndex = 8 * line;
+                            if (line >= 0 && line < 8)
+                            {
+                                if (j < leftIndex && j >= rightIndex)
+                                {
+                                    j++;
+                                }
+                                else if (j == leftIndex && line > 0)
+                                {
+                                    j = j - 15;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("暂不支持此数据格式!");
+                        return "";
+                    }
+                    SqlHelper.close();
+                    string s = new string(data);
+                    StringBuilder shex = new StringBuilder();
+                    for (int n = 0; n < s.Length; n = n + 4)
+                    {
+                        shex.Append(string.Format("{0:X}", Convert.ToInt32(s.Substring(n, 4), 2)));
+                    }
+                    result = tT + canIdHex + DLC + shex + "\\r";
                 }
             }
             return result;

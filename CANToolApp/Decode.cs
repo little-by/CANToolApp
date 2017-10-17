@@ -71,6 +71,7 @@ public class Decode
                         string pattern = startAndLengthAndPattern[2];
                         //把data转化为二进制
                         string binaryData = bianma(data);
+                        int decimalSign = 0;
                         //根据上面三个标准求解信号的值
                         if (pattern == "0+")
                         {
@@ -96,16 +97,30 @@ public class Decode
                                     }
                                 }
                             }
-                            //Console.WriteLine("信号的二进制数值：" + sb);
-                            int decimalSign = Convert.ToInt32(sb.ToString(), 2);
-                            //Console.WriteLine("信号的十进制数值：" + decimalSign);
-                            double A = (double)reader[4];
-                            double B = (double)reader[5];
-                            //物理值
-                            double phy = A * decimalSign + B;
-                            //MessageBox.Show("" + phy);
-                            returnedData.Add((string)reader[1], phy + "");
+                            decimalSign = Convert.ToInt32(sb.ToString(), 2);
                         }
+                        else if (pattern == "1+")
+                        {
+                            StringBuilder sb = new StringBuilder("");
+                            int i = 0, j = start;
+                            for (i = 0; i < length; i++)
+                            {
+                                sb.Append(binaryData[j]);
+                                j++;
+                            }
+                            decimalSign = Convert.ToInt32(sb.ToString(), 2);
+                        }
+                        else
+                        {
+                            MessageBox.Show("暂不支持的数据格式!");
+                            return returnedData;
+                        }
+                        double A = (double)reader[4];
+                        double B = (double)reader[5];
+                        //物理值
+                        double phy = A * decimalSign + B;
+                        //MessageBox.Show("" + phy);
+                        returnedData.Add((string)reader[1], phy + "");
                     }
                 }
             }
