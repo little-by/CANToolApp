@@ -44,12 +44,9 @@
             this.ShowBt = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-<<<<<<< HEAD
             this.test = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-=======
             this.CurveShowBt = new System.Windows.Forms.Button();
->>>>>>> refs/remotes/origin/master
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
