@@ -47,7 +47,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtSecond = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.cbTimeSend = new System.Windows.Forms.CheckBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.rbRcvStr = new System.Windows.Forms.RadioButton();
             this.rbRcv16 = new System.Windows.Forms.RadioButton();
@@ -88,7 +87,6 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtSecond);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.cbTimeSend);
             this.groupBox1.Controls.Add(this.groupBox8);
             this.groupBox1.Controls.Add(this.groupBox7);
             this.groupBox1.Controls.Add(this.btnSwitch);
@@ -114,7 +112,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label9.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label9.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.label9.Location = new System.Drawing.Point(7, 220);
             this.label9.Name = "label9";
@@ -168,7 +166,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label8.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label8.Location = new System.Drawing.Point(138, 47);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(63, 14);
@@ -178,7 +176,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label7.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label7.Location = new System.Drawing.Point(8, 47);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(63, 14);
@@ -202,7 +200,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label6.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label6.Location = new System.Drawing.Point(139, 21);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(63, 14);
@@ -231,7 +229,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label5.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label5.Location = new System.Drawing.Point(8, 21);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 14);
@@ -291,16 +289,6 @@
             this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 17;
             this.label2.Text = "时间间隔：";
-            // 
-            // cbTimeSend
-            // 
-            this.cbTimeSend.AutoSize = true;
-            this.cbTimeSend.Location = new System.Drawing.Point(10, 159);
-            this.cbTimeSend.Name = "cbTimeSend";
-            this.cbTimeSend.Size = new System.Drawing.Size(96, 16);
-            this.cbTimeSend.TabIndex = 16;
-            this.cbTimeSend.Text = "定时发送数据";
-            this.cbTimeSend.UseVisualStyleBackColor = true;
             // 
             // groupBox8
             // 
@@ -390,7 +378,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(10, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 14);
@@ -464,28 +452,28 @@
             // tsBaudRate
             // 
             this.tsBaudRate.Name = "tsBaudRate";
-            this.tsBaudRate.Size = new System.Drawing.Size(89, 17);
+            this.tsBaudRate.Size = new System.Drawing.Size(86, 17);
             this.tsBaudRate.Text = "波特率:未指定|";
             // 
             // tsDataBits
             // 
             this.tsDataBits.Name = "tsDataBits";
-            this.tsDataBits.Size = new System.Drawing.Size(89, 17);
+            this.tsDataBits.Size = new System.Drawing.Size(86, 17);
             this.tsDataBits.Text = "数据位:未指定|";
             // 
             // tsStopBits
             // 
             this.tsStopBits.Name = "tsStopBits";
-            this.tsStopBits.Size = new System.Drawing.Size(89, 17);
+            this.tsStopBits.Size = new System.Drawing.Size(86, 17);
             this.tsStopBits.Text = "停止位:未指定|";
             // 
             // tsParity
             // 
             this.tsParity.Name = "tsParity";
-            this.tsParity.Size = new System.Drawing.Size(89, 17);
+            this.tsParity.Size = new System.Drawing.Size(86, 17);
             this.tsParity.Text = "停止位:未指定|";
             // 
-            // Form1
+            // ComPortForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -495,11 +483,11 @@
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.Name = "Form1";
+            this.Name = "ComPortForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "设置COM口";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -531,7 +519,6 @@
         //private System.Windows.Forms.RadioButton rdse;
         private System.Windows.Forms.TextBox txtSecond;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox cbTimeSend;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtSend;
         private System.Windows.Forms.Label label4;
