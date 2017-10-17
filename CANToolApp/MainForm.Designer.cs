@@ -40,12 +40,16 @@
             this.SendBt = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.DashboardShowBt = new System.Windows.Forms.Button();
+            this.CurveShowBt = new System.Windows.Forms.Button();
+            this.ShowBt = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.CurveShowBt = new System.Windows.Forms.Button();
+            this.test = new System.Windows.Forms.Button();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -141,6 +145,7 @@
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // DashboardShowBt
+            // ShowBt
             // 
             this.DashboardShowBt.Location = new System.Drawing.Point(388, 251);
             this.DashboardShowBt.Name = "DashboardShowBt";
@@ -152,7 +157,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
+            this.groupBox1.Controls.Add(this.dataGridView);
             this.groupBox1.Location = new System.Drawing.Point(6, 33);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(502, 214);
@@ -172,6 +177,15 @@
             this.CurveShowBt.Text = "显示变化曲线";
             this.CurveShowBt.UseVisualStyleBackColor = true;
             this.CurveShowBt.Click += new System.EventHandler(this.CurveShowBt_Click);
+            // 
+            // dataGridView
+            // 
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Location = new System.Drawing.Point(6, 9);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.RowTemplate.Height = 23;
+            this.dataGridView.Size = new System.Drawing.Size(490, 199);
+            this.dataGridView.TabIndex = 4;
             // 
             // MainForm
             // 
@@ -193,6 +207,7 @@
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -207,6 +222,7 @@
         private System.Windows.Forms.Button SendBt;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button DashboardShowBt;
+        private System.Windows.Forms.Button ShowBt;
         private System.Windows.Forms.ToolStripMenuItem 读取ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 保存为ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
@@ -214,6 +230,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Button CurveShowBt;
+        private System.Windows.Forms.Button test;
+        private System.Windows.Forms.DataGridView dataGridView;
     }
 }
 

@@ -99,6 +99,7 @@
     <EmbeddedResource Include="CurveShow.resx">
       <DependentUpon>CurveShow.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="UpdateTableThread.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
