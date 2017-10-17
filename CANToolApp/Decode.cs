@@ -41,6 +41,7 @@ public class Decode
             string message = "select * from cantoolapp.canmessage where id = " + canId;
             string signal = "select * from cantoolapp.cansignal where canmessageid = " + canId;
             SqlDataReader messageExist = SqlHelper.query(message);
+            
             if (!messageExist.HasRows)
             {
                 //MessageBox.Show("系统中不存在此message!");
@@ -48,8 +49,9 @@ public class Decode
             }
             else
             {
+                messageExist.Read();
                 //MessageBox.Show("系统中存在此message!");
-                returnedData.Add("messageName", (string)messageExist[2]);
+                returnedData.Add("messageName", messageExist[2].ToString());
                 SqlHelper.close();
                 SqlHelper.connect();
                 SqlDataReader reader = SqlHelper.query(signal);
@@ -101,8 +103,7 @@ public class Decode
                             double B = (double)reader[5];
                             //物理值
                             double phy = A * decimalSign + B;
-                            Console.WriteLine(phy);
-                            MessageBox.Show("" + phy);
+                            //MessageBox.Show("" + phy);
                             returnedData.Add((string)reader[1], phy + "");
                         }
                     }

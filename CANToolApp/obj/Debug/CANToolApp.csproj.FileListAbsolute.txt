@@ -44,3 +44,4 @@ F:\git\CANToolApp\CANToolApp\bin\Debug\Microsoft.Practices.ServiceLocation.dll
 E:\github\CANToolApp\CANToolApp\bin\Debug\Microsoft.Practices.Prism.dll
 E:\github\CANToolApp\CANToolApp\bin\Debug\Microsoft.Practices.ServiceLocation.dll
 E:\github\CANToolApp\CANToolApp\obj\Debug\CANToolApp.CurveShow.resources
+F:\git\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.CoreCompileInputs.cache
