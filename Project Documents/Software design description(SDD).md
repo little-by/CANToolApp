@@ -32,7 +32,7 @@
 ## 程序系统的结构
 ### 功能结构图
 
-软件的功能结构图如图所示。
+本软件的功能结构如图所示。
 ![功能结构图](http://img.blog.csdn.net/20171017224004011?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvR3N5U3Vuc2hpbmU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ### 类图
