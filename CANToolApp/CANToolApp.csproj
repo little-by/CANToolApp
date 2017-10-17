@@ -71,6 +71,7 @@
     <Compile Include="DashboardShow.Designer.cs">
       <DependentUpon>DashboardShow.cs</DependentUpon>
     </Compile>
+    <Compile Include="DBInput.cs" />
     <Compile Include="Decode.cs" />
     <Compile Include="Encode.cs" />
     <Compile Include="ComPortForm.cs">

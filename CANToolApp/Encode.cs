@@ -12,7 +12,7 @@ namespace CANToolApp
             接收CANMessage的Name和CANSignal的Name
             返回封装好的字符串
         */
-        public static string EncodeCANSignal(string messageName, string signalName)
+        public static string EncodeCANSignal(string messageName, string signalName, int input)
         {
             string result = "";
             SqlHelper.connect();
@@ -20,6 +20,7 @@ namespace CANToolApp
             if (!msgReader.HasRows)
             {
                 MessageBox.Show("数据库中无此Message!");
+                SqlHelper.close();
             }
             else
             {
@@ -39,11 +40,12 @@ namespace CANToolApp
 
                 SqlHelper.close();
                 SqlHelper.connect();
-                SqlDataReader sigReader = SqlHelper.query("select * from cantoolapp.cansignal where signalname = '" + signalName + "'");
+                SqlDataReader sigReader = SqlHelper.query("select * from cantoolapp.cansignal where signalname = '" + signalName + "'" + "and canmessageid = " + canId);
                 sigReader.Read();
                 if (!sigReader.HasRows)
                 {
                     MessageBox.Show("Message下无信号!");
+                    SqlHelper.close();
                 }
                 else
                 {
@@ -52,10 +54,17 @@ namespace CANToolApp
                     {
                         data[i] = '0';
                     }
-                    //获取输入的值
-                    int input = 15;
                     double A = (double)sigReader[4];
-                    double B = (double)sigReader[5]; ;
+                    double B = (double)sigReader[5];
+                    double C = (double)sigReader[6];
+                    double D = (double)sigReader[7];
+                    double temp = (input - B) / A;
+                    if (!(temp >= C && temp <= D))
+                    {
+                        MessageBox.Show("输入的数据超出范围，请重新输入！");
+                        SqlHelper.close();
+                        return null;
+                    }
                     string x = ((int)((input - B) / A)).ToString("x8");
                     // 起始位、bit长度、bit格式
                     string[] startAndLengthAndPattern = sigReader[3].ToString().Split(new char[2] { '|', '@' });
@@ -63,10 +72,7 @@ namespace CANToolApp
                     int length = (int)Convert.ToUInt32(startAndLengthAndPattern[1]);
                     string pattern = startAndLengthAndPattern[2];
                     string input_binary = Convert.ToString(Convert.ToInt32(x, 16), 2);
-                    while (input_binary.Length < length)
-                    {
-                        input_binary.Insert(0, "0");
-                    }
+                    input_binary =  input_binary.PadLeft(length, '0');
                     if (pattern == "0+")
                     {
                         int i = 0, j = start;
@@ -94,30 +100,19 @@ namespace CANToolApp
                     else if (pattern == "1+")
                     {
                         int i = 0, j = start;
-                        int line = 0;
-                        int leftIndex = 0, rightIndex = 0;
                         for (i = 0; i < length; i++)
                         {
                             data[j] = input_binary[i];
-                            line = j / 8;
-                            leftIndex = 7 * (line + 1) + line;
-                            rightIndex = 8 * line;
-                            if (line >= 0 && line < 8)
+                            if (j < 64)
                             {
-                                if (j < leftIndex && j >= rightIndex)
-                                {
-                                    j++;
-                                }
-                                else if (j == leftIndex && line > 0)
-                                {
-                                    j = j - 15;
-                                }
+                                j++;
                             }
                         }
                     }
                     else
                     {
                         MessageBox.Show("暂不支持此数据格式!");
+                        SqlHelper.close();
                         return "";
                     }
                     SqlHelper.close();
