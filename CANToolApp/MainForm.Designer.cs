@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.读取ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,13 +43,10 @@
             this.DashboardShowBt = new System.Windows.Forms.Button();
             this.CurveShowBt = new System.Windows.Forms.Button();
             this.ShowBt = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.test = new System.Windows.Forms.Button();
+            this.treeListView1 = new System.Windows.Forms.TreeListView();
             this.menuStrip1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -171,24 +169,6 @@
             this.ShowBt.Size = new System.Drawing.Size(75, 23);
             this.ShowBt.TabIndex = 0;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.dataGridView);
-            this.groupBox1.Location = new System.Drawing.Point(6, 33);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(502, 214);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            // 
-            // dataGridView
-            // 
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(6, 9);
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.RowTemplate.Height = 23;
-            this.dataGridView.Size = new System.Drawing.Size(490, 199);
-            this.dataGridView.TabIndex = 4;
-            // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
@@ -200,14 +180,25 @@
             this.test.Size = new System.Drawing.Size(75, 23);
             this.test.TabIndex = 0;
             // 
+            // treeListView1
+            // 
+            treeListViewItemCollectionComparer1.Column = 0;
+            treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
+            this.treeListView1.Comparer = treeListViewItemCollectionComparer1;
+            this.treeListView1.Location = new System.Drawing.Point(10, 42);
+            this.treeListView1.Name = "treeListView1";
+            this.treeListView1.Size = new System.Drawing.Size(490, 199);
+            this.treeListView1.TabIndex = 0;
+            this.treeListView1.UseCompatibleStateImageBehavior = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(514, 290);
+            this.Controls.Add(this.treeListView1);
             this.Controls.Add(this.CurveShowBt);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.DashboardShowBt);
             this.Controls.Add(this.SendBt);
             this.Controls.Add(this.textBox1);
@@ -219,8 +210,6 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -241,11 +230,10 @@
         private System.Windows.Forms.ToolStripMenuItem 保存为ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cOM口设置ToolStripMenuItem;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Button CurveShowBt;
         private System.Windows.Forms.Button test;
-        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.TreeListView treeListView1;
     }
 }
 

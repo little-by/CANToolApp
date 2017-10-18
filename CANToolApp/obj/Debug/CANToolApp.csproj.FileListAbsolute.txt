@@ -62,3 +62,7 @@ E:\gittest\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.GenerateResource.Ca
 E:\gittest\CANToolApp\CANToolApp\obj\Debug\CANToolApp.exe
 E:\gittest\CANToolApp\CANToolApp\obj\Debug\CANToolApp.pdb
 E:\gittest\CANToolApp\CANToolApp\obj\Debug\CANToolApp.CheckForm.resources
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.CheckForm.resources
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.ComPortForm.resources
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\bin\Debug\System.Runtime.InteropServices.APIs.dll
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\bin\Debug\System.Windows.Forms.TreeListView.dll
