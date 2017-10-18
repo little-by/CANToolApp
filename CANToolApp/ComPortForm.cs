@@ -108,13 +108,13 @@ namespace CANToolApp
             //预置校验位
             switch (Profile.G_PARITY)
             {
-                case "NONE":
+                case "None":
                     cbParity.SelectedIndex = 0;
                     break;
-                case "ODD":
+                case "Odd":
                     cbParity.SelectedIndex = 1;
                     break;
-                case "EVEN":
+                case "Even":
                     cbParity.SelectedIndex = 2;
                     break;
                 default:
@@ -312,13 +312,13 @@ namespace CANToolApp
                     }
                     switch (cbParity.Text)             //校验位
                     {
-                        case "无":
+                        case "NONE":
                             sp1.Parity = Parity.None;
                             break;
-                        case "奇校验":
+                        case "ODD":
                             sp1.Parity = Parity.Odd;
                             break;
-                        case "偶校验":
+                        case "EVEN":
                             sp1.Parity = Parity.Even;
                             break;
                         default:
@@ -331,11 +331,11 @@ namespace CANToolApp
                         sp1.Close();
                     }
                     //状态栏设置
-                    tsSpNum.Text = "串口号：" + sp1.PortName + "|";
-                    tsBaudRate.Text = "波特率：" + sp1.BaudRate + "|";
-                    tsDataBits.Text = "数据位：" + sp1.DataBits + "|";
-                    tsStopBits.Text = "停止位：" + sp1.StopBits + "|";
-                    tsParity.Text = "校验位：" + sp1.Parity + "|";
+                    tsSpNum.Text = "Comm：" + sp1.PortName + "|";
+                    tsBaudRate.Text = "Baud Rate：" + sp1.BaudRate + "|";
+                    tsDataBits.Text = "Data Bits：" + sp1.DataBits + "|";
+                    tsStopBits.Text = "Stop Bits：" + sp1.StopBits + "|";
+                    tsParity.Text = "Parity：" + sp1.Parity + "|";
 
                     //设置必要控件不可用
                     cbSerial.Enabled = false;
@@ -357,11 +357,11 @@ namespace CANToolApp
             else
             {
                 //状态栏设置
-                tsSpNum.Text = "串口号：未指定|";
-                tsBaudRate.Text = "波特率：未指定|";
-                tsDataBits.Text = "数据位：未指定|";
-                tsStopBits.Text = "停止位：未指定|";
-                tsParity.Text = "校验位：未指定|";
+                tsSpNum.Text = "Comm：None|";
+                tsBaudRate.Text = "Baud Rate：None|";
+                tsDataBits.Text = "Data Bits：None|";
+                tsStopBits.Text = "Stop Bits：None|";
+                tsParity.Text = "Parity：None|";
                 //恢复控件功能
                 //设置必要控件不可用
                 cbSerial.Enabled = true;
@@ -385,7 +385,7 @@ namespace CANToolApp
         //退出按钮
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         //关闭时事件
@@ -447,14 +447,14 @@ namespace CANToolApp
             }
             switch (cbParity.Text)             //校验位
             {
-                case "无":
-                    Profile.G_PARITY = "NONE";
+                case "None":
+                    Profile.G_PARITY = "None";
                     break;
-                case "奇校验":
-                    Profile.G_PARITY = "ODD";
+                case "Odd":
+                    Profile.G_PARITY = "Odd";
                     break;
-                case "偶校验":
-                    Profile.G_PARITY = "EVEN";
+                case "Even":
+                    Profile.G_PARITY = "Even";
                     break;
                 default:
                     MessageBox.Show("Error：参数不正确!", "Error");
@@ -467,6 +467,8 @@ namespace CANToolApp
             //public static string G_STOP = "1";
             //public static string G_PARITY = "NONE";
             Profile.SaveProfile();
+            new CheckForm().Show();
+        
         }
 
         private void txtSecond_KeyPress(object sender, KeyPressEventArgs e)
@@ -510,6 +512,31 @@ namespace CANToolApp
         }
 
         private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtReceive_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbParity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbDataBits_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbBaudRate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbStop_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

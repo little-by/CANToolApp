@@ -125,13 +125,14 @@
             this.cbParity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbParity.FormattingEnabled = true;
             this.cbParity.Items.AddRange(new object[] {
-            "无",
-            "奇校验",
-            "偶校验"});
+            "None",
+            "Odd",
+            "Even"});
             this.cbParity.Location = new System.Drawing.Point(204, 58);
             this.cbParity.Name = "cbParity";
             this.cbParity.Size = new System.Drawing.Size(68, 20);
             this.cbParity.TabIndex = 29;
+            this.cbParity.SelectedIndexChanged += new System.EventHandler(this.cbParity_SelectedIndexChanged);
             // 
             // cbStop
             // 
@@ -145,6 +146,7 @@
             this.cbStop.Name = "cbStop";
             this.cbStop.Size = new System.Drawing.Size(63, 20);
             this.cbStop.TabIndex = 28;
+            this.cbStop.SelectedIndexChanged += new System.EventHandler(this.cbStop_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -179,6 +181,7 @@
             this.cbDataBits.Name = "cbDataBits";
             this.cbDataBits.Size = new System.Drawing.Size(68, 20);
             this.cbDataBits.TabIndex = 26;
+            this.cbDataBits.SelectedIndexChanged += new System.EventHandler(this.cbDataBits_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -208,6 +211,7 @@
             this.cbBaudRate.Name = "cbBaudRate";
             this.cbBaudRate.Size = new System.Drawing.Size(63, 20);
             this.cbBaudRate.TabIndex = 24;
+            this.cbBaudRate.SelectedIndexChanged += new System.EventHandler(this.cbBaudRate_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -293,9 +297,10 @@
             this.txtReceive.Location = new System.Drawing.Point(18, 21);
             this.txtReceive.Name = "txtReceive";
             this.txtReceive.ReadOnly = true;
-            this.txtReceive.Size = new System.Drawing.Size(283, 329);
+            this.txtReceive.Size = new System.Drawing.Size(280, 329);
             this.txtReceive.TabIndex = 0;
             this.txtReceive.Text = "";
+            this.txtReceive.TextChanged += new System.EventHandler(this.txtReceive_TextChanged);
             // 
             // btnClear
             // 
@@ -327,45 +332,45 @@
             this.tsParity});
             this.statusStrip1.Location = new System.Drawing.Point(0, 409);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(626, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(642, 22);
             this.statusStrip1.TabIndex = 12;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // tsSpNum
             // 
             this.tsSpNum.Name = "tsSpNum";
-            this.tsSpNum.Size = new System.Drawing.Size(95, 17);
-            this.tsSpNum.Text = "串口号：未指定|";
+            this.tsSpNum.Size = new System.Drawing.Size(93, 17);
+            this.tsSpNum.Text = "Comm：None|";
             // 
             // tsBaudRate
             // 
             this.tsBaudRate.Name = "tsBaudRate";
-            this.tsBaudRate.Size = new System.Drawing.Size(86, 17);
-            this.tsBaudRate.Text = "波特率:未指定|";
+            this.tsBaudRate.Size = new System.Drawing.Size(106, 17);
+            this.tsBaudRate.Text = "Baud Rate:None|";
             // 
             // tsDataBits
             // 
             this.tsDataBits.Name = "tsDataBits";
-            this.tsDataBits.Size = new System.Drawing.Size(86, 17);
-            this.tsDataBits.Text = "数据位:未指定|";
+            this.tsDataBits.Size = new System.Drawing.Size(98, 17);
+            this.tsDataBits.Text = "Data Bits:None|";
             // 
             // tsStopBits
             // 
             this.tsStopBits.Name = "tsStopBits";
-            this.tsStopBits.Size = new System.Drawing.Size(86, 17);
-            this.tsStopBits.Text = "停止位:未指定|";
+            this.tsStopBits.Size = new System.Drawing.Size(98, 17);
+            this.tsStopBits.Text = "Stop Bits:None|";
             // 
             // tsParity
             // 
             this.tsParity.Name = "tsParity";
-            this.tsParity.Size = new System.Drawing.Size(86, 17);
-            this.tsParity.Text = "停止位:未指定|";
+            this.tsParity.Size = new System.Drawing.Size(78, 17);
+            this.tsParity.Text = "Parity:None|";
             // 
             // ComPortForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(626, 431);
+            this.ClientSize = new System.Drawing.Size(642, 431);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnClear);

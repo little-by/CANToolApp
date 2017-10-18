@@ -43,14 +43,13 @@
             this.CurveShowBt = new System.Windows.Forms.Button();
             this.ShowBt = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.test = new System.Windows.Forms.Button();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.CurveShowBt = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -146,7 +145,6 @@
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // DashboardShowBt
-            // ShowBt
             // 
             this.DashboardShowBt.Location = new System.Drawing.Point(388, 251);
             this.DashboardShowBt.Name = "DashboardShowBt";
@@ -155,19 +153,6 @@
             this.DashboardShowBt.Text = "仪表盘方式显示";
             this.DashboardShowBt.UseVisualStyleBackColor = true;
             this.DashboardShowBt.Click += new System.EventHandler(this.DashboardShowBt_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.dataGridView);
-            this.groupBox1.Location = new System.Drawing.Point(6, 33);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(502, 214);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
             // 
             // CurveShowBt
             // 
@@ -179,6 +164,22 @@
             this.CurveShowBt.UseVisualStyleBackColor = true;
             this.CurveShowBt.Click += new System.EventHandler(this.CurveShowBt_Click);
             // 
+            // ShowBt
+            // 
+            this.ShowBt.Location = new System.Drawing.Point(0, 0);
+            this.ShowBt.Name = "ShowBt";
+            this.ShowBt.Size = new System.Drawing.Size(75, 23);
+            this.ShowBt.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dataGridView);
+            this.groupBox1.Location = new System.Drawing.Point(6, 33);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(502, 214);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            // 
             // dataGridView
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -187,6 +188,17 @@
             this.dataGridView.RowTemplate.Height = 23;
             this.dataGridView.Size = new System.Drawing.Size(490, 199);
             this.dataGridView.TabIndex = 4;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // test
+            // 
+            this.test.Location = new System.Drawing.Point(0, 0);
+            this.test.Name = "test";
+            this.test.Size = new System.Drawing.Size(75, 23);
+            this.test.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -202,13 +214,14 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CANToolApp";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
