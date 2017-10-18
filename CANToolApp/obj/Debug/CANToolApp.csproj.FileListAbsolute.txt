@@ -48,3 +48,16 @@ F:\git\CANToolApp\CANToolApp\obj\Debug\CANToolApp.Properties.Resources.resources
 F:\git\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.GenerateResource.Cache
 F:\git\CANToolApp\CANToolApp\obj\Debug\CANToolApp.exe
 F:\git\CANToolApp\CANToolApp\obj\Debug\CANToolApp.pdb
+E:\gittest\CANToolApp\CANToolApp\bin\Debug\CANToolApp.exe.config
+E:\gittest\CANToolApp\CANToolApp\bin\Debug\CANToolApp.exe
+E:\gittest\CANToolApp\CANToolApp\bin\Debug\CANToolApp.pdb
+E:\gittest\CANToolApp\CANToolApp\bin\Debug\Microsoft.Practices.Prism.dll
+E:\gittest\CANToolApp\CANToolApp\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+E:\gittest\CANToolApp\CANToolApp\obj\Debug\CANToolApp.ComPortForm.resources
+E:\gittest\CANToolApp\CANToolApp\obj\Debug\CANToolApp.CurveShow.resources
+E:\gittest\CANToolApp\CANToolApp\obj\Debug\CANToolApp.MainForm.resources
+E:\gittest\CANToolApp\CANToolApp\obj\Debug\CANToolApp.GraphVisual.resources
+E:\gittest\CANToolApp\CANToolApp\obj\Debug\CANToolApp.Properties.Resources.resources
+E:\gittest\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.GenerateResource.Cache
+E:\gittest\CANToolApp\CANToolApp\obj\Debug\CANToolApp.exe
+E:\gittest\CANToolApp\CANToolApp\obj\Debug\CANToolApp.pdb

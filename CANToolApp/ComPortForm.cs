@@ -145,14 +145,14 @@ namespace CANToolApp
             // cbDataBits.SelectedIndex = 3;
             // cbStop.SelectedIndex = 0;
             //  cbParity.SelectedIndex = 0;
-            sp1.BaudRate = 9600;
+            sp1.BaudRate = 115200;
 
             Control.CheckForIllegalCrossThreadCalls = false;    //这个类中我们不检查跨线程的调用是否合法(因为.net 2.0以后加强了安全机制,，不允许在winform中直接跨线程访问控件的属性)
             sp1.DataReceived += new SerialDataReceivedEventHandler(sp1_DataReceived);
             //sp1.ReceivedBytesThreshold = 1;
 
-            radio1.Checked = true;  //单选按钮默认是选中的
-            rbRcvStr.Checked = true;
+            //radio1.Checked = true;  //单选按钮默认是选中的
+            //rbRcvStr.Checked = true;
 
             //准备就绪              
             sp1.DtrEnable = true;
@@ -174,13 +174,9 @@ namespace CANToolApp
                 txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
 
                 byte[] byteRead = new byte[sp1.BytesToRead];    //BytesToRead:sp1接收的字符个数
-                if (rdSendStr.Checked)                          //'发送字符串'单选按钮
-                {
+                
                     txtReceive.Text += sp1.ReadLine() + "\r\n"; //注意：回车换行必须这样写，单独使用"\r"和"\n"都不会有效果
                     sp1.DiscardInBuffer();                      //清空SerialPort控件的Buffer 
-                }
-                else                                            //'发送16进制按钮'
-                {
                     try
                     {
                         Byte[] receivedData = new Byte[sp1.BytesToRead];        //创建接收字节数组
@@ -195,21 +191,12 @@ namespace CANToolApp
                         //    }
                         //    txtReceive.Text += strRcv + "\r\n";             //显示信息
                         //}
-                        string strRcv = null;
-                        //int decNum = 0;//存储十进制
-                        for (int i = 0; i < receivedData.Length; i++) //窗体显示
-                        {
-
-                            strRcv += receivedData[i].ToString("X2");  //16进制显示
-                        }
-                        txtReceive.Text += strRcv + "\r\n";
                     }
                     catch (System.Exception ex)
                     {
                         MessageBox.Show(ex.Message, "出错提示");
                         txtSend.Text = "";
                     }
-                }
             }
             else
             {
@@ -220,15 +207,7 @@ namespace CANToolApp
         //发送按钮
         private void btnSend_Click(object sender, EventArgs e)
         {
-            if (cbTimeSend.Checked)
-            {
-                tmSend.Enabled = true;
-            }
-            else
-            {
-                tmSend.Enabled = false;
-            }
-
+           
             if (!sp1.IsOpen) //如果没打开
             {
                 MessageBox.Show("请先打开串口！", "Error");
@@ -236,9 +215,9 @@ namespace CANToolApp
             }
 
             String strSend = txtSend.Text;
-            if (radio1.Checked == true)	//“HEX发送” 按钮 
-            {
+           
                 //处理数字转换
+            /*
                 string sendBuf = strSend;
                 string sendnoNull = sendBuf.Trim();
                 string sendNOComma = sendnoNull.Replace(',', ' ');    //去掉英文逗号
@@ -287,12 +266,12 @@ namespace CANToolApp
 
                     ii++;
                 }
-                sp1.Write(byteBuffer, 0, byteBuffer.Length);
-            }
-            else		//以字符串形式发送时 
-            {
-                sp1.WriteLine(txtSend.Text);    //写入数据
-            }
+                sp1.Write(byteBuffer, 0, byteBuffer.Length);*/
+            
+           		//以字符串形式发送时 
+            
+               sp1.WriteLine(txtSend.Text);    //写入数据
+            
         }
 
         //开关按钮
@@ -418,25 +397,19 @@ namespace CANToolApp
 
         private void txtSend_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (radio1.Checked == true)
-            {
-                //正则匹配
-                string patten = "[0-9a-fA-F]|\b|0x|0X| "; //“\b”：退格键
-                Regex r = new Regex(patten);
-                Match m = r.Match(e.KeyChar.ToString());
 
-                if (m.Success)//&&(txtSend.Text.LastIndexOf(" ") != txtSend.Text.Length-1))
-                {
-                    e.Handled = false;
-                }
-                else
-                {
-                    e.Handled = true;
-                }
-            }//end of radio1
-            else
+            //正则匹配
+            string patten = "[0-9a-fA-F]|\b|0x|0X| "; //“\b”：退格键
+            Regex r = new Regex(patten);
+            Match m = r.Match(e.KeyChar.ToString());
+
+            if (m.Success)//&&(txtSend.Text.LastIndexOf(" ") != txtSend.Text.Length-1))
             {
                 e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
             }
         }
 
@@ -496,28 +469,6 @@ namespace CANToolApp
             Profile.SaveProfile();
         }
 
-        //定时器
-        private void tmSend_Tick(object sender, EventArgs e)
-        {
-            //转换时间间隔
-            string strSecond = txtSecond.Text;
-            try
-            {
-                int isecond = int.Parse(strSecond) * 1000;//Interval以微秒为单位
-                tmSend.Interval = isecond;
-                if (tmSend.Enabled == true)
-                {
-                    btnSend.PerformClick();
-                }
-            }
-            catch (System.Exception ex)
-            {
-                tmSend.Enabled = false;
-                MessageBox.Show("错误的定时输入！", "Error");
-            }
-
-        }
-
         private void txtSecond_KeyPress(object sender, KeyPressEventArgs e)
         {
             string patten = "[0-9]|\b"; //“\b”：退格键
@@ -539,6 +490,26 @@ namespace CANToolApp
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
         {
 
         }
