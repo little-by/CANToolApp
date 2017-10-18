@@ -26,8 +26,8 @@ namespace CANToolApp
 
 
             InitTreeList();
-            AddItems();
-
+            //AddItems();
+            addone();
 
 
 
@@ -82,6 +82,33 @@ namespace CANToolApp
             dsForm.Show();
         }
 
+        private void addone()
+        {
+            Dictionary<string, string> returnedData = Decode.DecodeCANSignal("t3588A5SD566D9F8SD565");
+            TreeListViewItem itemA = new TreeListViewItem("messageName ", 0);
+            foreach (string key in returnedData.Keys)
+            {
+                if (key == "messageName")
+                {
+                    
+                    itemA.Expand();
+                    itemA.SubItems.Add(returnedData[key]);
+                    treeListView1.Items.Add(itemA);
+                }
+            }
+            foreach (string key in returnedData.Keys)
+            {
+                if (key != "messageName")
+                {
+                    TreeListViewItem item = new TreeListViewItem(key, 1);
+                    item.SubItems.Add(returnedData[key]);
+                    itemA.Items.Add(item);
+                }
+            }
+            itemA.Collapse();
+        }
+
+
         private void AddItems()
         {
             for (int k = 0; k < 4; k++)
@@ -126,7 +153,7 @@ namespace CANToolApp
                                                                                             this.columnHeader2,
                                                                                             this.columnHeader3});
             this.treeListView1.HideSelection = false;
-            this.treeListView1.LabelEdit = true;
+            this.treeListView1.LabelEdit = false;
             this.treeListView1.Location = new System.Drawing.Point(4, 4);
             this.treeListView1.Name = "treeListView1";
             this.treeListView1.Size = new System.Drawing.Size(580, 420);
