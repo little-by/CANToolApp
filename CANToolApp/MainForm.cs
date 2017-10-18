@@ -14,8 +14,6 @@ namespace CANToolApp
 		private System.Windows.Forms.ColumnHeader columnHeader2;
 		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.ColumnHeader columnHeader3;
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.Button button2;
 
 
         public MainForm()
@@ -114,8 +112,6 @@ namespace CANToolApp
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            //this.button1 = new System.Windows.Forms.Button();
-            //this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // treeListView1
@@ -133,7 +129,7 @@ namespace CANToolApp
             this.treeListView1.LabelEdit = true;
             this.treeListView1.Location = new System.Drawing.Point(4, 4);
             this.treeListView1.Name = "treeListView1";
-            this.treeListView1.Size = new System.Drawing.Size(392, 180);
+            this.treeListView1.Size = new System.Drawing.Size(580, 420);
             this.treeListView1.SmallImageList = this.imageList1;
             this.treeListView1.TabIndex = 0;
             //this.treeListView1.BeforeLabelEdit += new System.Windows.Forms.TreeListViewBeforeLabelEditEventHandler(this.treeListView1_BeforeLabelEdit);
@@ -157,38 +153,39 @@ namespace CANToolApp
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // button1
+            // CurveShowBt
             // 
-            /*
-            this.button1.Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button1.Location = new System.Drawing.Point(8, 192);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Add / Remove All";*/
-            //this.button1.Click += new System.EventHandler(this.button1_Click);
+            
+            this.CurveShowBt.Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
+            this.CurveShowBt.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.CurveShowBt.Location = new System.Drawing.Point(8, 425);
+            //this.CurveShowBt.Name = "CurveShowBt";
+            this.CurveShowBt.Size = new System.Drawing.Size(112, 20);
+            this.CurveShowBt.TabIndex = 1;
+            //this.CurveShowBt.Text = "Add / Remove All";
+            //this.CurveShowBt.Click += new System.EventHandler(this.CurveShowBt_Click);
             // 
-            // button2
+            // DashboardShowBt
             // 
-            /*
-            this.button2.Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right);
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button2.Location = new System.Drawing.Point(264, 192);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(128, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Expand / Collapse All";
-            */
-            //this.button2.Click += new System.EventHandler(this.button2_Click);
+            
+            this.DashboardShowBt.Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right);
+            this.DashboardShowBt.FlatStyle = System.Windows.Forms.FlatStyle.System;
+
+            this.DashboardShowBt.Location = new System.Drawing.Point(450, 425);
+            //this.DashboardShowBt.Name = "DashboardShowBt";
+            this.DashboardShowBt.Size = new System.Drawing.Size(128, 20);
+            this.DashboardShowBt.TabIndex = 2;
+            //this.DashboardShowBt.Text = "Expand / Collapse All";
+            
+            //this.DashboardShowBt.Click += new System.EventHandler(this.DashboardShowBt_Click);
             // 
             // TryTreeListView
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.ClientSize = new System.Drawing.Size(400, 219);
+            this.ClientSize = new System.Drawing.Size(600, 450);
             this.Controls.AddRange(new System.Windows.Forms.Control[] {
-                                                                          this.button2,
-                                                                          this.button1,
+                                                                          this.DashboardShowBt,
+                                                                          this.CurveShowBt,
                                                                           this.treeListView1});
             this.Name = "MainForm";
             this.Text = "MainForm";
