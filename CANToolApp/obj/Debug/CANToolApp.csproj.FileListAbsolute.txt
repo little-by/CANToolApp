@@ -15,7 +15,6 @@ E:\github\CANToolApp\CANToolApp\bin\Debug\CANToolApp.exe
 E:\github\CANToolApp\CANToolApp\bin\Debug\CANToolApp.pdb
 E:\github\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csprojResolveAssemblyReference.cache
 E:\github\CANToolApp\CANToolApp\obj\Debug\CANToolApp.MainForm.resources
-E:\github\CANToolApp\CANToolApp\obj\Debug\CANToolApp.GraphVisual.resources
 E:\github\CANToolApp\CANToolApp\obj\Debug\CANToolApp.Properties.Resources.resources
 E:\github\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.GenerateResource.Cache
 E:\project_CanToolApp\CANToolApp\CANToolApp\bin\Debug\CANToolApp.exe.config
@@ -72,3 +71,8 @@ E:\project_CanToolApp\CANToolApp\CANToolApp\bin\Debug\System.Windows.Forms.TreeL
 E:\project_CanToolApp\CANToolApp\CANToolApp\obj\Debug\CANToolApp.CheckForm.resources
 E:\project_CanToolApp\CANToolApp\CANToolApp\obj\Debug\CANToolApp.ComPortForm.resources
 E:\project_CanToolApp\CANToolApp\CANToolApp\obj\Debug\CANToolApp.CurveShow.resources
+E:\github\CANToolApp\CANToolApp\bin\Debug\System.Runtime.InteropServices.APIs.dll
+E:\github\CANToolApp\CANToolApp\bin\Debug\System.Windows.Forms.TreeListView.dll
+E:\github\CANToolApp\CANToolApp\obj\Debug\CANToolApp.CheckForm.resources
+E:\github\CANToolApp\CANToolApp\obj\Debug\CANToolApp.ComPortForm.resources
+E:\github\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.CoreCompileInputs.cache

@@ -45,13 +45,13 @@ public class Decode
             if (!messageExist.HasRows)
             {
                 //MessageBox.Show("系统中不存在此message!");
-                return returnedData;
+                return null;
             }
             else
             {
                 messageExist.Read();
                 //MessageBox.Show("系统中存在此message!");
-                returnedData.Add("messageName", messageExist[2].ToString());
+                returnedData.Add("messageName", messageExist[2].ToString() + " " + data);
                 SqlHelper.close();
                 SqlHelper.connect();
                 SqlDataReader reader = SqlHelper.query(signal);
@@ -117,10 +117,12 @@ public class Decode
                         }
                         double A = (double)reader[4];
                         double B = (double)reader[5];
+                        double C = (double)reader[6];
+                        double D = (double)reader[7];
                         //物理值
                         double phy = A * decimalSign + B;
                         //MessageBox.Show("" + phy);
-                        returnedData.Add((string)reader[1], phy + "");
+                        returnedData.Add((string)reader[1], phy + " [" + C + "|" + D + "]");
                     }
                 }
             }
