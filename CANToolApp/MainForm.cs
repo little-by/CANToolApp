@@ -7,17 +7,21 @@ using System.Data;
 
 namespace CANToolApp
 {
+    public delegate void DelegateUpdateUI(string msgobj);
     public partial class MainForm : Form
     {
-
+        private static SynchronizationContext m_SyncContext = null;
+        private static TreeListView treeListView1;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.ColumnHeader columnHeader2;
 		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.ColumnHeader columnHeader3;
-
+        
+        public event DelegateUpdateUI delegateUpdateUI;
 
         public MainForm()
         {
+            m_SyncContext = SynchronizationContext.Current;
             InitializeComponent();
         }
 
@@ -27,7 +31,7 @@ namespace CANToolApp
 
             InitTreeList();
             //AddItems();
-            addone();
+            //addone();
 
 
 
@@ -41,8 +45,7 @@ namespace CANToolApp
 
             //this.dataGridView.DataSource = table;
 
-            Thread thread = new Thread(new ParameterizedThreadStart(UpdateTableThread.updateUi));
-            thread.Start(table);
+            
         }
 
         private void sendBt_Click(object sender, EventArgs e)
@@ -67,7 +70,9 @@ namespace CANToolApp
 
         private void cOM口设置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new ComPortForm().Show();
+            ComPortForm comform=new ComPortForm();
+            comform.delegateUpdateUI += new DelegateUpdateUI(UpdateUI);
+            comform.Show();
         }
 
         private void CurveShowBt_Click(object sender, EventArgs e)
@@ -82,9 +87,22 @@ namespace CANToolApp
             dsForm.Show();
         }
 
-        private void addone()
+        
+        public void UpdateUI(string msgobj)
         {
-            Dictionary<string, string> returnedData = Decode.DecodeCANSignal("t3588A5SD566D9F8SD565");
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new DelegateUpdateUI(UpdateUI),msgobj);
+            }
+            else
+            {
+                addone(msgobj);
+            }
+        }
+        public static void addone(string msgobj)
+        {
+            string msg = (string)msgobj;
+            Dictionary<string, string> returnedData = Decode.DecodeCANSignal(msg);
             TreeListViewItem itemA = new TreeListViewItem("messageName ", 0);
             foreach (string key in returnedData.Keys)
             {
@@ -134,7 +152,7 @@ namespace CANToolApp
         {
             this.components = new System.ComponentModel.Container();
             System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(TreeListView));
-            //this.treeListView1 = new System.Windows.Forms.TreeListView();
+            treeListView1 = new System.Windows.Forms.TreeListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
@@ -143,22 +161,22 @@ namespace CANToolApp
             // 
             // treeListView1
             // 
-            this.treeListView1.AllowColumnReorder = true;
-            this.treeListView1.Anchor = (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            treeListView1.AllowColumnReorder = true;
+            treeListView1.Anchor = (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                 | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right);
-            this.treeListView1.CheckBoxes = System.Windows.Forms.CheckBoxesTypes.Recursive;
-            this.treeListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            treeListView1.CheckBoxes = System.Windows.Forms.CheckBoxesTypes.Recursive;
+            treeListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
                                                                                             this.columnHeader1,
                                                                                             this.columnHeader2,
                                                                                             this.columnHeader3});
-            this.treeListView1.HideSelection = false;
-            this.treeListView1.LabelEdit = false;
-            this.treeListView1.Location = new System.Drawing.Point(4, 4);
-            this.treeListView1.Name = "treeListView1";
-            this.treeListView1.Size = new System.Drawing.Size(580, 420);
-            this.treeListView1.SmallImageList = this.imageList1;
-            this.treeListView1.TabIndex = 0;
+            treeListView1.HideSelection = false;
+            treeListView1.LabelEdit = false;
+            treeListView1.Location = new System.Drawing.Point(4, 4);
+            treeListView1.Name = "treeListView1";
+            treeListView1.Size = new System.Drawing.Size(580, 420);
+            treeListView1.SmallImageList = this.imageList1;
+            treeListView1.TabIndex = 0;
             //this.treeListView1.BeforeLabelEdit += new System.Windows.Forms.TreeListViewBeforeLabelEditEventHandler(this.treeListView1_BeforeLabelEdit);
             //this.treeListView1.BeforeCollapse += new System.Windows.Forms.TreeListViewCancelEventHandler(this.treeListView1_BeforeCollapse);
             //this.treeListView1.BeforeExpand += new System.Windows.Forms.TreeListViewCancelEventHandler(this.treeListView1_BeforeExpand);
@@ -213,7 +231,7 @@ namespace CANToolApp
             this.Controls.AddRange(new System.Windows.Forms.Control[] {
                                                                           this.DashboardShowBt,
                                                                           this.CurveShowBt,
-                                                                          this.treeListView1});
+                                                                          treeListView1});
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.Form1_Load);

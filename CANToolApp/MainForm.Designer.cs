@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.读取ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,7 +44,6 @@
             this.ShowBt = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.test = new System.Windows.Forms.Button();
-            this.treeListView1 = new System.Windows.Forms.TreeListView();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -180,24 +178,12 @@
             this.test.Size = new System.Drawing.Size(75, 23);
             this.test.TabIndex = 0;
             // 
-            // treeListView1
-            // 
-            treeListViewItemCollectionComparer1.Column = 0;
-            treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
-            this.treeListView1.Comparer = treeListViewItemCollectionComparer1;
-            this.treeListView1.Location = new System.Drawing.Point(10, 42);
-            this.treeListView1.Name = "treeListView1";
-            this.treeListView1.Size = new System.Drawing.Size(490, 199);
-            this.treeListView1.TabIndex = 0;
-            this.treeListView1.UseCompatibleStateImageBehavior = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(514, 290);
-            this.Controls.Add(this.treeListView1);
             this.Controls.Add(this.CurveShowBt);
             this.Controls.Add(this.DashboardShowBt);
             this.Controls.Add(this.SendBt);
@@ -233,7 +219,6 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Button CurveShowBt;
         private System.Windows.Forms.Button test;
-        private System.Windows.Forms.TreeListView treeListView1;
     }
 }
 

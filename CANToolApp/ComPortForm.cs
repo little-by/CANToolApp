@@ -9,16 +9,20 @@ using System.Text;
 using System.Windows.Forms;
 using INIFILE;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace CANToolApp
 {
     public partial class ComPortForm : Form
     {
+        //SerialPort类用于控制串行端口文件资源
         SerialPort sp1 = new SerialPort();
+        public event DelegateUpdateUI delegateUpdateUI;
         //sp1.ReceivedBytesThreshold = 1;//只要有1个字符送达端口时便触发DataReceived事件 
 
         public ComPortForm()
         {
+
             InitializeComponent();
         }
 
@@ -174,9 +178,10 @@ namespace CANToolApp
                 txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
 
                 byte[] byteRead = new byte[sp1.BytesToRead];    //BytesToRead:sp1接收的字符个数
-                
-                    txtReceive.Text += sp1.ReadLine() + "\r\n"; //注意：回车换行必须这样写，单独使用"\r"和"\n"都不会有效果
-                    sp1.DiscardInBuffer();                      //清空SerialPort控件的Buffer 
+                string msgrec = sp1.ReadLine();
+                    txtReceive.Text += msgrec + "\r\n"; //注意：回车换行必须这样写，单独使用"\r"和"\n"都不会有效果
+                delegateUpdateUI(msgrec);
+                sp1.DiscardInBuffer();                      //清空SerialPort控件的Buffer 
                     try
                     {
                         Byte[] receivedData = new Byte[sp1.BytesToRead];        //创建接收字节数组
@@ -202,6 +207,17 @@ namespace CANToolApp
             {
                 MessageBox.Show("请打开某个串口", "错误提示");
             }
+
+            //"t3588A5SD566D9F8SD565"
+            
+
+
+
+
+
+
+
+
         }
 
         //发送按钮
@@ -385,7 +401,8 @@ namespace CANToolApp
         //退出按钮
         private void btnExit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            //this.Close();
+            this.Hide();
         }
 
         //关闭时事件
