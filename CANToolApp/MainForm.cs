@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Threading;
 using System.Data;
+using System.IO;
 
 namespace CANToolApp
 {
@@ -240,6 +241,30 @@ namespace CANToolApp
         private enum DrivesDescr { First, Second, Third, Fourth }
         private enum Drives { C, D, E, Z }
 
+        private void 保存为ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog saveFile = new OpenFileDialog();
+            saveFile.Filter = "cvs|*.cvs|json|*.json|xml|*.xml";
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
+                if (saveFile.FileName != "")
+                {
+                    string fileName = saveFile.FileName;
+                    FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
+                    if (fileName.EndsWith(".xml"))
+                    {
 
+                    }
+                    else if (fileName.EndsWith(".cvs"))
+                    {
+
+                    }
+                    else if (fileName.EndsWith(".json"))
+                    {
+
+                    }
+                }
+            }
+        }
     }
 }
