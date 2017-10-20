@@ -67,8 +67,7 @@ namespace CANToolApp
                         return;
                     }
             }
-
-            //预置波特率
+            //预置数据位
             switch (Profile.G_DATABITS)
             {
                 case "5":
@@ -88,7 +87,6 @@ namespace CANToolApp
                         MessageBox.Show("数据位预置参数错误。");
                         return;
                     }
-
             }
             //预置停止位
             switch (Profile.G_STOP)
@@ -144,14 +142,15 @@ namespace CANToolApp
             }
 
             //串口设置默认选择项
-            cbSerial.SelectedIndex = 1;         //note：获得COM9口，但别忘修改
+            //cbSerial.SelectedIndex = 1;         //note：获得COM9口，但别忘修改
             //cbBaudRate.SelectedIndex = 5;
             // cbDataBits.SelectedIndex = 3;
             // cbStop.SelectedIndex = 0;
-            //  cbParity.SelectedIndex = 0;
-            sp1.BaudRate = 115200;
+            // cbParity.SelectedIndex = 0;
+            //sp1.BaudRate = 115200;
 
-            Control.CheckForIllegalCrossThreadCalls = false;    //这个类中我们不检查跨线程的调用是否合法(因为.net 2.0以后加强了安全机制,，不允许在winform中直接跨线程访问控件的属性)
+            Control.CheckForIllegalCrossThreadCalls = false;    
+            //这个类中我们不检查跨线程的调用是否合法(因为.net 2.0以后加强了安全机制,，不允许在winform中直接跨线程访问控件的属性)
             sp1.DataReceived += new SerialDataReceivedEventHandler(sp1_DataReceived);
             //sp1.ReceivedBytesThreshold = 1;
 
@@ -163,7 +162,6 @@ namespace CANToolApp
             sp1.RtsEnable = true;
             //设置数据读取超时为1秒
             sp1.ReadTimeout = 1000;
-
             sp1.Close();
         }
 
@@ -172,8 +170,8 @@ namespace CANToolApp
             if (sp1.IsOpen)     //此处可能没有必要判断是否打开串口，但为了严谨性，我还是加上了
             {
                 //输出当前时间
-                DateTime dt = DateTime.Now;
-                txtReceive.Text += dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+               // DateTime dt = DateTime.Now;
+                //txtReceive.Text += dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
                 txtReceive.SelectAll();
                 txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
 

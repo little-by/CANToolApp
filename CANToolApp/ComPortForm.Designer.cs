@@ -238,9 +238,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(9, 179);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 12);
+            this.label4.Size = new System.Drawing.Size(89, 12);
             this.label4.TabIndex = 20;
-            this.label4.Text = "Sender：";
+            this.label4.Text = "用户输入数据：";
             // 
             // btnSwitch
             // 
