@@ -221,37 +221,29 @@ namespace CANToolApp
                 return;
             }
            // byte[] m = new byte[5];
-            int i = 0;
+           // string[] str = new string[50];
             String strSend = txtSend.Text;
           
                 //丢弃来自串行驱动程序的接受缓冲区的数据
                 sp1.DiscardInBuffer();
                 //丢弃来自串行驱动程序的传输缓冲区的数据
                 sp1.DiscardOutBuffer();
-                ArrayList list = new ArrayList();
-                foreach (Control item in Controls)
-                {
-                    if (item is TextBox)
-                    {
-                        list.Add(item.Text);
-                    }
-                }
 
-               // m[0] = Convert.ToByte("1");
-               // m[1] = Convert.ToByte("2");
-               // m[2] = Convert.ToByte("3");
-                //m[3] = Convert.ToByte("4");
-               // m[4] = Convert.ToByte("5");
-
+               // string sendBuf = strSend;
+               // string sendnoNull = sendBuf.Trim();
+                //for (int i = 0; i < str.Length; i++)
+               // {
+                //    str[i] = strSend[i];
+                  
+               // }
                 //使用缓冲区的数据将指定数量的字节写入串行端口
-                //sp1.Write(m, 0, m.Length);
-                sp1.Write(list, 0, list.Length);
+                sp1.WriteLine(strSend);
+                //sp1.Write(list, 0, list.Length);
                // sp1.WriteLine(strSend);    //写入数据
                 //关闭端口连接
                 sp1.Close();
 
-                Console.WriteLine(i.ToString());
-                i = i + 1;
+ 
                 //当前线程挂起500毫秒
                 System.Threading.Thread.Sleep(500);
             
