@@ -199,7 +199,7 @@ namespace CANToolApp
                     catch (System.Exception ex)
                     {
                         MessageBox.Show(ex.Message, "出错提示");
-                        txtSend.Text = "";
+                       // txtSend.Text = "";
                     }
             }
             else
@@ -220,34 +220,25 @@ namespace CANToolApp
                 MessageBox.Show("请先打开串口！", "Error");
                 return;
             }
-           // byte[] m = new byte[5];
-           // string[] str = new string[50];
-            String strSend = txtSend.Text;
           
+            string strSend = txtSend.Text;
+
+            //MessageBox.Show(strSend);
                 //丢弃来自串行驱动程序的接受缓冲区的数据
                 sp1.DiscardInBuffer();
                 //丢弃来自串行驱动程序的传输缓冲区的数据
                 sp1.DiscardOutBuffer();
 
-               // string sendBuf = strSend;
-               // string sendnoNull = sendBuf.Trim();
-                //for (int i = 0; i < str.Length; i++)
-               // {
-                //    str[i] = strSend[i];
-                  
-               // }
+        
                 //使用缓冲区的数据将指定数量的字节写入串行端口
                 sp1.WriteLine(strSend);
                 //sp1.Write(list, 0, list.Length);
                // sp1.WriteLine(strSend);    //写入数据
                 //关闭端口连接
                 sp1.Close();
-
- 
                 //当前线程挂起500毫秒
                 System.Threading.Thread.Sleep(500);
             
-
             
 }
            
@@ -431,23 +422,23 @@ namespace CANToolApp
             sp1.Close();
         }
 
-        private void txtSend_KeyPress(object sender, KeyPressEventArgs e)
-        {
+        //private void txtSend_KeyPress(object sender, KeyPressEventArgs e)
+        //{
 
-            //正则匹配
-            string patten = "[0-9a-fA-F]|\b|0x|0X| "; //“\b”：退格键
-            Regex r = new Regex(patten);
-            Match m = r.Match(e.KeyChar.ToString());
+        //    //正则匹配
+        //    string patten = "[0-9a-fA-F]|\b|0x|0X| "; //“\b”：退格键
+        //    Regex r = new Regex(patten);
+        //    Match m = r.Match(e.KeyChar.ToString());
 
-            if (m.Success)//&&(txtSend.Text.LastIndexOf(" ") != txtSend.Text.Length-1))
-            {
-                e.Handled = false;
-            }
-            else
-            {
-                e.Handled = true;
-            }
-        }
+        //    if (m.Success)//&&(txtSend.Text.LastIndexOf(" ") != txtSend.Text.Length-1))
+        //    {
+        //        e.Handled = false;
+        //    }
+        //    else
+        //    {
+        //        e.Handled = true;
+        //    }
+        //}
 
         private void txtSend_TextChanged(object sender, EventArgs e)
         {
@@ -573,6 +564,16 @@ namespace CANToolApp
         }
 
         private void cbStop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_TextChanged(object sender, EventArgs e)
         {
 
         }

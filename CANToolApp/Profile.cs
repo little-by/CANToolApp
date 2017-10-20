@@ -35,5 +35,6 @@ namespace INIFILE
         public static string G_STOP = "1";
         public static string G_PARITY = "None";
 
+
     }
 }

@@ -41,7 +41,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.cbBaudRate = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtSend = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnSwitch = new System.Windows.Forms.Button();
             this.cbSerial = new System.Windows.Forms.ComboBox();
@@ -59,6 +58,7 @@
             this.tsDataBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsStopBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsParity = new System.Windows.Forms.ToolStripStatusLabel();
+            this.txtSend = new System.Windows.Forms.RichTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -67,10 +67,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtSend);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.btnSave);
             this.groupBox1.Controls.Add(this.groupBox3);
-            this.groupBox1.Controls.Add(this.txtSend);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.btnSwitch);
             this.groupBox1.Controls.Add(this.cbSerial);
@@ -223,16 +223,6 @@
             this.label5.TabIndex = 23;
             this.label5.Text = "Baud Rate：";
             // 
-            // txtSend
-            // 
-            this.txtSend.Location = new System.Drawing.Point(6, 194);
-            this.txtSend.Multiline = true;
-            this.txtSend.Name = "txtSend";
-            this.txtSend.Size = new System.Drawing.Size(282, 156);
-            this.txtSend.TabIndex = 21;
-            this.txtSend.TextChanged += new System.EventHandler(this.txtSend_TextChanged);
-            this.txtSend.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSend_KeyPress);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -366,6 +356,15 @@
             this.tsParity.Size = new System.Drawing.Size(78, 17);
             this.tsParity.Text = "Parity:None|";
             // 
+            // txtSend
+            // 
+            this.txtSend.Location = new System.Drawing.Point(14, 194);
+            this.txtSend.Name = "txtSend";
+            this.txtSend.Size = new System.Drawing.Size(256, 156);
+            this.txtSend.TabIndex = 34;
+            this.txtSend.Text = "";
+            this.txtSend.TextChanged += new System.EventHandler(this.txt_TextChanged);
+            // 
             // ComPortForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -402,7 +401,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSwitch;
         //private System.Windows.Forms.RadioButton rdse;
-        private System.Windows.Forms.TextBox txtSend;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.RichTextBox txtReceive;
@@ -427,5 +425,6 @@
         private System.Windows.Forms.ToolStripStatusLabel tsParity;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RichTextBox txtSend;
     }
 }
