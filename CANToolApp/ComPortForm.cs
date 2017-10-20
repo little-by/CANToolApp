@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using INIFILE;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Collections; 
 
 namespace CANToolApp
 {
@@ -207,38 +208,66 @@ namespace CANToolApp
             }
 
             //"t3588A5SD566D9F8SD565"
-            
-
-
-
-
-
-
-
-
+           
         }
 
         //发送按钮
         private void btnSend_Click(object sender, EventArgs e)
         {
-           
+
             if (!sp1.IsOpen) //如果没打开
             {
                 MessageBox.Show("请先打开串口！", "Error");
                 return;
             }
-
+           // byte[] m = new byte[5];
+            int i = 0;
             String strSend = txtSend.Text;
+          
+                //丢弃来自串行驱动程序的接受缓冲区的数据
+                sp1.DiscardInBuffer();
+                //丢弃来自串行驱动程序的传输缓冲区的数据
+                sp1.DiscardOutBuffer();
+                ArrayList list = new ArrayList();
+                foreach (Control item in Controls)
+                {
+                    if (item is TextBox)
+                    {
+                        list.Add(item.Text);
+                    }
+                }
+
+               // m[0] = Convert.ToByte("1");
+               // m[1] = Convert.ToByte("2");
+               // m[2] = Convert.ToByte("3");
+                //m[3] = Convert.ToByte("4");
+               // m[4] = Convert.ToByte("5");
+
+                //使用缓冲区的数据将指定数量的字节写入串行端口
+                //sp1.Write(m, 0, m.Length);
+                sp1.Write(list, 0, list.Length);
+               // sp1.WriteLine(strSend);    //写入数据
+                //关闭端口连接
+                sp1.Close();
+
+                Console.WriteLine(i.ToString());
+                i = i + 1;
+                //当前线程挂起500毫秒
+                System.Threading.Thread.Sleep(500);
+            
+
+            
+}
            
                 //处理数字转换
-            /*
+ /*
                 string sendBuf = strSend;
                 string sendnoNull = sendBuf.Trim();
-                string sendNOComma = sendnoNull.Replace(',', ' ');    //去掉英文逗号
-                string sendNOComma1 = sendNOComma.Replace('，', ' '); //去掉中文逗号
-                string strSendNoComma2 = sendNOComma1.Replace("0x", "");   //去掉0x
-                strSendNoComma2.Replace("0X", "");   //去掉0X
-                string[] strArray = strSendNoComma2.Split(' ');
+                //string sendNOComma = sendnoNull.Replace(',', ' ');    //去掉英文逗号
+                //string sendNOComma1 = sendNOComma.Replace('，', ' '); //去掉中文逗号
+                //string strSendNoComma2 = sendNOComma1.Replace("0x", "");   //去掉0x
+                //strSendNoComma2.Replace("0X", "");   //去掉0X
+                string[] strArray = sendnoNull.Split(' ');
 
                 int byteBufferLength = strArray.Length;
                 for (int i = 0; i < strArray.Length; i++)
@@ -280,14 +309,14 @@ namespace CANToolApp
 
                     ii++;
                 }
-                sp1.Write(byteBuffer, 0, byteBuffer.Length);*/
+                sp1.Write(byteBuffer, 0, byteBuffer.Length);
             
            		//以字符串形式发送时 
             
                sp1.WriteLine(txtSend.Text);    //写入数据
             
         }
-
+*/
         //开关按钮
         private void btnSwitch_Click(object sender, EventArgs e)
         {
@@ -326,13 +355,13 @@ namespace CANToolApp
                     }
                     switch (cbParity.Text)             //校验位
                     {
-                        case "NONE":
+                        case "None":
                             sp1.Parity = Parity.None;
                             break;
-                        case "ODD":
+                        case "Odd":
                             sp1.Parity = Parity.Odd;
                             break;
-                        case "EVEN":
+                        case "Even":
                             sp1.Parity = Parity.Even;
                             break;
                         default:
