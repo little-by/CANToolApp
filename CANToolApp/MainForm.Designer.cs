@@ -89,24 +89,24 @@
             this.保存为ToolStripMenuItem.Name = "保存为ToolStripMenuItem";
             this.保存为ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.保存为ToolStripMenuItem.Text = "保存";
-            this.保存为ToolStripMenuItem.Click += new System.EventHandler(this.保存为ToolStripMenuItem_Click);
             // 
             // csv文件ToolStripMenuItem
             // 
             this.csv文件ToolStripMenuItem.Name = "csv文件ToolStripMenuItem";
-            this.csv文件ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.csv文件ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.csv文件ToolStripMenuItem.Text = "csv文件";
             // 
             // json文件ToolStripMenuItem
             // 
             this.json文件ToolStripMenuItem.Name = "json文件ToolStripMenuItem";
-            this.json文件ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.json文件ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.json文件ToolStripMenuItem.Text = "json文件";
+            this.json文件ToolStripMenuItem.Click += new System.EventHandler(this.json文件ToolStripMenuItem_Click);
             // 
             // xml文件ToolStripMenuItem
             // 
             this.xml文件ToolStripMenuItem.Name = "xml文件ToolStripMenuItem";
-            this.xml文件ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.xml文件ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.xml文件ToolStripMenuItem.Text = "xml文件";
             this.xml文件ToolStripMenuItem.Click += new System.EventHandler(this.xml文件ToolStripMenuItem_Click);
             // 
@@ -128,7 +128,7 @@
             // cOM口设置ToolStripMenuItem
             // 
             this.cOM口设置ToolStripMenuItem.Name = "cOM口设置ToolStripMenuItem";
-            this.cOM口设置ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.cOM口设置ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cOM口设置ToolStripMenuItem.Text = "COM口设置";
             this.cOM口设置ToolStripMenuItem.Click += new System.EventHandler(this.cOM口设置ToolStripMenuItem_Click);
             // 

@@ -8,6 +8,7 @@ using System.IO;
 using System.Collections;
 using static System.Windows.Forms.ListViewItem;
 using System.Xml;
+using System.Text;
 
 namespace CANToolApp
 {
@@ -262,32 +263,6 @@ namespace CANToolApp
 
         private enum FILETYPE { xml, csv, json }
 
-        private void 保存为ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog saveFile = new OpenFileDialog();
-            saveFile.Filter = "cvs|*.cvs|json|*.json|xml|*.xml";
-            if (saveFile.ShowDialog() == DialogResult.OK)
-            {
-                if (saveFile.FileName != "")
-                {
-                    string fileName = saveFile.FileName;
-                    FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
-                    if (fileName.EndsWith(".xml"))
-                    {
-
-                    }
-                    else if (fileName.EndsWith(".cvs"))
-                    {
-
-                    }
-                    else if (fileName.EndsWith(".json"))
-                    {
-
-                    }
-                }
-            }
-        }
-
         private void xml文件ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             XmlDocument doc = new XmlDocument();
@@ -370,10 +345,6 @@ namespace CANToolApp
             XmlNode root = doc.SelectSingleNode("root");
             if (filetype.Equals("xml"))
             {
-                
-                
-                    
-                
                 //string str = XMLProcess.Read("data.xml", "/root/data0/message");
                 for (int n = 0; n < root.ChildNodes.Count; n++)
                 {
@@ -397,14 +368,6 @@ namespace CANToolApp
                         }
                     addone(returnedData);
                 }
-                
-
-                
-
-
-
-
-
             }else if (filetype.Equals("csv"))
             {
 
@@ -414,7 +377,11 @@ namespace CANToolApp
             }
 
         }
-        
+
+        private void json文件ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 
 }
