@@ -17,6 +17,8 @@ namespace CANToolApp
 {
     public partial class ComPortForm : Form
     {
+        private List<CANSignalObject> canSignal = new List<CANSignalObject>();
+        private List<CANMessageObject> canMessage = new List<CANMessageObject>();
         //SerialPort类用于控制串行端口文件资源
         SerialPort sp1 = new SerialPort();
         public event DelegateUpdateUI delegateUpdateUI;
@@ -144,14 +146,17 @@ namespace CANToolApp
             }
 
             //message
-            string sql_m = "select messagename from cantoolapp.canmessage";
+            string sql_m = "select * from cantoolapp.canmessage";
             SqlHelper.connect();
             SqlDataReader sqldr_m = SqlHelper.query(sql_m);
             while (sqldr_m.Read())
             {
-                int i = 0;
-                string s = (string)sqldr_m[i++];
-                message.Items.Add(s);
+                string messageName = (string)sqldr_m["messagename"];
+                CANMessageObject temp = new CANMessageObject();
+                temp.MessageName = messageName.ToCharArray();
+                temp.Id = Convert.ToUInt32(sqldr_m["id"]);
+                canMessage.Add(temp);
+                message.Items.Add(messageName);
             }
             SqlHelper.close();
          
@@ -233,7 +238,6 @@ namespace CANToolApp
                 MessageBox.Show("请先打开串口！", "Error");
                 return;
             }
-
             string strMessage = "";
             string strSignal = "";
             if (message.SelectedItem == null)
@@ -277,7 +281,7 @@ namespace CANToolApp
                 //sp1.Write(list, 0, list.Length);
                // sp1.WriteLine(strSend);    //写入数据
                 //关闭端口连接
-                sp1.Close();
+               sp1.Close();
                 //当前线程挂起500毫秒
                 System.Threading.Thread.Sleep(500);
             
@@ -464,23 +468,23 @@ namespace CANToolApp
             sp1.Close();
         }
 
-        //private void txtSend_KeyPress(object sender, KeyPressEventArgs e)
-        //{
+        private void txtSend_KeyPress(object sender, KeyPressEventArgs e)
+        {            
+            //正则匹配
+           // string patten = "[0-9|.]|\b"; //“\b”：退格键
+            string patten = "[0-9]|\b";
+            Regex r = new Regex(patten);
+            Match m = r.Match(e.KeyChar.ToString());
 
-        //    //正则匹配
-        //    string patten = "[0-9a-fA-F]|\b|0x|0X| "; //“\b”：退格键
-        //    Regex r = new Regex(patten);
-        //    Match m = r.Match(e.KeyChar.ToString());
-
-        //    if (m.Success)//&&(txtSend.Text.LastIndexOf(" ") != txtSend.Text.Length-1))
-        //    {
-        //        e.Handled = false;
-        //    }
-        //    else
-        //    {
-        //        e.Handled = true;
-        //    }
-        //}
+            if (m.Success)//&&(txtSend.Text.LastIndexOf(" ") != txtSend.Text.Length-1))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
 
         private void txtSend_TextChanged(object sender, EventArgs e)
         {
@@ -624,26 +628,69 @@ namespace CANToolApp
         {
             signal.Items.Clear();
             string select_m = (string)message.SelectedItem.ToString();
+            
             if (select_m != "")
             {
-                SqlHelper.connect();
-                string sql_select = "select id from cantoolapp.canmessage where messagename = '" + select_m + "'";
-                SqlDataReader sql_m_id = SqlHelper.query(sql_select);
-                sql_m_id.Read();
-                int m_id = Convert.ToInt32(sql_m_id[0]);
-                SqlHelper.close();
+                int m_id = 0;
+                foreach(CANMessageObject cm in canMessage)
+                {
+                    string ss = new string(cm.MessageName);
+                    if (ss.Equals(select_m))
+                    {                        
+                        m_id = Convert.ToInt32(cm.Id);
+                        break;
+                    }                        
+                }
+                //SqlHelper.connect();
+                //string sql_select = "select id from cantoolapp.canmessage where messagename = '" + select_m + "'";
+                //SqlDataReader sql_m_id = SqlHelper.query(sql_select);
+                //sql_m_id.Read();
+                //int m_id = Convert.ToInt32(sql_m_id[0]);
+                //SqlHelper.close();
 
                 SqlHelper.connect();
-                string sql_s = "select signalname from cantoolapp.cansignal where canmessageid = " + m_id;
+             //   string sql_s = "select signalname from cantoolapp.cansignal where canmessageid = " + m_id;
+                string sql_s = "select * from cantoolapp.cansignal where canmessageid = " + m_id;
                 SqlDataReader sqlReader_s = SqlHelper.query(sql_s);
+                
                 while (sqlReader_s.Read())
-                {
-                    int i = 0;
-                    string s = (string)sqlReader_s[i++];
-                    signal.Items.Add(s);
+                {                    
+                    CANSignalObject temp = new CANSignalObject();
+                    string signalName = (string)sqlReader_s["signalname"];
+                    temp.SignalName = signalName.ToCharArray();
+                    temp.C1 = (double)sqlReader_s["C"];
+                    temp.D1 = (double)sqlReader_s["D"];    
+                    canSignal.Add(temp);
+                    signal.Items.Add(signalName);
                 }
                 SqlHelper.close();
+
             }
+        }
+
+        private void signal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string strSignal = "";
+            double signal_C = 0, signal_D = 0;
+            if (signal.SelectedItem == null)
+            {
+                MessageBox.Show("请选择Signal！", "Error");
+                return;
+            }
+            else
+            {
+                strSignal = (string)signal.SelectedItem.ToString();
+            }
+            foreach (CANSignalObject can_s in canSignal)
+            {
+                string ss = new string(can_s.SignalName);
+                if (ss.Equals(strSignal))
+                {
+                    signal_C = can_s.C1;
+                    signal_D = can_s.D1;
+                }
+            }
+            range.Text = signal_C + "~" + signal_D;
         }
     }
 }

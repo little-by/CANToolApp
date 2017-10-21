@@ -20,7 +20,6 @@ F:\git\CANToolApp\CANToolApp\bin\Debug\Microsoft.Practices.Prism.dll
 F:\git\CANToolApp\CANToolApp\bin\Debug\Microsoft.Practices.ServiceLocation.dll
 F:\git\CANToolApp\CANToolApp\bin\Debug\System.Runtime.InteropServices.APIs.dll
 F:\git\CANToolApp\CANToolApp\bin\Debug\System.Windows.Forms.TreeListView.dll
-F:\git\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csprojResolveAssemblyReference.cache
 F:\git\CANToolApp\CANToolApp\obj\Debug\CANToolApp.CheckForm.resources
 F:\git\CANToolApp\CANToolApp\obj\Debug\CANToolApp.ComPortForm.resources
 F:\git\CANToolApp\CANToolApp\obj\Debug\CANToolApp.CurveShow.resources

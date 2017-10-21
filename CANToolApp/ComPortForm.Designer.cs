@@ -30,6 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.signal = new System.Windows.Forms.ComboBox();
+            this.message = new System.Windows.Forms.ComboBox();
             this.txtSend = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
@@ -59,11 +64,7 @@
             this.tsDataBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsStopBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsParity = new System.Windows.Forms.ToolStripStatusLabel();
-            this.message = new System.Windows.Forms.ComboBox();
-            this.signal = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.range = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -72,6 +73,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.range);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label3);
@@ -93,6 +95,54 @@
             this.groupBox1.Text = "COM Port Settings";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(13, 285);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(125, 12);
+            this.label10.TabIndex = 39;
+            this.label10.Text = "Input Physical value";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(13, 243);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(41, 12);
+            this.label9.TabIndex = 38;
+            this.label9.Text = "Signal";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 201);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 12);
+            this.label3.TabIndex = 37;
+            this.label3.Text = "Message";
+            // 
+            // signal
+            // 
+            this.signal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.signal.FormattingEnabled = true;
+            this.signal.Location = new System.Drawing.Point(13, 261);
+            this.signal.Name = "signal";
+            this.signal.Size = new System.Drawing.Size(148, 20);
+            this.signal.TabIndex = 36;
+            this.signal.SelectedIndexChanged += new System.EventHandler(this.signal_SelectedIndexChanged);
+            // 
+            // message
+            // 
+            this.message.BackColor = System.Drawing.SystemColors.Window;
+            this.message.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.message.FormattingEnabled = true;
+            this.message.Location = new System.Drawing.Point(13, 219);
+            this.message.Name = "message";
+            this.message.Size = new System.Drawing.Size(148, 20);
+            this.message.TabIndex = 35;
+            this.message.SelectedIndexChanged += new System.EventHandler(this.message_SelectedIndexChanged);
+            // 
             // txtSend
             // 
             this.txtSend.Location = new System.Drawing.Point(14, 303);
@@ -101,6 +151,7 @@
             this.txtSend.TabIndex = 34;
             this.txtSend.Text = "";
             this.txtSend.TextChanged += new System.EventHandler(this.txt_TextChanged);
+            this.txtSend.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSend_KeyPress);
             // 
             // label2
             // 
@@ -375,52 +426,14 @@
             this.tsParity.Size = new System.Drawing.Size(78, 17);
             this.tsParity.Text = "Parity:None|";
             // 
-            // message
+            // range
             // 
-            this.message.BackColor = System.Drawing.SystemColors.Window;
-            this.message.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.message.FormattingEnabled = true;
-            this.message.Location = new System.Drawing.Point(13, 219);
-            this.message.Name = "message";
-            this.message.Size = new System.Drawing.Size(148, 20);
-            this.message.TabIndex = 35;
-            this.message.SelectedIndexChanged += new System.EventHandler(this.message_SelectedIndexChanged);
-            // 
-            // signal
-            // 
-            this.signal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.signal.FormattingEnabled = true;
-            this.signal.Location = new System.Drawing.Point(13, 261);
-            this.signal.Name = "signal";
-            this.signal.Size = new System.Drawing.Size(148, 20);
-            this.signal.TabIndex = 36;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 201);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 12);
-            this.label3.TabIndex = 37;
-            this.label3.Text = "Message";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(13, 243);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(41, 12);
-            this.label9.TabIndex = 38;
-            this.label9.Text = "Signal";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(13, 285);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(125, 12);
-            this.label10.TabIndex = 39;
-            this.label10.Text = "Input Physical value";
+            this.range.AutoSize = true;
+            this.range.Location = new System.Drawing.Point(190, 306);
+            this.range.Name = "range";
+            this.range.Size = new System.Drawing.Size(29, 12);
+            this.range.TabIndex = 40;
+            this.range.Text = "范围";
             // 
             // ComPortForm
             // 
@@ -488,5 +501,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label range;
     }
 }
