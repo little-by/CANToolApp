@@ -154,17 +154,7 @@ namespace CANToolApp
                 message.Items.Add(s);
             }
             SqlHelper.close();
-            //signal
-            string sql_s = "select signalname from cantoolapp.cansignal";
-            SqlHelper.connect();
-            SqlDataReader sqldr_s = SqlHelper.query(sql_s);
-            while (sqldr_s.Read())
-            {
-                int i = 0;
-                string s = (string)sqldr_s[i++];
-                signal.Items.Add(s);
-            }
-            SqlHelper.close();
+         
             //串口设置默认选择项
             //cbSerial.SelectedIndex = 1;         //note：获得COM9口，但别忘修改
             //cbBaudRate.SelectedIndex = 5;
@@ -632,28 +622,28 @@ namespace CANToolApp
 
         private void message_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //signal.Items.Clear();
-            //string select_m = (string)message.SelectedItem.ToString();            
-            //if (select_m != "")
-            //{
-            //    SqlHelper.connect();
-            //    string sql_select = "select id from cantoolapp.canmessage where messagename = '" + select_m + "'";
-            //    SqlDataReader sql_m_id = SqlHelper.query(sql_select);
-            //    sql_m_id.Read();
-            //    int m_id = Convert.ToInt32(sql_m_id[0]);
-            //    SqlHelper.close();
+            signal.Items.Clear();
+            string select_m = (string)message.SelectedItem.ToString();
+            if (select_m != "")
+            {
+                SqlHelper.connect();
+                string sql_select = "select id from cantoolapp.canmessage where messagename = '" + select_m + "'";
+                SqlDataReader sql_m_id = SqlHelper.query(sql_select);
+                sql_m_id.Read();
+                int m_id = Convert.ToInt32(sql_m_id[0]);
+                SqlHelper.close();
 
-            //    SqlHelper.connect();
-            //    string sql_s = "select signalname from cantoolapp.cansignal where canmessageid = " + m_id;
-            //    SqlDataReader sqlReader_s = SqlHelper.query(sql_s);
-            //    while (sqlReader_s.Read())
-            //    {
-            //        int i = 0;
-            //        string s = (string)sqlReader_s[i++];
-            //        signal.Items.Add(s);
-            //    }
-            //    SqlHelper.close();
-            //}
+                SqlHelper.connect();
+                string sql_s = "select signalname from cantoolapp.cansignal where canmessageid = " + m_id;
+                SqlDataReader sqlReader_s = SqlHelper.query(sql_s);
+                while (sqlReader_s.Read())
+                {
+                    int i = 0;
+                    string s = (string)sqlReader_s[i++];
+                    signal.Items.Add(s);
+                }
+                SqlHelper.close();
+            }
         }
     }
 }
