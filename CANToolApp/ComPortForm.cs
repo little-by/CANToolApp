@@ -10,7 +10,8 @@ using System.Windows.Forms;
 using INIFILE;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Collections; 
+using System.Collections;
+using System.Data.SqlClient;
 
 namespace CANToolApp
 {
@@ -142,6 +143,18 @@ namespace CANToolApp
                 cbSerial.Items.Add(s);
             }
 
+            ////message
+            //string sql_m = "select messagename from cantoolapp.canmessage";
+            //SqlHelper.connect();
+            //SqlDataReader sqldr_m = SqlHelper.query(sql_m);
+            //while (sqldr_m.Read())
+            //{
+            //    int i = 0;
+            //    string s = (string)sqldr_m[i++];
+            //    message.Items.Add(s);
+            //}
+            //SqlHelper.close();
+
             //串口设置默认选择项
             //cbSerial.SelectedIndex = 1;         //note：获得COM9口，但别忘修改
             //cbBaudRate.SelectedIndex = 5;
@@ -220,18 +233,47 @@ namespace CANToolApp
                 MessageBox.Show("请先打开串口！", "Error");
                 return;
             }
-          
-            string strSend = txtSend.Text;
 
-            //MessageBox.Show(strSend);
-                //丢弃来自串行驱动程序的接受缓冲区的数据
-                sp1.DiscardInBuffer();
-                //丢弃来自串行驱动程序的传输缓冲区的数据
-                sp1.DiscardOutBuffer();
+            //string strMessage="";
+            //string strSignal="";
+            //if (message.SelectedItem == null)
+            //{
+            //    MessageBox.Show("请选择Message！", "Error");
+            //    return;
+            //}
+            //else
+            //{
+            //    strMessage = (string)message.SelectedItem.ToString();
+            //}
+            //if (signal.SelectedItem == null)
+            //{
+            //    MessageBox.Show("请选择Signal！", "Error");
+            //    return;
+            //}
+            //else
+            //{
+            //    strSignal = (string)signal.SelectedItem.ToString();
+            //}
+            //int strSend;
+            //if (txtSend.Text == "")
+            //{
+            //    MessageBox.Show("请填写信息！", "Error");
+            //    return;
+            //}
+            //else
+            //{               
+            //    strSend = int.Parse(txtSend.Text);             
+            //}
+            ////MessageBox.Show(strSend);
+            //    //丢弃来自串行驱动程序的接受缓冲区的数据
+            //    sp1.DiscardInBuffer();
+            //    //丢弃来自串行驱动程序的传输缓冲区的数据
+            //    sp1.DiscardOutBuffer();
 
-        
-                //使用缓冲区的数据将指定数量的字节写入串行端口
-                sp1.WriteLine(strSend);
+            //    string str3 = Encode.EncodeCANSignal(strMessage,strSignal,strSend);
+            //    //使用缓冲区的数据将指定数量的字节写入串行端口
+            //    MessageBox.Show(str3, "ok");    
+            //sp1.WriteLine(str3);
                 //sp1.Write(list, 0, list.Length);
                // sp1.WriteLine(strSend);    //写入数据
                 //关闭端口连接
@@ -576,6 +618,32 @@ namespace CANToolApp
         private void txt_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void message_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //signal.Items.Clear();
+            //string select_m = (string)message.SelectedItem.ToString();            
+            //if (select_m != "")
+            //{
+            //    SqlHelper.connect();
+            //    string sql_select = "select id from cantoolapp.canmessage where messagename = '" + select_m + "'";
+            //    SqlDataReader sql_m_id = SqlHelper.query(sql_select);
+            //    sql_m_id.Read();
+            //    int m_id = Convert.ToInt32(sql_m_id[0]);
+            //    SqlHelper.close();
+
+            //    SqlHelper.connect();
+            //    string sql_s = "select signalname from cantoolapp.cansignal where canmessageid = " + m_id;
+            //    SqlDataReader sqlReader_s = SqlHelper.query(sql_s);
+            //    while (sqlReader_s.Read())
+            //    {
+            //        int i = 0;
+            //        string s = (string)sqlReader_s[i++];
+            //        signal.Items.Add(s);
+            //    }
+            //    SqlHelper.close();
+            //}
         }
     }
 }
