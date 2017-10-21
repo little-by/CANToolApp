@@ -154,7 +154,17 @@ namespace CANToolApp
                 message.Items.Add(s);
             }
             SqlHelper.close();
-
+            //signal
+            string sql_s = "select signalname from cantoolapp.cansignal";
+            SqlHelper.connect();
+            SqlDataReader sqldr_s = SqlHelper.query(sql_s);
+            while (sqldr_s.Read())
+            {
+                int i = 0;
+                string s = (string)sqldr_s[i++];
+                signal.Items.Add(s);
+            }
+            SqlHelper.close();
             //串口设置默认选择项
             //cbSerial.SelectedIndex = 1;         //note：获得COM9口，但别忘修改
             //cbBaudRate.SelectedIndex = 5;
