@@ -234,46 +234,46 @@ namespace CANToolApp
                 return;
             }
 
-            //string strMessage="";
-            //string strSignal="";
-            //if (message.SelectedItem == null)
-            //{
-            //    MessageBox.Show("请选择Message！", "Error");
-            //    return;
-            //}
-            //else
-            //{
-            //    strMessage = (string)message.SelectedItem.ToString();
-            //}
-            //if (signal.SelectedItem == null)
-            //{
-            //    MessageBox.Show("请选择Signal！", "Error");
-            //    return;
-            //}
-            //else
-            //{
-            //    strSignal = (string)signal.SelectedItem.ToString();
-            //}
-            //int strSend;
-            //if (txtSend.Text == "")
-            //{
-            //    MessageBox.Show("请填写信息！", "Error");
-            //    return;
-            //}
-            //else
-            //{               
-            //    strSend = int.Parse(txtSend.Text);             
-            //}
-            ////MessageBox.Show(strSend);
-            //    //丢弃来自串行驱动程序的接受缓冲区的数据
-            //    sp1.DiscardInBuffer();
-            //    //丢弃来自串行驱动程序的传输缓冲区的数据
-            //    sp1.DiscardOutBuffer();
+            string strMessage = "";
+            string strSignal = "";
+            if (message.SelectedItem == null)
+            {
+                MessageBox.Show("请选择Message！", "Error");
+                return;
+            }
+            else
+            {
+                strMessage = (string)message.SelectedItem.ToString();
+            }
+            if (signal.SelectedItem == null)
+            {
+                MessageBox.Show("请选择Signal！", "Error");
+                return;
+            }
+            else
+            {
+                strSignal = (string)signal.SelectedItem.ToString();
+            }
+            int strSend;
+            if (txtSend.Text == "")
+            {
+                MessageBox.Show("请填写信息！", "Error");
+                return;
+            }
+            else
+            {
+                strSend = int.Parse(txtSend.Text);
+            }
+            //MessageBox.Show(strSend);
+            //丢弃来自串行驱动程序的接受缓冲区的数据
+            sp1.DiscardInBuffer();
+            //丢弃来自串行驱动程序的传输缓冲区的数据
+            sp1.DiscardOutBuffer();
 
-            //    string str3 = Encode.EncodeCANSignal(strMessage,strSignal,strSend);
-            //    //使用缓冲区的数据将指定数量的字节写入串行端口
-            //    MessageBox.Show(str3, "ok");    
-            //sp1.WriteLine(str3);
+            string str3 = Encode.EncodeCANSignal(strMessage, strSignal, strSend);
+            //使用缓冲区的数据将指定数量的字节写入串行端口
+            MessageBox.Show(str3, "ok");
+            sp1.WriteLine(str3);
                 //sp1.Write(list, 0, list.Length);
                // sp1.WriteLine(strSend);    //写入数据
                 //关闭端口连接
