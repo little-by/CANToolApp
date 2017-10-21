@@ -143,17 +143,17 @@ namespace CANToolApp
                 cbSerial.Items.Add(s);
             }
 
-            ////message
-            //string sql_m = "select messagename from cantoolapp.canmessage";
-            //SqlHelper.connect();
-            //SqlDataReader sqldr_m = SqlHelper.query(sql_m);
-            //while (sqldr_m.Read())
-            //{
-            //    int i = 0;
-            //    string s = (string)sqldr_m[i++];
-            //    message.Items.Add(s);
-            //}
-            //SqlHelper.close();
+            //message
+            string sql_m = "select messagename from cantoolapp.canmessage";
+            SqlHelper.connect();
+            SqlDataReader sqldr_m = SqlHelper.query(sql_m);
+            while (sqldr_m.Read())
+            {
+                int i = 0;
+                string s = (string)sqldr_m[i++];
+                message.Items.Add(s);
+            }
+            SqlHelper.close();
 
             //串口设置默认选择项
             //cbSerial.SelectedIndex = 1;         //note：获得COM9口，但别忘修改
