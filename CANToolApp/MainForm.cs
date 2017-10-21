@@ -5,6 +5,10 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Data;
 using System.IO;
+using System.Collections;
+using static System.Windows.Forms.ListViewItem;
+using System.Xml;
+using System.Text;
 
 namespace CANToolApp
 {
@@ -28,25 +32,14 @@ namespace CANToolApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory.ToString());
 
             InitTreeList();
             //AddItems();
-            //addone();
+            addone("t3588A5SD566D9F8SD565");
+            string str = XMLProcess.Read("data.xml", "/root/data0/message");
+            Console.WriteLine("-----------------------------------------dadadasda"+str);
 
-
-
-            DataTable table = new DataTable();
-            //DataTable table = (DataTable)dataTable;
-            
-            table.Columns.Add("Name");
-            table.Columns.Add("Value");
-            for (int i = 0; i < 10; i++)
-                table.Columns.Add("");
-
-            //this.dataGridView.DataSource = table;
-
-            
         }
 
         private void sendBt_Click(object sender, EventArgs e)
@@ -110,6 +103,31 @@ namespace CANToolApp
                 if (key == "messageName")
                 {
                     
+                    itemA.Expand();
+                    itemA.SubItems.Add(returnedData[key]);
+                    treeListView1.Items.Add(itemA);
+                }
+            }
+            foreach (string key in returnedData.Keys)
+            {
+                if (key != "messageName")
+                {
+                    TreeListViewItem item = new TreeListViewItem(key, 1);
+                    item.SubItems.Add(returnedData[key]);
+                    itemA.Items.Add(item);
+                }
+            }
+            itemA.Collapse();
+        }
+
+        public static void addone(Dictionary<string, string> returnedData)
+        {
+            TreeListViewItem itemA = new TreeListViewItem("messageName ", 0);
+            foreach (string key in returnedData.Keys)
+            {
+                if (key == "messageName")
+                {
+
                     itemA.Expand();
                     itemA.SubItems.Add(returnedData[key]);
                     treeListView1.Items.Add(itemA);
@@ -241,30 +259,129 @@ namespace CANToolApp
         private enum DrivesDescr { First, Second, Third, Fourth }
         private enum Drives { C, D, E, Z }
 
-        private void 保存为ToolStripMenuItem_Click(object sender, EventArgs e)
+        private enum MessageCol { Name, Value, Data }
+
+        private enum FILETYPE { xml, csv, json }
+
+        private void xml文件ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog saveFile = new OpenFileDialog();
-            saveFile.Filter = "cvs|*.cvs|json|*.json|xml|*.xml";
-            if (saveFile.ShowDialog() == DialogResult.OK)
+            XmlDocument doc = new XmlDocument();
+            //加载登录名单的xml文档
+
+            doc.Load(AppDomain.CurrentDomain.BaseDirectory.ToString() + "data.xml");
+
+            //CANToolApp.XMLProcess.Insert("data.xml", "users", "test", "", "lll");
+
+            //查找namelist节点,并把它赋给root
+
+            XmlNode root = doc.SelectSingleNode("root");
+            int j = 0;
+            int i = 0;
+            foreach(TreeListViewItem item in treeListView1.Items)
             {
-                if (saveFile.FileName != "")
+                //配置realname节点,赋给cname（childname）
+
+                XmlElement data = doc.CreateElement("data" + i);
+                //配置name节点,赋给ccname
+
+                XmlElement message = doc.CreateElement("message");
+
+
+                //向ccname节点中加入内容
+                message.SetAttribute("name", item.Text);
+                foreach (ListViewSubItem msgsubitem in item.SubItems)
                 {
-                    string fileName = saveFile.FileName;
-                    FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
-                    if (fileName.EndsWith(".xml"))
-                    {
-
-                    }
-                    else if (fileName.EndsWith(".cvs"))
-                    {
-
-                    }
-                    else if (fileName.EndsWith(".json"))
-                    {
-
-                    }
+                    message.InnerText = msgsubitem.Text;
                 }
+
+                data.AppendChild(message);
+                foreach (TreeListViewItem sigitem in item.Items)
+                {
+                    XmlElement signal = doc.CreateElement("signal");
+
+                    signal.SetAttribute("name", sigitem.Text);
+                    foreach (ListViewSubItem sigsubitem in sigitem.SubItems)
+                    {
+                        signal.InnerText = sigsubitem.Text;
+                        Console.WriteLine(sigsubitem.Text);
+                    }
+                    data.AppendChild(signal);
+
+                    j++;
+                }
+                
+                j = 0;
+                i++;
+                root.AppendChild(data);
             }
+            doc.Save(AppDomain.CurrentDomain.BaseDirectory.ToString() + "data.xml");
+            /*XmlDocument doc = new XmlDocument();
+            doc.Load(AppDomain.CurrentDomain.BaseDirectory.ToString() + "data.xml");
+            XmlNode xn = doc.SelectSingleNode("root/row/ko");
+            Console.WriteLine("-------------------------------creating" + (xn==null));
+            */
+
+        }
+
+        private void 读取ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = "c://";
+            openFileDialog.Filter = "xml文件|*.xml|csv文件|*.csv|json文件|*.json";
+            openFileDialog.RestoreDirectory = true;
+            openFileDialog.FilterIndex = 1;
+            string fName="";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                fName = openFileDialog.FileName;
+                Console.WriteLine(fName+" is opened");
+            }
+            string[] tmp = fName.Split('.');
+            string filetype = tmp[tmp.Length-1];
+
+            XmlDocument doc = new XmlDocument();
+            //加载登录名单的xml文档
+            doc.Load(fName);
+            XmlNode root = doc.SelectSingleNode("root");
+            if (filetype.Equals("xml"))
+            {
+                //string str = XMLProcess.Read("data.xml", "/root/data0/message");
+                for (int n = 0; n < root.ChildNodes.Count; n++)
+                {
+                    Dictionary<string, string> returnedData = new Dictionary<string, string>();
+                    XmlNode signal = doc.SelectSingleNode("/root/data" + n );
+                    
+                    string msg = XMLProcess.Read("data.xml", "/root/data"+n+"/message");
+                        if (msg == null||msg.Equals("")) break;
+                        Console.WriteLine("--------------------------------" + msg+"//"+( signal.ChildNodes.Count - 1));
+                        returnedData.Add("messageName", msg);
+
+                        for (int m = 1; m < (signal.ChildNodes.Count); m++)
+                        {
+                            string name = XMLProcess.Read("data.xml", "/root/data" + n + "/signal[" + m + "]","name");
+                            string value = XMLProcess.Read("data.xml", "/root/data" + n + "/signal["+m+"]");
+                            if (name == null||name.Equals("")) break;
+
+                            Console.WriteLine("--------------------------------"+name+"   "+value);
+
+                            returnedData.Add(name, value);
+                        }
+                    addone(returnedData);
+                }
+            }else if (filetype.Equals("csv"))
+            {
+
+            }else if (filetype.Equals("json"))
+            {
+
+            }
+
+        }
+
+        private void json文件ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
         }
     }
+
 }
