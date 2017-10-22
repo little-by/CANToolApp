@@ -432,6 +432,41 @@ namespace CANToolApp
             msObj.Close();
             //Console.WriteLine(json);
         }
+
+        private void csv文件ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "csv files(*.csv)|*.csv";
+            saveFileDialog1.FilterIndex = 1;
+            saveFileDialog1.RestoreDirectory = true;
+            FileStream fs = null;
+            StreamWriter sw = null;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                fs = new FileStream(saveFileDialog1.FileName, FileMode.Create);
+                sw = new StreamWriter(fs);
+            }
+            foreach (TreeListViewItem item in treeListView1.Items)
+            {
+                string temp = "";
+                foreach (ListViewSubItem msgitem in item.SubItems)
+                {
+                    temp = item.Text + "," + msgitem.Text;
+                }
+                sw.WriteLine(temp);
+                foreach (TreeListViewItem sigitem in item.Items)
+                {
+                    foreach (ListViewSubItem sigsubitem in sigitem.SubItems)
+                    {
+                        temp = sigitem.Text + "," + sigsubitem.Text;
+                    }
+                    sw.WriteLine(temp);
+                }
+            }
+            sw.Close();
+            fs.Close();
+        }
     }
 
 }

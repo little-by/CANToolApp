@@ -95,6 +95,7 @@
             this.csv文件ToolStripMenuItem.Name = "csv文件ToolStripMenuItem";
             this.csv文件ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.csv文件ToolStripMenuItem.Text = "csv文件";
+            this.csv文件ToolStripMenuItem.Click += new System.EventHandler(this.csv文件ToolStripMenuItem_Click);
             // 
             // json文件ToolStripMenuItem
             // 
@@ -128,7 +129,7 @@
             // cOM口设置ToolStripMenuItem
             // 
             this.cOM口设置ToolStripMenuItem.Name = "cOM口设置ToolStripMenuItem";
-            this.cOM口设置ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cOM口设置ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.cOM口设置ToolStripMenuItem.Text = "COM口设置";
             this.cOM口设置ToolStripMenuItem.Click += new System.EventHandler(this.cOM口设置ToolStripMenuItem_Click);
             // 
