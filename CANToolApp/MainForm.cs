@@ -341,12 +341,12 @@ namespace CANToolApp
             string[] tmp = fName.Split('.');
             string filetype = tmp[tmp.Length-1];
 
-            XmlDocument doc = new XmlDocument();
-            //加载登录名单的xml文档
-            doc.Load(fName);
-            XmlNode root = doc.SelectSingleNode("root");
             if (filetype.Equals("xml"))
             {
+                XmlDocument doc = new XmlDocument();
+                //加载登录名单的xml文档
+                doc.Load(fName);
+                XmlNode root = doc.SelectSingleNode("root");
                 //string str = XMLProcess.Read("data.xml", "/root/data0/message");
                 for (int n = 0; n < root.ChildNodes.Count; n++)
                 {
@@ -370,10 +370,34 @@ namespace CANToolApp
                         }
                     addone(returnedData);
                 }
-            }else if (filetype.Equals("csv"))
+            }
+            else if (filetype.Equals("csv"))
             {
-
-            }else if (filetype.Equals("json"))
+                StreamReader sr = new StreamReader(fName, Encoding.UTF8);
+                Dictionary<string, string> data = null;
+                string[] temp;
+                string line = sr.ReadLine();
+                while (line != null)
+                {
+                    if (line.StartsWith("messageName"))
+                    {
+                        temp = line.Split(',');
+                        data = null;
+                        data = new Dictionary<string, string>();
+                        data.Add(temp[0], temp[1]);
+                    }
+                    line = sr.ReadLine();
+                    while (line != null &&!line.StartsWith("messageName"))
+                    {
+                        temp = line.Split(',');
+                        data.Add(temp[0], temp[1]);
+                        line = sr.ReadLine();
+                    }
+                    addone(data);
+                }
+                sr.Close();
+            }
+            else if (filetype.Equals("json"))
             {
 
             }
