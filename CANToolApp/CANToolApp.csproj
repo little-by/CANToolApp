@@ -100,6 +100,18 @@
     <Compile Include="ComPortForm.Designer.cs">
       <DependentUpon>ComPortForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gauge.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Gauge.Designer.cs">
+      <DependentUpon>Gauge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GaugeboardShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GaugeboardShow.Designer.cs">
+      <DependentUpon>GaugeboardShow.cs</DependentUpon>
+    </Compile>
     <Compile Include="IniFile.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -124,6 +136,9 @@
       <DependentUpon>CurveShow.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="UpdateTableThread.cs" />
+    <EmbeddedResource Include="GaugeboardShow.resx">
+      <DependentUpon>GaugeboardShow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
