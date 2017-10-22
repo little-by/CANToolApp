@@ -11,14 +11,24 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace CANToolApp
 {
+
     public partial class CurveShow : Form
     {
         private Queue<double> dataQueue = new Queue<double>(100);
         private int num = 1;//每次删除增加几个点
+        Dictionary<string, string> returnedData = new Dictionary<string, string>();
+        public event DelegateUpdateUI delegateUpdateUI;
+
+        string messgaeName = "";
+        string signaleName = "";
+        string lastname = "";
+        double currentValue = 0;
+
 
         public CurveShow()
         {
             InitializeComponent();
+            cleardata();
         }
 
 
@@ -30,7 +40,7 @@ namespace CANToolApp
 
         private void InitTreeView(TreeView treeview,int parentId)
         {
-            Dictionary<string, string> returnedData = Decode.DecodeCANSignal("t3588A5SD566D9F8SD565");
+            returnedData = Decode.DecodeCANSignal("t3588A5SD566D9F8SD565");
             foreach (string key in returnedData.Keys)
             {
                 if (key == "messageName")
@@ -44,13 +54,31 @@ namespace CANToolApp
             {
                 if (key != "messageName")
                 {   
-                        TreeNode signalenode = new TreeNode();
-                        signalenode.Text = key;
-                        treeView1.Nodes.Add(signalenode);
+                        TreeNode signalnode = new TreeNode();
+                        
+                        signalnode.Text = key;
+                        treeView1.Nodes.Add(signalnode);
                 }
             }
+            treeview.MouseClick += Treeview_MouseClick;
    
         }
+
+        private void Treeview_MouseClick(object sender, MouseEventArgs e)
+        {
+            TreeView tv = (TreeView)sender;
+            TreeNode tn = tv.GetNodeAt(new Point(e.X,e.Y));
+            signaleName = tn.Text;
+        }
+
+        private void Treeview_Click(object sender, EventArgs e)
+        {
+            /*TreeView tv = (TreeView)sender;
+            TreeNode tn=tv.GetNodeAt();
+            signaleName = tn.Text;*/
+
+        }
+
         //定时器事件
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -88,6 +116,14 @@ namespace CANToolApp
         //更新队列中的值
         private void UpdateQueueValue()
         {
+            if (!lastname.Equals(signaleName))
+            {
+                dataQueue.Clear();
+                lastname = signaleName;
+                Console.WriteLine("+++++++++++++++++++++++++++++++++++++++++++++---" + signaleName);
+            }
+            Console.WriteLine("+++++++++++++++++++++++++++++++++++++++++++++"+dataQueue.Count);
+
             if (dataQueue.Count > 100)
             {
                 //先出列
@@ -96,17 +132,49 @@ namespace CANToolApp
                     dataQueue.Dequeue();
                 }
             }
-           
-                Random r = new Random();//先用随机数测试
-                for (int i = 0; i < num; i++)
-                {
-                    dataQueue.Enqueue(r.Next(0, 100));
-                }
-            
-            
+            dataQueue.Enqueue(currentValue);
+
+        }
+
+
+        public void ReceiveData(string msgobj)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new DelegateUpdateUI(ReceiveData), msgobj);
+            }
+            else
+            {
+                UpdateData(msgobj);
             }
         }
 
-      
+        public void UpdateData(string msg)
+        {
+            returnedData = Decode.DecodeCANSignal(msg);
+            if (returnedData[signaleName] != null || !returnedData[signaleName].Equals(""))
+            {
+                currentValue = Double.Parse(returnedData[signaleName]);
+            }
+        }
+        private void cleardata()
+        {
+            timer1.Stop();
+            dataQueue.Clear();
+            for (int i = 0; i < 100; i++)
+            {
+                dataQueue.Enqueue(0);
+            }
+            timer1.Start();
+        }
+
     }
+
+
+
+
+        
+
+      
+}
 
