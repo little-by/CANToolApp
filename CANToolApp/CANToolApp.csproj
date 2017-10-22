@@ -47,6 +47,7 @@
     <Reference Include="System.Runtime.InteropServices.APIs">
       <HintPath>.\System.Runtime.InteropServices.APIs.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Windows.Forms.TreeListView">
@@ -109,6 +110,7 @@
     <Compile Include="Profile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sigJson.cs" />
     <Compile Include="SqlHelper.cs" />
     <Compile Include="XMLProcess.cs" />
     <EmbeddedResource Include="CheckForm.resx">
