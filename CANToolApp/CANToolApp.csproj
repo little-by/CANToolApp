@@ -100,6 +100,18 @@
     <Compile Include="ComPortForm.Designer.cs">
       <DependentUpon>ComPortForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gauge.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Gauge.Designer.cs">
+      <DependentUpon>Gauge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GaugeboardShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GaugeboardShow.Designer.cs">
+      <DependentUpon>GaugeboardShow.cs</DependentUpon>
+    </Compile>
     <Compile Include="IniFile.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -107,10 +119,11 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MsgJson.cs" />
     <Compile Include="Profile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="sigJson.cs" />
+    <Compile Include="SigJson.cs" />
     <Compile Include="SqlHelper.cs" />
     <Compile Include="XMLProcess.cs" />
     <EmbeddedResource Include="CheckForm.resx">
@@ -123,6 +136,9 @@
       <DependentUpon>CurveShow.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="UpdateTableThread.cs" />
+    <EmbeddedResource Include="GaugeboardShow.resx">
+      <DependentUpon>GaugeboardShow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
