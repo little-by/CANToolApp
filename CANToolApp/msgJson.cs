@@ -1,24 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using System.Runtime.Serialization;
 
 namespace JsonSerializerAndDeSerializer
 {
     [DataContract]
-    class SigJson
+    class MsgJson
     {
         [DataMember]
-        public string sigName
+        public string message
         {
             get;
             set;
         }
 
         [DataMember]
-        public string pyh
+        public SigJson[] signal
         {
             get;
             set;

@@ -9,6 +9,8 @@ using System.Collections;
 using static System.Windows.Forms.ListViewItem;
 using System.Xml;
 using System.Text;
+using JsonSerializerAndDeSerializer;
+using System.Runtime.Serialization.Json;
 
 namespace CANToolApp
 {
@@ -380,7 +382,55 @@ namespace CANToolApp
 
         private void json文件ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            MemoryStream msObj = new MemoryStream();
+            foreach (TreeListViewItem item in treeListView1.Items)
+            {
+                MsgJson msgjson = new MsgJson();
+                foreach (ListViewSubItem msgitem in item.SubItems)
+                {
+                    msgjson.message = msgitem.Text;
+                }
+                msgjson.signal = new SigJson[item.Items.Count];
+                int i = 0;
+                foreach (TreeListViewItem sigitem in item.Items)
+                {
+                    SigJson temp = new SigJson();
+                    temp.sigName = sigitem.Text;
+                    foreach (ListViewSubItem sigsubitem in sigitem.SubItems)
+                    {
+                        temp.pyh = sigsubitem.Text;
+                    }
+                    msgjson.signal[i] = temp;
+                    i++;
+                }
+                DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(MsgJson));
+                js.WriteObject(msObj, msgjson);
+            }
+            msObj.Position = 0;
+            StreamReader sr = new StreamReader(msObj, Encoding.UTF8);
+            //json字符串
+            string json = sr.ReadToEnd();
+
+            Stream myStream;
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "json files(*.json)|*.json";
+            saveFileDialog1.FilterIndex = 1;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if ((myStream = saveFileDialog1.OpenFile()) != null)
+                {
+                    using (StreamWriter sw = new StreamWriter(myStream))
+                    {
+                        sw.Write(json);
+                    }
+                    myStream.Close();
+                }
+            }
+            sr.Close();
+            msObj.Close();
+            //Console.WriteLine(json);
         }
     }
 
