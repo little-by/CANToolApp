@@ -9,10 +9,14 @@ namespace CANToolApp
     {
         /**
         此函数完成的工作：
-            接收CANMessage的Name和CANSignal的Name
+            接收CANMessage的Name和CANSignal的Name和用户输入的物理值，以及对CANTool向CAN总线发送命令的周期
             返回封装好的字符串
         */
         public static string EncodeCANSignal(string messageName, string signalName, int input)
+        {
+            return Encode.EncodeCANSignal(messageName, signalName, input, "0000");
+        }
+        public static string EncodeCANSignal(string messageName, string signalName, int input, string cycle)
         {
             string result = "";
             SqlHelper.connect();
@@ -122,7 +126,7 @@ namespace CANToolApp
                     {
                         shex.Append(string.Format("{0:X}", Convert.ToInt32(s.Substring(n, 4), 2)));
                     }
-                    result = tT + canIdHex + DLC + shex + "\\r";
+                    result = tT + canIdHex + DLC + shex + cycle + "\\r";
                 }
             }
             return result;
