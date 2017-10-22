@@ -281,9 +281,9 @@ namespace CANToolApp
                 //sp1.Write(list, 0, list.Length);
                // sp1.WriteLine(strSend);    //写入数据
                 //关闭端口连接
-               sp1.Close();
+      //         sp1.Close();
                 //当前线程挂起500毫秒
-                System.Threading.Thread.Sleep(500);
+     //           System.Threading.Thread.Sleep(500);
             
             
 }
@@ -471,8 +471,8 @@ namespace CANToolApp
         private void txtSend_KeyPress(object sender, KeyPressEventArgs e)
         {            
             //正则匹配
-           // string patten = "[0-9|.]|\b"; //“\b”：退格键
-            string patten = "[0-9]|\b";
+           string patten = "[0-9|.]|\b"; //“\b”：退格键
+            //string patten = "[0-9]|\b";
             Regex r = new Regex(patten);
             Match m = r.Match(e.KeyChar.ToString());
 
@@ -485,7 +485,10 @@ namespace CANToolApp
                 e.Handled = true;
             }
         }
-
+        private void txtSend_Click(object sender, EventArgs e)
+        {
+            txtSend.Text = "";
+        }
         private void txtSend_TextChanged(object sender, EventArgs e)
         {
 
@@ -534,31 +537,12 @@ namespace CANToolApp
                     break;
             }
 
-            //保存设置
-            // public static string G_BAUDRATE = "1200";//给ini文件赋新值，并且影响界面下拉框的显示
-            //public static string G_DATABITS = "8";
-            //public static string G_STOP = "1";
-            //public static string G_PARITY = "NONE";
+            
             Profile.SaveProfile();
             new CheckForm().Show();
         
         }
 
-        private void txtSecond_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            string patten = "[0-9]|\b"; //“\b”：退格键
-            Regex r = new Regex(patten);
-            Match m = r.Match(e.KeyChar.ToString());
-
-            if (m.Success)
-            {
-                e.Handled = false;   //没操作“过”，系统会处理事件    
-            }
-            else
-            {
-                e.Handled = true;
-            }
-        }
         private void txtSecond_TextChanged(object sender, EventArgs e)
         {
 
@@ -619,14 +603,11 @@ namespace CANToolApp
 
         }
 
-        private void txt_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void message_SelectedIndexChanged(object sender, EventArgs e)
         {
             signal.Items.Clear();
+            txtSend.Text = "";
             string select_m = (string)message.SelectedItem.ToString();
             
             if (select_m != "")
@@ -690,7 +671,12 @@ namespace CANToolApp
                     signal_D = can_s.D1;
                 }
             }
-            range.Text = signal_C + "~" + signal_D;
+            txtSend.Text = "Range: " + signal_C + " - " + signal_D;
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -64,7 +64,6 @@
             this.tsDataBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsStopBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsParity = new System.Windows.Forms.ToolStripStatusLabel();
-            this.range = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -73,7 +72,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.range);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label3);
@@ -98,7 +96,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(13, 285);
+            this.label10.Location = new System.Drawing.Point(13, 288);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(125, 12);
             this.label10.TabIndex = 39;
@@ -145,12 +143,12 @@
             // 
             // txtSend
             // 
-            this.txtSend.Location = new System.Drawing.Point(14, 303);
+            this.txtSend.Location = new System.Drawing.Point(14, 307);
             this.txtSend.Name = "txtSend";
-            this.txtSend.Size = new System.Drawing.Size(147, 28);
+            this.txtSend.Size = new System.Drawing.Size(147, 24);
             this.txtSend.TabIndex = 34;
             this.txtSend.Text = "";
-            this.txtSend.TextChanged += new System.EventHandler(this.txt_TextChanged);
+            this.txtSend.Click += new System.EventHandler(this.txtSend_Click);
             this.txtSend.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSend_KeyPress);
             // 
             // label2
@@ -426,15 +424,6 @@
             this.tsParity.Size = new System.Drawing.Size(78, 17);
             this.tsParity.Text = "Parity:None|";
             // 
-            // range
-            // 
-            this.range.AutoSize = true;
-            this.range.Location = new System.Drawing.Point(190, 306);
-            this.range.Name = "range";
-            this.range.Size = new System.Drawing.Size(29, 12);
-            this.range.TabIndex = 40;
-            this.range.Text = "范围";
-            // 
             // ComPortForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -501,6 +490,5 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label range;
     }
 }
