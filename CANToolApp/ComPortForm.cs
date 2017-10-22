@@ -274,9 +274,16 @@ namespace CANToolApp
             //丢弃来自串行驱动程序的传输缓冲区的数据
             sp1.DiscardOutBuffer();
 
-            string str3 = Encode.EncodeCANSignal(strMessage, strSignal, strSend);
+            string str3 = "";
+            if (sendcycle.Text == "")
+            {
+                str3 = Encode.EncodeCANSignal(strMessage, strSignal, strSend);
+            }
+            else
+            {
+                str3 = Encode.EncodeCANSignal(strMessage, strSignal, strSend, sendcycle.Text);
+            }
             //使用缓冲区的数据将指定数量的字节写入串行端口
-            MessageBox.Show(str3, "ok");
             sp1.WriteLine(str3);
                 //sp1.Write(list, 0, list.Length);
                // sp1.WriteLine(strSend);    //写入数据

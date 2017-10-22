@@ -36,7 +36,6 @@
             this.signal = new System.Windows.Forms.ComboBox();
             this.message = new System.Windows.Forms.ComboBox();
             this.txtSend = new System.Windows.Forms.RichTextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cbParity = new System.Windows.Forms.ComboBox();
@@ -64,6 +63,8 @@
             this.tsDataBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsStopBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsParity = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.sendcycle = new System.Windows.Forms.RichTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -72,13 +73,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.sendcycle);
+            this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.signal);
             this.groupBox1.Controls.Add(this.message);
             this.groupBox1.Controls.Add(this.txtSend);
-            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.btnSave);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.label4);
@@ -96,7 +98,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(13, 288);
+            this.label10.Location = new System.Drawing.Point(13, 262);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(125, 12);
             this.label10.TabIndex = 39;
@@ -105,7 +107,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(13, 243);
+            this.label9.Location = new System.Drawing.Point(13, 216);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(41, 12);
             this.label9.TabIndex = 38;
@@ -114,7 +116,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 201);
+            this.label3.Location = new System.Drawing.Point(13, 174);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 12);
             this.label3.TabIndex = 37;
@@ -124,7 +126,7 @@
             // 
             this.signal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.signal.FormattingEnabled = true;
-            this.signal.Location = new System.Drawing.Point(13, 261);
+            this.signal.Location = new System.Drawing.Point(13, 234);
             this.signal.Name = "signal";
             this.signal.Size = new System.Drawing.Size(148, 20);
             this.signal.TabIndex = 36;
@@ -135,7 +137,7 @@
             this.message.BackColor = System.Drawing.SystemColors.Window;
             this.message.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.message.FormattingEnabled = true;
-            this.message.Location = new System.Drawing.Point(13, 219);
+            this.message.Location = new System.Drawing.Point(13, 192);
             this.message.Name = "message";
             this.message.Size = new System.Drawing.Size(148, 20);
             this.message.TabIndex = 35;
@@ -143,23 +145,13 @@
             // 
             // txtSend
             // 
-            this.txtSend.Location = new System.Drawing.Point(14, 307);
+            this.txtSend.Location = new System.Drawing.Point(14, 281);
             this.txtSend.Name = "txtSend";
             this.txtSend.Size = new System.Drawing.Size(147, 24);
             this.txtSend.TabIndex = 34;
             this.txtSend.Text = "";
             this.txtSend.Click += new System.EventHandler(this.txtSend_Click);
             this.txtSend.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSend_KeyPress);
-            // 
-            // label2
-            // 
-            this.label2.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label2.Location = new System.Drawing.Point(12, 41);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(270, 30);
-            this.label2.TabIndex = 33;
-            this.label2.Text = "Choose a COM port (e.g.COM3) or specify a network connection.";
-            this.label2.Click += new System.EventHandler(this.label2_Click_1);
             // 
             // btnSave
             // 
@@ -181,7 +173,7 @@
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.cbBaudRate);
             this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Location = new System.Drawing.Point(9, 77);
+            this.groupBox3.Location = new System.Drawing.Point(9, 45);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(278, 100);
             this.groupBox3.TabIndex = 30;
@@ -294,7 +286,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 180);
+            this.label4.Location = new System.Drawing.Point(9, 154);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(89, 12);
             this.label4.TabIndex = 20;
@@ -323,11 +315,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(10, 18);
+            this.label1.Location = new System.Drawing.Point(16, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 14);
+            this.label1.Size = new System.Drawing.Size(42, 14);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Comm：";
+            this.label1.Text = "Com：";
             // 
             // btnSend
             // 
@@ -424,6 +416,23 @@
             this.tsParity.Size = new System.Drawing.Size(78, 17);
             this.tsParity.Text = "Parity:None|";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(14, 311);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(107, 12);
+            this.label11.TabIndex = 40;
+            this.label11.Text = "Send Cycle (xxxx)";
+            // 
+            // sendcycle
+            // 
+            this.sendcycle.Location = new System.Drawing.Point(14, 333);
+            this.sendcycle.Name = "sendcycle";
+            this.sendcycle.Size = new System.Drawing.Size(147, 23);
+            this.sendcycle.TabIndex = 41;
+            this.sendcycle.Text = "";
+            // 
             // ComPortForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -483,12 +492,13 @@
         private System.Windows.Forms.ToolStripStatusLabel tsStopBits;
         private System.Windows.Forms.ToolStripStatusLabel tsParity;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox txtSend;
         private System.Windows.Forms.ComboBox signal;
         private System.Windows.Forms.ComboBox message;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.RichTextBox sendcycle;
+        private System.Windows.Forms.Label label11;
     }
 }
