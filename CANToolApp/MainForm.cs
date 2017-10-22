@@ -79,8 +79,10 @@ namespace CANToolApp
 
         private void DashboardShowBt_Click(object sender, EventArgs e)
         {
-            DashboardShow dsForm = new DashboardShow();
-            dsForm.Show();
+            GaugeboardShow gsForm = new GaugeboardShow();
+            gsForm.Show();
+            //DashboardShow dsForm = new DashboardShow();
+            //dsForm.Show();
         }
 
         

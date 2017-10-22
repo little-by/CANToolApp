@@ -31,3 +31,4 @@ E:\project_CanToolApp\CANToolApp\CANToolApp\obj\Debug\CANToolApp.Properties.Reso
 E:\project_CanToolApp\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.GenerateResource.Cache
 E:\project_CanToolApp\CANToolApp\CANToolApp\obj\Debug\CANToolApp.exe
 E:\project_CanToolApp\CANToolApp\CANToolApp\obj\Debug\CANToolApp.pdb
+E:\project_CanToolApp\CANToolApp\CANToolApp\obj\Debug\CANToolApp.GaugeboardShow.resources
