@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.picturebox1 = new System.Windows.Forms.PictureBox();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.gauge1 = new CANToolApp.Gauge();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.picturebox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
@@ -58,6 +60,7 @@
             this.trackBar1.TabIndex = 2;
             this.trackBar1.TickFrequency = 100;
             this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             this.trackBar1.ValueChanged += new System.EventHandler(this.trackbar1_ValueChanged);
             // 
             // button1
@@ -110,7 +113,7 @@
             this.gauge1.CapText = "";
             this.gauge1.Center = new System.Drawing.Point(100, 105);
             this.gauge1.Location = new System.Drawing.Point(178, 21);
-            this.gauge1.MaxValue = 400F;//可改刻度
+            this.gauge1.MaxValue = 400F;
             this.gauge1.MinValue = -100F;
             this.gauge1.Name = "gauge1";
             this.gauge1.NeedleColor1 = CANToolApp.Gauge.NeedleColorEnum.Gray;
@@ -187,6 +190,10 @@
             this.gauge1.Value = 50F;
             this.gauge1.ValueInRangeChanged += new CANToolApp.Gauge.ValueInRangeChangedDelegate(this.gauge1_ValueInRangeChanged);
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // GaugeboardShow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -199,6 +206,7 @@
             this.Controls.Add(this.gauge1);
             this.Name = "GaugeboardShow";
             this.Text = "Gauge Test Window";
+            this.Load += new System.EventHandler(this.GaugeboardShow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picturebox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
@@ -213,5 +221,6 @@
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

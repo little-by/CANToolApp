@@ -17,6 +17,7 @@ namespace CANToolApp
         private Queue<double> dataQueue = new Queue<double>(100);
         private int num = 1;//每次删除增加几个点
         Dictionary<string, string> returnedData = new Dictionary<string, string>();
+
         public event DelegateUpdateUI delegateUpdateUI;
         private event DelegateSendData delegateSendData;
         string messgaeName = "";

@@ -27,7 +27,7 @@ namespace CANToolApp
 		private System.Windows.Forms.ColumnHeader columnHeader3;
         //ComPortForm comform = new ComPortForm();
         CurveShow csForm=null;
-
+        GaugeboardShow gsForm = null;
 
         //public event DelegateUpdateUI delegateUpdateUI;
         private event DelegateSendData delegateSendData;
@@ -89,7 +89,8 @@ namespace CANToolApp
 
         private void DashboardShowBt_Click(object sender, EventArgs e)
         {
-            GaugeboardShow gsForm = new GaugeboardShow();
+            gsForm = new GaugeboardShow();
+            delegateSendData += new DelegateSendData(gsForm.UpdateData);
             gsForm.Show();
             //DashboardShow dsForm = new DashboardShow();
             //dsForm.Show();
