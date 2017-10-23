@@ -158,7 +158,7 @@ namespace CANToolApp
                 string value = returnedData[signaleName];
                 value = value.Split(' ')[0];
 
-                currentValue = Double.Parse();
+                currentValue = Double.Parse(value);
             }
         }
         private void cleardata()
