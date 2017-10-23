@@ -14,6 +14,7 @@ using System.Runtime.Serialization.Json;
 
 namespace CANToolApp
 {
+    public delegate void DelegateSendData(Dictionary<string, string> returnedData);
     public delegate void DelegateUpdateUI(string msgobj);
     public partial class MainForm : Form
     {
@@ -24,9 +25,12 @@ namespace CANToolApp
 		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.ColumnHeader columnHeader3;
         //ComPortForm comform = new ComPortForm();
-        CurveShow csForm = new CurveShow();
+        CurveShow csForm=null;
 
-        public event DelegateUpdateUI delegateUpdateUI;
+
+        //public event DelegateUpdateUI delegateUpdateUI;
+        private event DelegateSendData delegateSendData;
+
 
         public MainForm()
         {
@@ -71,12 +75,14 @@ namespace CANToolApp
         {
             ComPortForm comform = new ComPortForm();
             comform.delegateUpdateUI += new DelegateUpdateUI(UpdateUI);
-            comform.delegateUpdateUI += new DelegateUpdateUI(csForm.UpdateData);
+            //comform.delegateUpdateUI += new DelegateUpdateUI(csForm.UpdateData);
             comform.Show();
         }
 
         private void CurveShowBt_Click(object sender, EventArgs e)
         {
+            csForm = new CurveShow();
+            delegateSendData += new DelegateSendData(csForm.UpdateData);
             csForm.Show();
         }
 
@@ -100,10 +106,16 @@ namespace CANToolApp
                 addone(msgobj);
             }
         }
-        public static void addone(string msgobj)
+        public void addone(string msgobj)
         {
             string msg = (string)msgobj;
             Dictionary<string, string> returnedData = Decode.DecodeCANSignal(msg);
+            if (csForm!=null)
+            {
+                delegateSendData(returnedData);
+            }
+            
+
             TreeListViewItem itemA = new TreeListViewItem("messageName ", 0);
             foreach (string key in returnedData.Keys)
             {
@@ -127,7 +139,7 @@ namespace CANToolApp
             itemA.Collapse();
         }
 
-        public static void addone(Dictionary<string, string> returnedData)
+        public void addone(Dictionary<string, string> returnedData)
         {
             TreeListViewItem itemA = new TreeListViewItem("messageName ", 0);
             foreach (string key in returnedData.Keys)

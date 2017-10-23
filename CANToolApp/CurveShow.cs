@@ -18,7 +18,7 @@ namespace CANToolApp
         private int num = 1;//每次删除增加几个点
         Dictionary<string, string> returnedData = new Dictionary<string, string>();
         public event DelegateUpdateUI delegateUpdateUI;
-
+        private event DelegateSendData delegateSendData;
         string messgaeName = "";
         string signaleName = "";
         string lastname = "";
@@ -137,24 +137,28 @@ namespace CANToolApp
         }
 
 
-        public void ReceiveData(string msgobj)
+        public void ReceiveData(Dictionary<string, string> returnedData)
         {
             if (this.InvokeRequired)
             {
-                this.BeginInvoke(new DelegateUpdateUI(ReceiveData), msgobj);
+                this.BeginInvoke(new DelegateSendData(ReceiveData), returnedData);
             }
             else
             {
-                UpdateData(msgobj);
+                UpdateData(returnedData);
             }
         }
 
-        public void UpdateData(string msg)
+        public void UpdateData(Dictionary<string, string> returnedData)
         {
-            returnedData = Decode.DecodeCANSignal(msg);
+            this.returnedData = returnedData;
             if (returnedData[signaleName] != null || !returnedData[signaleName].Equals(""))
             {
-                currentValue = Double.Parse(returnedData[signaleName]);
+
+                string value = returnedData[signaleName];
+                value = value.Split(' ')[0];
+
+                currentValue = Double.Parse();
             }
         }
         private void cleardata()
