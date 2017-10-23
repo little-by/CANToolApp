@@ -11,6 +11,7 @@ using System.Xml;
 using System.Text;
 using JsonSerializerAndDeSerializer;
 using System.Runtime.Serialization.Json;
+using System.Text.RegularExpressions;
 
 namespace CANToolApp
 {
@@ -398,7 +399,7 @@ namespace CANToolApp
                 {
                     if (line.StartsWith("messageName"))
                     {
-                        temp = line.Split(',');
+                        temp = Regex.Split(line, "\\s*,");
                         data = null;
                         data = new Dictionary<string, string>();
                         data.Add(temp[0], temp[1]);
@@ -416,7 +417,31 @@ namespace CANToolApp
             }
             else if (filetype.Equals("json"))
             {
-
+                StreamReader sr = new StreamReader(fName, Encoding.UTF8);
+                StringBuilder sb = new StringBuilder();
+                string line = "";
+                while ((line = sr.ReadLine()) != null)
+                {
+                    sb.Append(line);
+                }
+                string data = sb.ToString();
+                string[] msgAndSig = Regex.Split(data, "{\"message\":");
+                for (int i = 0; i < msgAndSig.Length - 1; i++)
+                {
+                    string readjson = "{\"message\":" + msgAndSig[i + 1];
+                    using (MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(readjson)))
+                    {
+                        DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(MsgJson));
+                        MsgJson model = (MsgJson)deseralizer.ReadObject(ms);// //反序列化ReadObject
+                        Dictionary<string, string> jsondata = new Dictionary<string, string>();
+                        jsondata.Add("messageName", model.message);
+                        foreach (SigJson sigjson in model.signal)
+                        {
+                            jsondata.Add(sigjson.sigName, sigjson.pyh);
+                        }
+                        addone(jsondata);
+                    }
+                }
             }
 
         }

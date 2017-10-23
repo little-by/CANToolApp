@@ -112,8 +112,8 @@ public class Decode
                         }
                         else
                         {
-                            MessageBox.Show("暂不支持的数据格式!");
-                            return returnedData;
+                            MessageBox.Show("信号中含有暂不支持的数据格式!");
+                            return null;
                         }
                         double A = (double)reader[4];
                         double B = (double)reader[5];

@@ -62,7 +62,6 @@ namespace CANToolApp
                     double B = (double)sigReader[5];
                     double C = (double)sigReader[6];
                     double D = (double)sigReader[7];
-                    //double temp = (input - B) / A;
                     if (!(input >= C && input <= D))
                     {
                         MessageBox.Show("输入的数据超出范围，请重新输入！");
