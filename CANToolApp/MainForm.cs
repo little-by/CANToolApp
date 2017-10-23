@@ -229,7 +229,7 @@ namespace CANToolApp
             // columnHeader2
             // 
             this.columnHeader2.Text = "Attribute";
-            this.columnHeader2.Width = 100;
+            this.columnHeader2.Width = 300;
             // 
             // imageList1
             // 
