@@ -24,13 +24,16 @@ namespace CANToolApp
 		private System.Windows.Forms.ColumnHeader columnHeader2;
 		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.ColumnHeader columnHeader3;
-        
+        //ComPortForm comform = new ComPortForm();
+        CurveShow csForm = new CurveShow();
+
         public event DelegateUpdateUI delegateUpdateUI;
 
         public MainForm()
         {
             m_SyncContext = SynchronizationContext.Current;
             InitializeComponent();
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -67,14 +70,14 @@ namespace CANToolApp
 
         private void cOM口设置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ComPortForm comform=new ComPortForm();
+            ComPortForm comform = new ComPortForm();
             comform.delegateUpdateUI += new DelegateUpdateUI(UpdateUI);
+            comform.delegateUpdateUI += new DelegateUpdateUI(csForm.UpdateData);
             comform.Show();
         }
 
         private void CurveShowBt_Click(object sender, EventArgs e)
         {
-            CurveShow csForm = new CurveShow();
             csForm.Show();
         }
 

@@ -258,16 +258,17 @@ namespace CANToolApp
             {
                 strSignal = (string)signal.SelectedItem.ToString();
             }
-            int strSend;
+            int strSend = -1;
             if (txtSend.Text == "")
             {
                 MessageBox.Show("请填写信息！", "Error");
                 return;
             }
-            else
+            else if (int.TryParse(txtSend.Text, out strSend) == false)
             {
-                strSend = int.Parse(txtSend.Text);
-            }
+                MessageBox.Show("输入内容有误，请重新输入", "Error");
+                return;
+            }            
             //MessageBox.Show(strSend);
             //丢弃来自串行驱动程序的接受缓冲区的数据
             sp1.DiscardInBuffer();
@@ -284,6 +285,8 @@ namespace CANToolApp
                 str3 = Encode.EncodeCANSignal(strMessage, strSignal, strSend, sendcycle.Text);
             }
             //使用缓冲区的数据将指定数量的字节写入串行端口
+
+            MessageBox.Show(str3, "发送的数据为");
             sp1.WriteLine(str3);
                 //sp1.Write(list, 0, list.Length);
                // sp1.WriteLine(strSend);    //写入数据
