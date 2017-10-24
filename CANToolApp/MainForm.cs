@@ -20,7 +20,7 @@ namespace CANToolApp
     public partial class MainForm : Form
     {
         private static SynchronizationContext m_SyncContext = null;
-        private static TreeListView treeListView1;
+        //private static TreeListView treeListView1;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.ColumnHeader columnHeader2;
 		private System.Windows.Forms.ImageList imageList1;
@@ -192,7 +192,7 @@ namespace CANToolApp
         {
             this.components = new System.ComponentModel.Container();
             System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(TreeListView));
-            treeListView1 = new System.Windows.Forms.TreeListView();
+            //treeListView1 = new System.Windows.Forms.TreeListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
@@ -202,9 +202,9 @@ namespace CANToolApp
             // treeListView1
             // 
             treeListView1.AllowColumnReorder = true;
-            treeListView1.Anchor = (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                | System.Windows.Forms.AnchorStyles.Left)
-                | System.Windows.Forms.AnchorStyles.Right);
+            //treeListView1.Anchor = (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            //   | System.Windows.Forms.AnchorStyles.Left)
+            //   | System.Windows.Forms.AnchorStyles.Right);
             treeListView1.CheckBoxes = System.Windows.Forms.CheckBoxesTypes.Recursive;
             treeListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
                                                                                             this.columnHeader1,
@@ -212,9 +212,9 @@ namespace CANToolApp
                                                                                             this.columnHeader3});
             treeListView1.HideSelection = false;
             treeListView1.LabelEdit = false;
-            treeListView1.Location = new System.Drawing.Point(4, 4);
-            treeListView1.Name = "treeListView1";
-            treeListView1.Size = new System.Drawing.Size(580, 420);
+            //treeListView1.Location = new System.Drawing.Point(4, 4);
+            //treeListView1.Name = "treeListView1";
+            //treeListView1.Size = new System.Drawing.Size(580, 420);
             treeListView1.SmallImageList = this.imageList1;
             treeListView1.TabIndex = 0;
             //this.treeListView1.BeforeLabelEdit += new System.Windows.Forms.TreeListViewBeforeLabelEditEventHandler(this.treeListView1_BeforeLabelEdit);
@@ -241,11 +241,11 @@ namespace CANToolApp
             // CurveShowBt
             // 
             
-            this.CurveShowBt.Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
+            //this.CurveShowBt.Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
             this.CurveShowBt.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.CurveShowBt.Location = new System.Drawing.Point(8, 425);
+            //this.CurveShowBt.Location = new System.Drawing.Point(8, 425);
             //this.CurveShowBt.Name = "CurveShowBt";
-            this.CurveShowBt.Size = new System.Drawing.Size(112, 20);
+            //this.CurveShowBt.Size = new System.Drawing.Size(112, 20);
             this.CurveShowBt.TabIndex = 1;
             //this.CurveShowBt.Text = "Add / Remove All";
             //this.CurveShowBt.Click += new System.EventHandler(this.CurveShowBt_Click);
@@ -253,12 +253,12 @@ namespace CANToolApp
             // DashboardShowBt
             // 
             
-            this.DashboardShowBt.Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right);
+            //this.DashboardShowBt.Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right);
             this.DashboardShowBt.FlatStyle = System.Windows.Forms.FlatStyle.System;
 
-            this.DashboardShowBt.Location = new System.Drawing.Point(450, 425);
+            //this.DashboardShowBt.Location = new System.Drawing.Point(450, 425);
             //this.DashboardShowBt.Name = "DashboardShowBt";
-            this.DashboardShowBt.Size = new System.Drawing.Size(128, 20);
+            //this.DashboardShowBt.Size = new System.Drawing.Size(128, 20);
             this.DashboardShowBt.TabIndex = 2;
             //this.DashboardShowBt.Text = "Expand / Collapse All";
             
@@ -266,12 +266,12 @@ namespace CANToolApp
             // 
             // TryTreeListView
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.ClientSize = new System.Drawing.Size(600, 450);
-            this.Controls.AddRange(new System.Windows.Forms.Control[] {
-                                                                          this.DashboardShowBt,
-                                                                          this.CurveShowBt,
-                                                                          treeListView1});
+            //this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            //this.ClientSize = new System.Drawing.Size(600, 450);
+            //this.Controls.AddRange(new System.Windows.Forms.Control[] {
+            //                                                             this.DashboardShowBt,
+            //                                                            this.CurveShowBt,
+            //                                                             treeListView1});
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.Form1_Load);

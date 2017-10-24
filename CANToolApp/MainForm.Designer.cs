@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer3 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.读取ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,6 +48,7 @@
             this.ShowBt = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.test = new System.Windows.Forms.Button();
+            this.treeListView1 = new System.Windows.Forms.TreeListView();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -58,7 +60,7 @@
             this.设置ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(514, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(619, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -171,7 +173,7 @@
             // 
             // DashboardShowBt
             // 
-            this.DashboardShowBt.Location = new System.Drawing.Point(388, 251);
+            this.DashboardShowBt.Location = new System.Drawing.Point(496, 325);
             this.DashboardShowBt.Name = "DashboardShowBt";
             this.DashboardShowBt.Size = new System.Drawing.Size(114, 27);
             this.DashboardShowBt.TabIndex = 4;
@@ -181,7 +183,7 @@
             // 
             // CurveShowBt
             // 
-            this.CurveShowBt.Location = new System.Drawing.Point(270, 251);
+            this.CurveShowBt.Location = new System.Drawing.Point(12, 327);
             this.CurveShowBt.Name = "CurveShowBt";
             this.CurveShowBt.Size = new System.Drawing.Size(100, 25);
             this.CurveShowBt.TabIndex = 7;
@@ -207,12 +209,24 @@
             this.test.Size = new System.Drawing.Size(75, 23);
             this.test.TabIndex = 0;
             // 
+            // treeListView1
+            // 
+            treeListViewItemCollectionComparer3.Column = 0;
+            treeListViewItemCollectionComparer3.SortOrder = System.Windows.Forms.SortOrder.Ascending;
+            this.treeListView1.Comparer = treeListViewItemCollectionComparer3;
+            this.treeListView1.Location = new System.Drawing.Point(12, 31);
+            this.treeListView1.Name = "treeListView1";
+            this.treeListView1.Size = new System.Drawing.Size(598, 290);
+            this.treeListView1.TabIndex = 8;
+            this.treeListView1.UseCompatibleStateImageBehavior = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(514, 290);
+            this.ClientSize = new System.Drawing.Size(619, 361);
+            this.Controls.Add(this.treeListView1);
             this.Controls.Add(this.CurveShowBt);
             this.Controls.Add(this.DashboardShowBt);
             this.Controls.Add(this.SendBt);
@@ -251,6 +265,7 @@
         private System.Windows.Forms.ToolStripMenuItem csv文件ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem json文件ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem xml文件ToolStripMenuItem;
+        private System.Windows.Forms.TreeListView treeListView1;
     }
 }
 
