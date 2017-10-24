@@ -125,6 +125,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SigJson.cs" />
     <Compile Include="SqlHelper.cs" />
+    <Compile Include="TableMsg.cs" />
     <Compile Include="XMLProcess.cs" />
     <EmbeddedResource Include="CheckForm.resx">
       <DependentUpon>CheckForm.cs</DependentUpon>

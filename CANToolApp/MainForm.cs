@@ -28,7 +28,8 @@ namespace CANToolApp
         //ComPortForm comform = new ComPortForm();
         CurveShow csForm=null;
         GaugeboardShow gsForm = null;
-
+        //Table数据源
+        DataTable dataTable = null;
         //public event DelegateUpdateUI delegateUpdateUI;
         private event DelegateSendData delegateSendData;
 
@@ -48,7 +49,27 @@ namespace CANToolApp
             //AddItems();
             addone("t3588A5SD566D9F8SD565");
             string str = XMLProcess.Read("data.xml", "/root/data0/message");
-            Console.WriteLine("-----------------------------------------dadadasda"+str);
+            Console.WriteLine("-----------------------------------------dadadasda" + str);
+
+            //下面是显示每个message的bit用到的程序
+            //DataGridView的数据源
+            dataTable = new DataTable();
+            //绑定数据源
+            dataGridView1.DataSource = dataTable;
+            //dataGridView1.Width = dataGridView1.Parent.Width;
+            //初始化列
+            for(int i = 0; i < 8; i++)
+            {
+                dataTable.Columns.Add("" + (7-i));
+                //8.53对于每列最合适
+                dataGridView1.Columns[i].Width = (int)(dataGridView1.Width / (8.6));
+            }
+
+            //初始化显示表格
+            InitTable();
+
+
+
 
         }
 
@@ -276,6 +297,27 @@ namespace CANToolApp
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+        }
+
+        private void InitTable()
+        {
+            for(int i = 0; i < 8; i++)
+            {
+                DataRow dr = dataTable.NewRow();
+                for(int j = 0; j < 8; j++)
+                {
+                    //两种存取方式
+                    //dataTable.Rows[0].ItemArray[0] = 0;
+                    dr[j] = 0;
+                }
+                dataTable.Rows.Add(dr);
+
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                dataGridView1.Columns[i].Width = (int)(dataGridView1.Width / (8.53));
+            }
+
         }
         private enum DrivesDescr { First, Second, Third, Fourth }
         private enum Drives { C, D, E, Z }
