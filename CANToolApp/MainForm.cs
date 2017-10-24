@@ -11,9 +11,11 @@ using System.Xml;
 using System.Text;
 using JsonSerializerAndDeSerializer;
 using System.Runtime.Serialization.Json;
+using System.Text.RegularExpressions;
 
 namespace CANToolApp
 {
+    public delegate void DelegateSendData(Dictionary<string, string> returnedData);
     public delegate void DelegateUpdateUI(string msgobj);
     public partial class MainForm : Form
     {
@@ -23,13 +25,19 @@ namespace CANToolApp
 		private System.Windows.Forms.ColumnHeader columnHeader2;
 		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.ColumnHeader columnHeader3;
-        
-        public event DelegateUpdateUI delegateUpdateUI;
+        //ComPortForm comform = new ComPortForm();
+        CurveShow csForm=null;
+        GaugeboardShow gsForm = null;
+
+        //public event DelegateUpdateUI delegateUpdateUI;
+        private event DelegateSendData delegateSendData;
+
 
         public MainForm()
         {
             m_SyncContext = SynchronizationContext.Current;
             InitializeComponent();
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -66,20 +74,23 @@ namespace CANToolApp
 
         private void cOM口设置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ComPortForm comform=new ComPortForm();
+            ComPortForm comform = new ComPortForm();
             comform.delegateUpdateUI += new DelegateUpdateUI(UpdateUI);
+            //comform.delegateUpdateUI += new DelegateUpdateUI(csForm.UpdateData);
             comform.Show();
         }
 
         private void CurveShowBt_Click(object sender, EventArgs e)
         {
-            CurveShow csForm = new CurveShow();
+            csForm = new CurveShow();
+            delegateSendData += new DelegateSendData(csForm.UpdateData);
             csForm.Show();
         }
 
         private void DashboardShowBt_Click(object sender, EventArgs e)
         {
-            GaugeboardShow gsForm = new GaugeboardShow();
+            gsForm = new GaugeboardShow();
+            delegateSendData += new DelegateSendData(gsForm.UpdateData);
             gsForm.Show();
             //DashboardShow dsForm = new DashboardShow();
             //dsForm.Show();
@@ -97,10 +108,16 @@ namespace CANToolApp
                 addone(msgobj);
             }
         }
-        public static void addone(string msgobj)
+        public void addone(string msgobj)
         {
             string msg = (string)msgobj;
             Dictionary<string, string> returnedData = Decode.DecodeCANSignal(msg);
+            if (csForm!=null)
+            {
+                delegateSendData(returnedData);
+            }
+            
+
             TreeListViewItem itemA = new TreeListViewItem("messageName ", 0);
             foreach (string key in returnedData.Keys)
             {
@@ -124,7 +141,7 @@ namespace CANToolApp
             itemA.Collapse();
         }
 
-        public static void addone(Dictionary<string, string> returnedData)
+        public void addone(Dictionary<string, string> returnedData)
         {
             TreeListViewItem itemA = new TreeListViewItem("messageName ", 0);
             foreach (string key in returnedData.Keys)
@@ -212,7 +229,7 @@ namespace CANToolApp
             // columnHeader2
             // 
             this.columnHeader2.Text = "Attribute";
-            this.columnHeader2.Width = 100;
+            this.columnHeader2.Width = 300;
             // 
             // imageList1
             // 
@@ -383,7 +400,7 @@ namespace CANToolApp
                 {
                     if (line.StartsWith("messageName"))
                     {
-                        temp = line.Split(',');
+                        temp = Regex.Split(line, "\\s*,");
                         data = null;
                         data = new Dictionary<string, string>();
                         data.Add(temp[0], temp[1]);
@@ -401,7 +418,31 @@ namespace CANToolApp
             }
             else if (filetype.Equals("json"))
             {
-
+                StreamReader sr = new StreamReader(fName, Encoding.UTF8);
+                StringBuilder sb = new StringBuilder();
+                string line = "";
+                while ((line = sr.ReadLine()) != null)
+                {
+                    sb.Append(line);
+                }
+                string data = sb.ToString();
+                string[] msgAndSig = Regex.Split(data, "{\"message\":");
+                for (int i = 0; i < msgAndSig.Length - 1; i++)
+                {
+                    string readjson = "{\"message\":" + msgAndSig[i + 1];
+                    using (MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(readjson)))
+                    {
+                        DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(MsgJson));
+                        MsgJson model = (MsgJson)deseralizer.ReadObject(ms);// //反序列化ReadObject
+                        Dictionary<string, string> jsondata = new Dictionary<string, string>();
+                        jsondata.Add("messageName", model.message);
+                        foreach (SigJson sigjson in model.signal)
+                        {
+                            jsondata.Add(sigjson.sigName, sigjson.pyh);
+                        }
+                        addone(jsondata);
+                    }
+                }
             }
 
         }

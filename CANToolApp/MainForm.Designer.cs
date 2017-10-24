@@ -76,7 +76,7 @@
             // 读取ToolStripMenuItem
             // 
             this.读取ToolStripMenuItem.Name = "读取ToolStripMenuItem";
-            this.读取ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.读取ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.读取ToolStripMenuItem.Text = "读取";
             this.读取ToolStripMenuItem.Click += new System.EventHandler(this.读取ToolStripMenuItem_Click);
             // 
@@ -87,34 +87,34 @@
             this.json文件ToolStripMenuItem,
             this.xml文件ToolStripMenuItem});
             this.保存为ToolStripMenuItem.Name = "保存为ToolStripMenuItem";
-            this.保存为ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.保存为ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.保存为ToolStripMenuItem.Text = "保存";
             // 
             // csv文件ToolStripMenuItem
             // 
             this.csv文件ToolStripMenuItem.Name = "csv文件ToolStripMenuItem";
-            this.csv文件ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.csv文件ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.csv文件ToolStripMenuItem.Text = "csv文件";
             this.csv文件ToolStripMenuItem.Click += new System.EventHandler(this.csv文件ToolStripMenuItem_Click);
             // 
             // json文件ToolStripMenuItem
             // 
             this.json文件ToolStripMenuItem.Name = "json文件ToolStripMenuItem";
-            this.json文件ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.json文件ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.json文件ToolStripMenuItem.Text = "json文件";
             this.json文件ToolStripMenuItem.Click += new System.EventHandler(this.json文件ToolStripMenuItem_Click);
             // 
             // xml文件ToolStripMenuItem
             // 
             this.xml文件ToolStripMenuItem.Name = "xml文件ToolStripMenuItem";
-            this.xml文件ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xml文件ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.xml文件ToolStripMenuItem.Text = "xml文件";
             this.xml文件ToolStripMenuItem.Click += new System.EventHandler(this.xml文件ToolStripMenuItem_Click);
             // 
             // 退出ToolStripMenuItem
             // 
             this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
-            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.退出ToolStripMenuItem.Text = "退出";
             // 
             // 设置ToolStripMenuItem
