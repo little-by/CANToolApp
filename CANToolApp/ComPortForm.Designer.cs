@@ -20,7 +20,7 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+         #region Windows Form Designer generated code
 
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.sendcycle = new System.Windows.Forms.RichTextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -63,12 +65,19 @@
             this.tsDataBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsStopBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsParity = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.sendcycle = new System.Windows.Forms.RichTextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.sendRate = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.canVersion = new System.Windows.Forms.Button();
+            this.canClose = new System.Windows.Forms.Button();
+            this.canOpen = new System.Windows.Forms.Button();
+            this.canRate = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -94,6 +103,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "COM Port Settings";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // sendcycle
+            // 
+            this.sendcycle.Location = new System.Drawing.Point(14, 333);
+            this.sendcycle.Name = "sendcycle";
+            this.sendcycle.Size = new System.Drawing.Size(147, 23);
+            this.sendcycle.TabIndex = 41;
+            this.sendcycle.Text = "";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(14, 311);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(107, 12);
+            this.label11.TabIndex = 40;
+            this.label11.Text = "Send Cycle (xxxx)";
             // 
             // label10
             // 
@@ -334,9 +360,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtReceive);
-            this.groupBox2.Location = new System.Drawing.Point(310, 5);
+            this.groupBox2.Location = new System.Drawing.Point(310, 159);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(315, 366);
+            this.groupBox2.Size = new System.Drawing.Size(315, 212);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Receiver";
@@ -416,28 +442,110 @@
             this.tsParity.Size = new System.Drawing.Size(78, 17);
             this.tsParity.Text = "Parity:None|";
             // 
-            // label11
+            // groupBox4
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(14, 311);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(107, 12);
-            this.label11.TabIndex = 40;
-            this.label11.Text = "Send Cycle (xxxx)";
+            this.groupBox4.Controls.Add(this.sendRate);
+            this.groupBox4.Controls.Add(this.label12);
+            this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.Controls.Add(this.canVersion);
+            this.groupBox4.Controls.Add(this.canClose);
+            this.groupBox4.Controls.Add(this.canOpen);
+            this.groupBox4.Controls.Add(this.canRate);
+            this.groupBox4.Location = new System.Drawing.Point(311, 5);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(314, 145);
+            this.groupBox4.TabIndex = 23;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "CanTool Settings";
             // 
-            // sendcycle
+            // sendRate
             // 
-            this.sendcycle.Location = new System.Drawing.Point(14, 333);
-            this.sendcycle.Name = "sendcycle";
-            this.sendcycle.Size = new System.Drawing.Size(147, 23);
-            this.sendcycle.TabIndex = 41;
-            this.sendcycle.Text = "";
+            this.sendRate.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.sendRate.Location = new System.Drawing.Point(208, 101);
+            this.sendRate.Name = "sendRate";
+            this.sendRate.Size = new System.Drawing.Size(75, 21);
+            this.sendRate.TabIndex = 28;
+            this.sendRate.Text = "Send";
+            this.sendRate.UseVisualStyleBackColor = true;
+            this.sendRate.Click += new System.EventHandler(this.sendRate_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label12.Location = new System.Drawing.Point(102, 105);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(35, 14);
+            this.label12.TabIndex = 27;
+            this.label12.Text = "Kbit";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Location = new System.Drawing.Point(22, 85);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "Rate：";
+            // 
+            // canVersion
+            // 
+            this.canVersion.Location = new System.Drawing.Point(208, 30);
+            this.canVersion.Name = "canVersion";
+            this.canVersion.Size = new System.Drawing.Size(75, 23);
+            this.canVersion.TabIndex = 3;
+            this.canVersion.Text = "Version";
+            this.canVersion.UseVisualStyleBackColor = true;
+            this.canVersion.Click += new System.EventHandler(this.canVersion_Click);
+            // 
+            // canClose
+            // 
+            this.canClose.Location = new System.Drawing.Point(117, 30);
+            this.canClose.Name = "canClose";
+            this.canClose.Size = new System.Drawing.Size(75, 23);
+            this.canClose.TabIndex = 2;
+            this.canClose.Text = "Close";
+            this.canClose.UseVisualStyleBackColor = true;
+            this.canClose.Click += new System.EventHandler(this.canClose_Click);
+            // 
+            // canOpen
+            // 
+            this.canOpen.Location = new System.Drawing.Point(27, 30);
+            this.canOpen.Name = "canOpen";
+            this.canOpen.Size = new System.Drawing.Size(75, 23);
+            this.canOpen.TabIndex = 1;
+            this.canOpen.Text = "Open";
+            this.canOpen.UseVisualStyleBackColor = true;
+            this.canOpen.Click += new System.EventHandler(this.canOpen_Click);
+            // 
+            // canRate
+            // 
+            this.canRate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.canRate.FormattingEnabled = true;
+            this.canRate.Items.AddRange(new object[] {
+            "10",
+            "20",
+            "50",
+            "100",
+            "125",
+            "250",
+            "500",
+            "800",
+            "1024"});
+            this.canRate.Location = new System.Drawing.Point(26, 102);
+            this.canRate.Name = "canRate";
+            this.canRate.Size = new System.Drawing.Size(75, 20);
+            this.canRate.TabIndex = 0;
+            this.canRate.SelectedIndexChanged += new System.EventHandler(this.canRate_SelectedIndexChanged);
             // 
             // ComPortForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(642, 431);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnClear);
@@ -456,6 +564,8 @@
             this.groupBox2.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -500,5 +610,13 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RichTextBox sendcycle;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button canOpen;
+        private System.Windows.Forms.ComboBox canRate;
+        private System.Windows.Forms.Button canVersion;
+        private System.Windows.Forms.Button canClose;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button sendRate;
     }
 }
