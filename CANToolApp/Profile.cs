@@ -15,6 +15,7 @@ namespace INIFILE
             G_DATABITS = _file.ReadString("CONFIG", "DataBits", "8");
             G_STOP = _file.ReadString("CONFIG", "StopBits", "1");
             G_PARITY = _file.ReadString("CONFIG", "G_PARITY", "None");
+            G_RATE = _file.ReadString("CONFIG", "G_RATE", "10");
 
         }
 
@@ -26,6 +27,7 @@ namespace INIFILE
             _file.WriteString("CONFIG", "DataBits", G_DATABITS);
             _file.WriteString("CONFIG", "StopBits", G_STOP);
             _file.WriteString("CONFIG", "G_PARITY", G_PARITY);
+            _file.WriteString("CONFIG", "G_RATE", G_RATE);
         }
 
         private static IniFile _file;//内置了一个对象
@@ -34,6 +36,8 @@ namespace INIFILE
         public static string G_DATABITS = "8";
         public static string G_STOP = "1";
         public static string G_PARITY = "None";
+        public static string G_RATE = "10";
+
 
 
     }
