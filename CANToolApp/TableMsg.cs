@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,12 +17,21 @@ namespace CANToolApp
                 Signalpos[i] = 0;
             }
         }
+        public TableMsg(DataTable dt)
+        {
+            for (int i = 0; i < 64; i++)
+            {
+                Binarydata[i] = 0;
+                Signalpos[i] = 0;
+            }
+            this.DataTable = dt;
+        }
 
 
-
+        private DataTable dataTable=new DataTable();
         private int[] binarydata = new int[64];
         private int[] signalpos = new int[64];
-        List<int[]> siglist = new List<int[]>();
+        private Dictionary<string, string> returnedData = new Dictionary<string, string>();
         public int[] Binarydata
         {
             get
@@ -48,16 +58,29 @@ namespace CANToolApp
             }
         }
 
-        public List<int[]> Siglist
+        public Dictionary<string, string> ReturnedData
         {
             get
             {
-                return siglist;
+                return returnedData;
             }
 
             set
             {
-                siglist = value;
+                returnedData = value;
+            }
+        }
+
+        public DataTable DataTable
+        {
+            get
+            {
+                return dataTable;
+            }
+
+            set
+            {
+                dataTable = value;
             }
         }
     }

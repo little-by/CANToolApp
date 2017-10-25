@@ -4,6 +4,7 @@ using CANToolApp;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Collections.Generic;
+using System.Data;
 
 public class Decode
 {
@@ -151,6 +152,61 @@ public class Decode
         }
         return returnedData;
     }
+    //重载decode函数，为了显示bit
+    public static TableMsg DecodeCANSignal(string canData, string messageName,DataTable dt)
+    {
+        TableMsg tableMsg =new TableMsg(dt);
+        SqlHelper.connect();
+        string canId = "";
+        int dataLength = 0;
+        int[] Binarydata = new int[64];
+        try
+        {
+            string sqlselectid = "select id from cantoolapp.canmessage messagename=" + messageName;
+            SqlDataReader sdr = SqlHelper.query(sqlselectid);
+            sdr.Read();
+            string canIdStr = sdr[0].ToString();
+            sdr.Close();
+            dataLength = 16;
+            //把data转化为二进制
+            char[] binaryData = bianma(canData).ToCharArray();
+            int decimalSign = 0;
+
+            int len = binaryData.Length;
+            char[] temp = new char[len];
+            int k = 0;
+            for (k = 0; k < len; k++)
+            {
+                temp[k] = binaryData[k];
+            }
+            for (k = 0; k < len; k++)
+            {
+                int line = k / 8;
+                int row = 7 - k % 8;
+                binaryData[line * 8 + row] = temp[k];
+            }
+            for(k = 0; k < len; k++)
+            {
+                Binarydata[k] =int.Parse(""+binaryData[k]);
+            }
+            tableMsg.Binarydata = Binarydata;
+            string message = "select signalname,start_length_pattern from cantoolapp.cansignal where canmessageid = " + canId;
+            SqlDataReader dr = SqlHelper.query(sqlselectid);
+            while (dr.Read())
+            {
+                tableMsg.ReturnedData.Add(dr[0].ToString(),dr[1].ToString());
+            }
+            SqlHelper.close();
+            return tableMsg;
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.ToString());
+        }
+        return null;
+    }
+
 
     //将16进制字符串转化为2进制字符串
     public static string bianma(string s)

@@ -9,14 +9,15 @@ namespace CANToolApp
 {
     public class UpdateTableThread
     {
-        public static void updateUi(object dataTable)
+        public static void updateUi(object tablemsg)
         {
             Console.WriteLine("this is a thread!!");
-            DataTable table = (DataTable)dataTable;
+            TableMsg tm = (TableMsg)tablemsg;
+            /*DataTable table = (DataTable)dataTable;
             DataRow dr = table.NewRow();
             dr[0] = "125";
             dr[1] = "358";
-            table.Rows.Add(dr);
+            table.Rows.Add(dr);*/
             //Console.WriteLine(str);
             //table.Columns.Add("he");
         } 

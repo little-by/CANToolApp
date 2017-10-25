@@ -223,7 +223,9 @@ namespace CANToolApp
                 txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
 
                 byte[] byteRead = new byte[sp1.BytesToRead];    //BytesToRead:sp1接收的字符个数
-                string msgrec = sp1.ReadLine();
+                int msglen = sp1.BytesToRead;
+                sp1.Read(byteRead,0, msglen);
+                string msgrec = System.Text.Encoding.Default.GetString(byteRead);
                 txtReceive.Text += msgrec + "\r\n"; //注意：回车换行必须这样写，单独使用"\r"和"\n"都不会有效果
                 delegateUpdateUI(msgrec);
                 sp1.DiscardInBuffer();                      //清空SerialPort控件的Buffer 

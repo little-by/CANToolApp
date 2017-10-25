@@ -29,7 +29,7 @@ namespace CANToolApp
         CurveShow csForm=null;
         GaugeboardShow gsForm = null;
         //Table数据源
-        DataTable dataTable = null;
+        DataTable dataTable = new DataTable();
         //public event DelegateUpdateUI delegateUpdateUI;
         private event DelegateSendData delegateSendData;
 
@@ -305,19 +305,43 @@ namespace CANToolApp
 
         private void TreeListView1_MouseClick(object sender, MouseEventArgs e)
         {
+            string canData = "";
+            string msgName = "";
+            string tmp="";
+            TableMsg tm = new TableMsg(dataTable);
             TreeListViewItem msgitem = null;
             TreeListViewItem item=treeListView1.GetItemAt(new System.Drawing.Point(e.X,e.Y));
-            if (item.Name.Equals("messageName"))
+            Console.WriteLine("//////////////////////////////////////" +  item.Text);
+            if (item.Text.Equals("messageName "))
             {
-                
                 msgitem = item;
-                TableMsg tableMsg = new TableMsg();
-
-
+                string datastr = "";
+                foreach (ListViewSubItem msgdata in msgitem.SubItems)
+                {
+                    tmp= msgdata.Text;
+                }
+                canData = tmp.Split(' ')[1];
+                msgName=tmp.Split(' ')[0];
+                tm=Decode.DecodeCANSignal(canData, msgName,dataTable);
             }
-            //sigitem.Parent
+            else
+            {
+                msgitem = item.Parent;
+                string datastr = "";
+                foreach (ListViewSubItem msgdata in msgitem.SubItems)
+                {
+                    tmp = msgdata.Text;
+                    //Console.WriteLine("//////////////////////////////////////" + tmp);
+                }
+                Console.WriteLine("//////////////////////////////////////"+tmp+item.Text);
+                canData = tmp.Split(' ')[1];
+                msgName = tmp.Split(' ')[0];
+                tm = Decode.DecodeCANSignal(canData, msgName, dataTable);
+            }
+            Thread th = new Thread(new ParameterizedThreadStart(UpdateTableThread.updateUi));
+            th.Start(tm);
 
-            //throw new NotImplementedException();
+
         }
 
         private void InitTable()
