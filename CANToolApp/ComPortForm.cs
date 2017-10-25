@@ -19,6 +19,7 @@ namespace CANToolApp
     {
         private List<CANSignalObject> canSignal = new List<CANSignalObject>();
         private List<CANMessageObject> canMessage = new List<CANMessageObject>();
+        private double signal_C = 0, signal_D = 0;
         //SerialPort类用于控制串行端口文件资源
         SerialPort sp1 = new SerialPort();
         public event DelegateUpdateUI delegateUpdateUI;
@@ -286,7 +287,7 @@ namespace CANToolApp
             {
                 strSignal = (string)signal.SelectedItem.ToString();
             }
-            //double strSend = -1;
+            
             double  strSend = -1;
             if (txtSend.Text == "")
             {
@@ -294,26 +295,43 @@ namespace CANToolApp
                 return;
             }
             else if (double.TryParse(txtSend.Text, out strSend) == false)
-            //else if (int.TryParse(txtSend.Text, out strSend) == false)
+            
             {
                 MessageBox.Show("输入内容有误，请重新输入", "Error");
                 return;
             }            
-            //MessageBox.Show(strSend);
+            
+            //检查sendcycle非法输入
+
+            string str3 = "";
+            int strcheck = -1;
+            if (sendcycle.Text == "")
+            {
+                str3 = Encode.EncodeCANSignal(strMessage, strSignal, strSend);
+            }
+            else if (int.TryParse(sendcycle.Text, out strcheck) == false)
+            {
+                MessageBox.Show("输入内容有误，请重新输入", "Error");
+                return;
+            }
+            else 
+            {
+                int a = int.Parse(sendcycle.Text);
+                if (a < 0 || a > 65535)
+                {
+                    MessageBox.Show("输入数据超出范围，请重新输入", "Error");
+                    return;
+                }
+                else
+                {
+                    str3 = Encode.EncodeCANSignal(strMessage, strSignal, strSend, Convert.ToUInt32(sendcycle.Text).ToString("x4").ToUpper());
+                }
+            }
             //丢弃来自串行驱动程序的接受缓冲区的数据
             sp1.DiscardInBuffer();
             //丢弃来自串行驱动程序的传输缓冲区的数据
             sp1.DiscardOutBuffer();
 
-            string str3 = "";
-            if (sendcycle.Text == "")
-            {
-                str3 = Encode.EncodeCANSignal(strMessage, strSignal, strSend);
-            }
-            else
-            {
-                str3 = Encode.EncodeCANSignal(strMessage, strSignal, strSend, Convert.ToUInt32(sendcycle.Text).ToString("x4").ToUpper());
-            }
             //使用缓冲区的数据将指定数量的字节写入串行端口
 
             MessageBox.Show(str3, "发送的数据为");
@@ -516,7 +534,7 @@ namespace CANToolApp
 
         private void txtSend_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //正则匹配
+            //正则匹配txtSend
             string patten = "[0-9|.]|\b"; //“\b”：退格键
             //string patten = "[0-9]|\b";
             Regex r = new Regex(patten);
@@ -531,10 +549,36 @@ namespace CANToolApp
                 e.Handled = true;
             }
         }
+        private void sendcycle_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //正则匹配sendcycyle
+            string patten1 = "[0-9]|\b"; //“\b”：退格键
+            //string patten = "[0-9]|\b";
+            Regex r1 = new Regex(patten1);
+            Match m1 = r1.Match(e.KeyChar.ToString());
+
+            if (m1.Success)//&&(txtSend.Text.LastIndexOf(" ") != txtSend.Text.Length-1))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
         private void txtSend_Click(object sender, EventArgs e)
         {
             txtSend.Text = "";
         }
+        
+        private void txtSend_MouseLeave(object sender, EventArgs e)
+        {
+            if (txtSend.Text == "")
+            {
+                txtSend.Text = "Range: " + signal_C + " - " + signal_D;
+            }
+        }
+
         private void txtSend_TextChanged(object sender, EventArgs e)
         {
 
@@ -701,7 +745,7 @@ namespace CANToolApp
         private void signal_SelectedIndexChanged(object sender, EventArgs e)
         {
             string strSignal = "";
-            double signal_C = 0, signal_D = 0;
+            
             if (signal.SelectedItem == null)
             {
                 MessageBox.Show("请选择Signal！", "Error");

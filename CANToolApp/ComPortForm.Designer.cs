@@ -111,6 +111,7 @@
             this.sendcycle.Size = new System.Drawing.Size(147, 23);
             this.sendcycle.TabIndex = 41;
             this.sendcycle.Text = "";
+            this.sendcycle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.sendcycle_KeyPress);
             // 
             // label11
             // 
@@ -178,6 +179,7 @@
             this.txtSend.Text = "";
             this.txtSend.Click += new System.EventHandler(this.txtSend_Click);
             this.txtSend.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSend_KeyPress);
+            this.txtSend.MouseLeave += new System.EventHandler(this.txtSend_MouseLeave);
             // 
             // btnSave
             // 
