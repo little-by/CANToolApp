@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CANToolApp
 {
-    class TableMsg
+    public class TableMsg
     {
-        TableMsg()
+        public TableMsg()
         {
             for(int i = 0; i < 64; i++)
             {
@@ -21,7 +21,7 @@ namespace CANToolApp
 
         private int[] binarydata = new int[64];
         private int[] signalpos = new int[64];
-
+        List<int[]> siglist = new List<int[]>();
         public int[] Binarydata
         {
             get
@@ -45,6 +45,19 @@ namespace CANToolApp
             set
             {
                 signalpos = value;
+            }
+        }
+
+        public List<int[]> Siglist
+        {
+            get
+            {
+                return siglist;
+            }
+
+            set
+            {
+                siglist = value;
             }
         }
     }

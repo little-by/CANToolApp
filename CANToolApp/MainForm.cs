@@ -244,6 +244,8 @@ namespace CANToolApp
             // 
             // columnHeader1
             // 
+            //添加鼠标点击事件
+            treeListView1.MouseClick += TreeListView1_MouseClick;
             this.columnHeader1.Text = "Name";
             this.columnHeader1.Width = 200;
             // 
@@ -297,6 +299,24 @@ namespace CANToolApp
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+
+
+        }
+
+        private void TreeListView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            TreeListViewItem msgitem = null;
+            TreeListViewItem item=treeListView1.GetItemAt(new System.Drawing.Point(e.X,e.Y));
+            if (item.Name.Equals("messageName"))
+            {
+                
+                msgitem = item;
+                TableMsg tableMsg = new TableMsg();
+
+            }
+            sigitem.Parent
+
+            //throw new NotImplementedException();
         }
 
         private void InitTable()
