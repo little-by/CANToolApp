@@ -334,7 +334,7 @@ namespace CANToolApp
 
             //使用缓冲区的数据将指定数量的字节写入串行端口
 
-            MessageBox.Show(str3, "发送的数据为");
+            //MessageBox.Show(str3, "发送的数据为");
             //sp1.WriteLine(str3);
             sp1.Write(str3);
             //sp1.Write(list, 0, list.Length);
@@ -347,64 +347,7 @@ namespace CANToolApp
 
         }
 
-        //处理数字转换
-        /*
-                       string sendBuf = strSend;
-                       string sendnoNull = sendBuf.Trim();
-                       //string sendNOComma = sendnoNull.Replace(',', ' ');    //去掉英文逗号
-                       //string sendNOComma1 = sendNOComma.Replace('，', ' '); //去掉中文逗号
-                       //string strSendNoComma2 = sendNOComma1.Replace("0x", "");   //去掉0x
-                       //strSendNoComma2.Replace("0X", "");   //去掉0X
-                       string[] strArray = sendnoNull.Split(' ');
-
-                       int byteBufferLength = strArray.Length;
-                       for (int i = 0; i < strArray.Length; i++)
-                       {
-                           if (strArray[i] == "")
-                           {
-                               byteBufferLength--;
-                           }
-                       }
-                       // int temp = 0;
-                       byte[] byteBuffer = new byte[byteBufferLength];
-                       int ii = 0;
-                       for (int i = 0; i < strArray.Length; i++)        //对获取的字符做相加运算
-                       {
-
-                           Byte[] bytesOfStr = Encoding.Default.GetBytes(strArray[i]);
-
-                           int decNum = 0;
-                           if (strArray[i] == "")
-                           {
-                               //ii--;     //加上此句是错误的，下面的continue以延缓了一个ii，不与i同步
-                               continue;
-                           }
-                           else
-                           {
-                               decNum = Convert.ToInt32(strArray[i], 16); //atrArray[i] == 12时，temp == 18 
-                           }
-
-                           try    //防止输错，使其只能输入一个字节的字符
-                           {
-                               byteBuffer[ii] = Convert.ToByte(decNum);
-                           }
-                           catch (System.Exception ex)
-                           {
-                               MessageBox.Show("字节越界，请逐个字节输入！", "Error");
-                               tmSend.Enabled = false;
-                               return;
-                           }
-
-                           ii++;
-                       }
-                       sp1.Write(byteBuffer, 0, byteBuffer.Length);
-            
-                       //以字符串形式发送时 
-            
-                      sp1.WriteLine(txtSend.Text);    //写入数据
-            
-               }
-       */
+        
         //开关按钮
         private void btnSwitch_Click(object sender, EventArgs e)
         {
@@ -588,51 +531,15 @@ namespace CANToolApp
         {
 
             //设置各“串口设置”
-            string strBaudRate = cbBaudRate.Text;
-            string strDateBits = cbDataBits.Text;
-            string strStopBits = cbStop.Text;
-            string strRate = canRate.Text;
-            Int32 iBaudRate = Convert.ToInt32(strBaudRate);
-            Int32 iDateBits = Convert.ToInt32(strDateBits);
-            Int32 iRate = Convert.ToInt32(strRate);
-
-            Profile.G_BAUDRATE = iBaudRate + "";       //波特率
-            Profile.G_DATABITS = iDateBits + "";       //数据位
-            Profile.G_RATE = iRate + "";
-            switch (cbStop.Text)            //停止位转成字符的格式
-            {
-                case "1":
-                    Profile.G_STOP = "1";
-                    break;
-                case "1.5":
-                    Profile.G_STOP = "1.5";
-                    break;
-                case "2":
-                    Profile.G_STOP = "2";
-                    break;
-                default:
-                    MessageBox.Show("Error：参数不正确!", "Error");
-                    break;
-            }
-            switch (cbParity.Text)             //校验位
-            {
-                case "None":
-                    Profile.G_PARITY = "None";
-                    break;
-                case "Odd":
-                    Profile.G_PARITY = "Odd";
-                    break;
-                case "Even":
-                    Profile.G_PARITY = "Even";
-                    break;
-                default:
-                    MessageBox.Show("Error：参数不正确!", "Error");
-                    break;
-            }
-
-
+            Profile.G_BAUDRATE = cbBaudRate.Text;
+            Profile.G_DATABITS = cbDataBits.Text;
+            Profile.G_RATE = canRate.Text;
+            Profile.G_STOP = cbStop.Text;
+            Profile.G_PARITY = cbParity.Text;
             Profile.SaveProfile();
-            new CheckForm().Show();
+            MessageBox.Show("用户设定文件保存成功", "Success");
+            return;
+            //new CheckForm().Show();
 
         }
 
