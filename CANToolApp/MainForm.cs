@@ -313,8 +313,9 @@ namespace CANToolApp
                 msgitem = item;
                 TableMsg tableMsg = new TableMsg();
 
+
             }
-            sigitem.Parent
+            //sigitem.Parent
 
             //throw new NotImplementedException();
         }
