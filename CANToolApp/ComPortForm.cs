@@ -198,18 +198,11 @@ namespace CANToolApp
 
             //串口设置默认选择项
             //cbSerial.SelectedIndex = 1;         //note：获得COM9口，但别忘修改
-            //cbBaudRate.SelectedIndex = 5;
-            // cbDataBits.SelectedIndex = 3;
-            // cbStop.SelectedIndex = 0;
-            // cbParity.SelectedIndex = 0;
-            //sp1.BaudRate = 115200;
-
+            
             Control.CheckForIllegalCrossThreadCalls = false;
             //这个类中我们不检查跨线程的调用是否合法(因为.net 2.0以后加强了安全机制,，不允许在winform中直接跨线程访问控件的属性)
             sp1.DataReceived += new SerialDataReceivedEventHandler(sp1_DataReceived);
             //sp1.ReceivedBytesThreshold = 1;
-
-
 
             //准备就绪              
             sp1.DtrEnable = true;
@@ -323,8 +316,9 @@ namespace CANToolApp
             }
             //使用缓冲区的数据将指定数量的字节写入串行端口
 
-            //MessageBox.Show(str3, "发送的数据为");
-            sp1.WriteLine(str3);
+            MessageBox.Show(str3, "发送的数据为");
+            //sp1.WriteLine(str3);
+            sp1.Write(str3);
             //sp1.Write(list, 0, list.Length);
             // sp1.WriteLine(strSend);    //写入数据
             //关闭端口连接
