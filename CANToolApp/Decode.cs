@@ -10,7 +10,7 @@ public class Decode
     public static Dictionary<string, string> DecodeCANSignal(string canMessage)
     {
         SqlHelper.connect();
-        
+
         char standardOrExtend = canMessage[0];
         uint canId = 0;
         uint DLC = 0;
@@ -37,11 +37,28 @@ public class Decode
                 dataLength = (int)DLC * 2;
                 data = canMessage.Substring(10, dataLength);
             }
+            //把data转化为二进制
+            char[] binaryData = bianma(data).ToCharArray();
+            int decimalSign = 0;
+
+            int len = binaryData.Length;
+            char[] temp = new char[len];
+            int k = 0;
+            for (k = 0; k < len; k++)
+            {
+                temp[k] = binaryData[k];
+            }
+            for (k = 0; k < len; k++)
+            {
+                int line = k / 8;
+                int row = 7 - k % 8;
+                binaryData[line * 8 + row] = temp[k];
+            }
 
             string message = "select * from cantoolapp.canmessage where id = " + canId;
             string signal = "select * from cantoolapp.cansignal where canmessageid = " + canId;
             SqlDataReader messageExist = SqlHelper.query(message);
-            
+
             if (!messageExist.HasRows)
             {
                 //MessageBox.Show("系统中不存在此message!");
@@ -69,14 +86,12 @@ public class Decode
                         int start = (int)Convert.ToUInt32(startAndLengthAndPattern[0]);
                         int length = (int)Convert.ToUInt32(startAndLengthAndPattern[1]);
                         string pattern = startAndLengthAndPattern[2];
-                        //把data转化为二进制
-                        string binaryData = bianma(data);
-                        int decimalSign = 0;
+
                         //根据上面三个标准求解信号的值
+                        StringBuilder sb = new StringBuilder("");
                         if (pattern == "0+")
                         {
-                            StringBuilder sb = new StringBuilder("");
-                            int i = 0, j = start;
+                            int i = 0, j = start, end = start + length - 1;
                             int line = 0;
                             int leftIndex = 0, rightIndex = 0;
                             for (i = 0; i < length; i++)
@@ -101,12 +116,11 @@ public class Decode
                         }
                         else if (pattern == "1+")
                         {
-                            StringBuilder sb = new StringBuilder("");
-                            int i = 0, j = start;
+                            int i, j = start + length - 1;
                             for (i = 0; i < length; i++)
                             {
                                 sb.Append(binaryData[j]);
-                                j++;
+                                j--;
                             }
                             decimalSign = Convert.ToInt32(sb.ToString(), 2);
                         }
@@ -137,15 +151,52 @@ public class Decode
         }
         return returnedData;
     }
+
     //将16进制字符串转化为2进制字符串
     public static string bianma(string s)
     {
-        byte[] dataByte = Encoding.Unicode.GetBytes(s);
-        StringBuilder result = new StringBuilder(dataByte.Length * 8);
-        foreach (byte b in dataByte)
+        int len = s.Length;
+        string ret = "";
+        for (int i = 0; i < len; i++)
         {
-            result.Append(Convert.ToString(b, 2).PadLeft(8, '0'));
+            ret += foo(s[i]);
         }
-        return result.ToString();
+        return ret;
+    }
+    public static string foo(char c)
+    {
+        if (c == '0')
+            return "0000";
+        else if (c == '1')
+            return "0001";
+        else if (c == '2')
+            return "0010";
+        else if (c == '3')
+            return "0011";
+        else if (c == '4')
+            return "0100";
+        else if (c == '5')
+            return "0101";
+        else if (c == '6')
+            return "0110";
+        else if (c == '7')
+            return "0111";
+        else if (c == '8')
+            return "1000";
+        else if (c == '9')
+            return "1001";
+        else if (c == 'A')
+            return "1010";
+        else if (c == 'B')
+            return "1011";
+        else if (c == 'C')
+            return "1100";
+        else if (c == 'D')
+            return "1101";
+        else if (c == 'E')
+            return "1110";
+        else if (c == 'F')
+            return "1111";
+        return "";
     }
 }

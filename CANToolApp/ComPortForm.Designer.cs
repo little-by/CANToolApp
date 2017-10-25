@@ -117,9 +117,9 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(14, 311);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(107, 12);
+            this.label11.Size = new System.Drawing.Size(125, 12);
             this.label11.TabIndex = 40;
-            this.label11.Text = "Send Cycle (xxxx)";
+            this.label11.Text = "Send Cycle (0-65535)";
             // 
             // label10
             // 
