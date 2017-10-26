@@ -698,17 +698,17 @@ namespace CANToolApp
             recData = sp1.ReadLine();
             if (recData == "")
             {
-                MessageBox.Show("连接失败，请重新发送", "Error");
+                MessageBox.Show("请求失败，请重新发送", "Error");
                 return;
             }
             if (recData.Equals("\\r"))
             {
-                MessageBox.Show("已进入CAN工作状态", "Success");
+                MessageBox.Show("Open Success!", "Success");
                 canOpen.Enabled = false;
             }
             else if (recData.Equals("\\BEL"))
             {
-                MessageBox.Show("无法进入CAN工作状态", "Error");
+                MessageBox.Show("Open Failure!", "Error");
                 return;
             }
             else
@@ -730,6 +730,29 @@ namespace CANToolApp
             //丢弃来自串行驱动程序的传输缓冲区的数据
             sp1.DiscardOutBuffer();
             sp1.WriteLine("C\r");
+            string recData1 = "";
+            System.Threading.Thread.Sleep(3000);
+            recData1 = sp1.ReadLine();
+            if (recData1 == "")
+            {
+                MessageBox.Show("请求失败，请重新发送", "Error");
+                return;
+            }
+            if (recData1.Equals("\\r"))
+            {
+                MessageBox.Show("Close Success!", "Success");
+                canClose.Enabled = false;
+            }
+            else if (recData1.Equals("\\BEL"))
+            {
+                MessageBox.Show("Close Failure!", "Error");
+                return;
+            }
+            else
+            {
+                MessageBox.Show("请检查", "Error");
+                return;
+            }
         }
 
         private void canRate_SelectedIndexChanged(object sender, EventArgs e)
