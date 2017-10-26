@@ -35,7 +35,6 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.SignalChangedChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
-            this.treeView1 = new System.Windows.Forms.TreeView();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.SignalChangedChart)).BeginInit();
@@ -47,7 +46,7 @@
             this.SignalChangedChart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.SignalChangedChart.Legends.Add(legend1);
-            this.SignalChangedChart.Location = new System.Drawing.Point(214, 36);
+            this.SignalChangedChart.Location = new System.Drawing.Point(27, 48);
             this.SignalChangedChart.Name = "SignalChangedChart";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
@@ -55,7 +54,7 @@
             series1.Name = "信号1";
             series1.YValuesPerPoint = 2;
             this.SignalChangedChart.Series.Add(series1);
-            this.SignalChangedChart.Size = new System.Drawing.Size(413, 252);
+            this.SignalChangedChart.Size = new System.Drawing.Size(600, 240);
             this.SignalChangedChart.TabIndex = 0;
             this.SignalChangedChart.Text = "信号变化曲线";
             // 
@@ -68,13 +67,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "接收到的信号";
             // 
-            // treeView1
-            // 
-            this.treeView1.Location = new System.Drawing.Point(27, 51);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(165, 245);
-            this.treeView1.TabIndex = 2;
-            // 
             // timer1
             // 
             this.timer1.Enabled = true;
@@ -85,7 +77,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(668, 308);
-            this.Controls.Add(this.treeView1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.SignalChangedChart);
             this.Name = "CurveShow";
@@ -101,7 +92,6 @@
 
         private System.Windows.Forms.DataVisualization.Charting.Chart SignalChangedChart;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
     }

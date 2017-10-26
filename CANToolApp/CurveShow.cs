@@ -22,6 +22,7 @@ namespace CANToolApp
         private event DelegateSendData delegateSendData;
         string messgaeName = "";
         string signaleName = "";
+        List<string> signals = new List<string>();
         string lastname = "";
         double currentValue = 0;
 
@@ -35,7 +36,7 @@ namespace CANToolApp
 
         private void CurveShow_Load(object sender, EventArgs e)
         {
-            InitTreeView(treeView1,0);
+            //InitTreeView(treeView1,0);
             this.timer1.Start();
         }
 
@@ -48,7 +49,7 @@ namespace CANToolApp
                 {   
                         TreeNode messagenode = new TreeNode();
                         messagenode.Text = returnedData[key];
-                        treeView1.Nodes.Add(messagenode);               
+                        //treeView1.Nodes.Add(messagenode);               
                 }
             }
             foreach (string key in returnedData.Keys)
@@ -58,7 +59,7 @@ namespace CANToolApp
                         TreeNode signalnode = new TreeNode();
                         
                         signalnode.Text = key;
-                        treeView1.Nodes.Add(signalnode);
+                        //treeView1.Nodes.Add(signalnode);
                 }
             }
             treeview.MouseClick += Treeview_MouseClick;
@@ -119,11 +120,11 @@ namespace CANToolApp
         {
             if (!lastname.Equals(signaleName))
             {
-                dataQueue.Clear();
+      
                 lastname = signaleName;
-                Console.WriteLine("+++++++++++++++++++++++++++++++++++++++++++++---" + signaleName);
+                //Console.WriteLine("+++++++++++++++++++++++++++++++++++++++++++++---" + signaleName);
             }
-            Console.WriteLine("+++++++++++++++++++++++++++++++++++++++++++++"+dataQueue.Count);
+            //Console.WriteLine("+++++++++++++++++++++++++++++++++++++++++++++"+dataQueue.Count);
 
             if (dataQueue.Count > 100)
             {
@@ -171,6 +172,19 @@ namespace CANToolApp
                 dataQueue.Enqueue(0);
             }
             timer1.Start();
+        }
+        public void UpdateSignal(List<string> signals)
+        {
+            if (signals != null && signals.Count > 0)
+            {
+                this.signaleName = signals[0];
+                label1.Text = "当前显示的signal：" + signaleName;
+            }
+            else
+            {
+                label1.Text = "未选择信号";
+            }
+            
         }
 
     }

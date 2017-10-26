@@ -16,6 +16,7 @@ using System.Drawing;
 
 namespace CANToolApp
 {
+    public delegate void DelegateSendSig(List<string> sigs);
     public delegate void DelegateSendData(Dictionary<string, string> returnedData);
     public delegate void DelegateUpdateUI(string msgobj);
     public partial class MainForm : Form
@@ -37,6 +38,7 @@ namespace CANToolApp
         Color[][] tablecolor = new Color[9][];
 
         private event DelegateSendData delegateSendData;
+        private event DelegateSendSig delegateSendSig;
 
 
         public MainForm()
@@ -115,9 +117,19 @@ namespace CANToolApp
 
         private void CurveShowBt_Click(object sender, EventArgs e)
         {
+            List<String> signallist = new List<string>();
+            
+            foreach(TreeListViewItem item in treeListView1.CheckedItems)
+            {
+                Console.WriteLine("selected ----------------------------------------------------------- "+item.Text);
+                if(!item.Text.StartsWith("messageName"))
+                signallist.Add(item.Text);
+            }
             csForm = new CurveShow();
             delegateSendData += new DelegateSendData(csForm.UpdateData);
+            delegateSendSig += new DelegateSendSig(csForm.UpdateSignal);
             csForm.Show();
+            delegateSendSig(signallist);
         }
 
         private void DashboardShowBt_Click(object sender, EventArgs e)
@@ -259,12 +271,17 @@ namespace CANToolApp
             //添加鼠标点击事件
             treeListView1.MouseClick += TreeListView1_MouseClick;
             this.columnHeader1.Text = "Name";
-            this.columnHeader1.Width = 200;
+            this.columnHeader1.Width = 230;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Attribute";
             this.columnHeader2.Width = 300;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Remark";
+            this.columnHeader3.Width = 100;
             // 
             // imageList1
             // 
