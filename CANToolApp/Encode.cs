@@ -137,7 +137,7 @@ namespace CANToolApp
                         }
                         shex.Append(string.Format("{0:X}", Convert.ToInt32(tempdata.ToString(), 2)));
                     }
-                    result = tT + canIdHex.ToUpper() + DLC + shex.ToString().ToUpper() + "\r";
+                    result = tT + canIdHex.ToUpper() + DLC + shex.ToString().ToUpper() + "\\r";
                 }
             }
             return result;

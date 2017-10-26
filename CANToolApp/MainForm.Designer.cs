@@ -40,8 +40,6 @@
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cOM口设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.SendBt = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.DashboardShowBt = new System.Windows.Forms.Button();
             this.CurveShowBt = new System.Windows.Forms.Button();
@@ -137,23 +135,6 @@
             this.cOM口设置ToolStripMenuItem.Text = "COM口设置";
             this.cOM口设置ToolStripMenuItem.Click += new System.EventHandler(this.cOM口设置ToolStripMenuItem_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(104, 5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 21);
-            this.textBox1.TabIndex = 1;
-            // 
-            // SendBt
-            // 
-            this.SendBt.Location = new System.Drawing.Point(221, 4);
-            this.SendBt.Name = "SendBt";
-            this.SendBt.Size = new System.Drawing.Size(65, 23);
-            this.SendBt.TabIndex = 2;
-            this.SendBt.Text = "发送";
-            this.SendBt.UseVisualStyleBackColor = true;
-            this.SendBt.Click += new System.EventHandler(this.sendBt_Click);
-            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 4;
@@ -241,8 +222,6 @@
             this.Controls.Add(this.treeListView1);
             this.Controls.Add(this.CurveShowBt);
             this.Controls.Add(this.DashboardShowBt);
-            this.Controls.Add(this.SendBt);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
@@ -263,8 +242,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 文件ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 设置ToolStripMenuItem;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button SendBt;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button DashboardShowBt;
         private System.Windows.Forms.Button ShowBt;
