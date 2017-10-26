@@ -227,8 +227,12 @@ namespace CANToolApp
                 int msglen = sp1.BytesToRead;
                 sp1.Read(byteRead, 0, msglen);
                 string msgrec = System.Text.Encoding.Default.GetString(byteRead);
-                txtReceive.Text += msgrec + "\r\n"; //注意：回车换行必须这样写，单独使用"\r"和"\n"都不会有效果
-                delegateUpdateUI(msgrec);
+           //     MessageBox.Show(msgrec);
+                if(msgrec != "" && msgrec != null)
+                {
+                    txtReceive.Text += msgrec + "\r\n"; //注意：回车换行必须这样写，单独使用"\r"和"\n"都不会有效果
+                    delegateUpdateUI(msgrec);
+                }
                 sp1.DiscardInBuffer();                      //清空SerialPort控件的Buffer 
                 //try
                 //{
@@ -356,17 +360,17 @@ namespace CANToolApp
             }
             if (recData4.Equals("\\r"))
             {
-                MessageBox.Show("接收成功!", "Success");
-                canClose.Enabled = false;
+                MessageBox.Show("发送成功!", "Success");
+               // canClose.Enabled = false;
             }
             else if (recData4.Equals("\\BEL"))
             {
-                MessageBox.Show("接收失败!", "Error");
+                MessageBox.Show("请打开cantool装置", "Error");
                 return;
             }
             else
             {
-                MessageBox.Show("请检查", "Error");
+                MessageBox.Show("请检查输入", "Error");
                 return;
             }
             //sp1.Write(list, 0, list.Length);
@@ -777,7 +781,6 @@ namespace CANToolApp
             {
                 recData1 += ((char)Convert.ToInt32(receivedData[i]));
             }
-            Console.Write(recData1);
             if (recData1 == "")
             {
                 MessageBox.Show("请求失败，请重新发送", "Error");
@@ -867,6 +870,34 @@ namespace CANToolApp
                         }
                 }
 
+            }
+            string recData1 = "";
+            System.Threading.Thread.Sleep(3000);
+            Byte[] receivedData = new Byte[sp1.BytesToRead];        //创建接收字节数组
+            sp1.Read(receivedData, 0, receivedData.Length);
+            for (int i = 0; i < receivedData.Length; i++)
+            {
+                recData1 += ((char)Convert.ToInt32(receivedData[i]));
+            }
+            if (recData1 == "")
+            {
+                MessageBox.Show("请重新发送", "Error");
+                return;
+            }
+            else if (recData1.Equals("\\r"))
+            {
+                MessageBox.Show("Rate send Success!", "Success");
+               
+            }
+            else if (recData1.Equals("\\BEL"))
+            {
+                MessageBox.Show("Rate send Failure!", "Error");
+                return;
+            }
+            else
+            {
+                MessageBox.Show("请检查", "Error");
+                return;
             }
         }
 
