@@ -199,7 +199,7 @@ namespace CANToolApp
 
             //串口设置默认选择项
             //cbSerial.SelectedIndex = 1;         //note：获得COM9口，但别忘修改
-            
+
             Control.CheckForIllegalCrossThreadCalls = false;
             //这个类中我们不检查跨线程的调用是否合法(因为.net 2.0以后加强了安全机制,，不允许在winform中直接跨线程访问控件的属性)
             sp1.DataReceived += new SerialDataReceivedEventHandler(sp1_DataReceived);
@@ -225,7 +225,7 @@ namespace CANToolApp
 
                 byte[] byteRead = new byte[sp1.BytesToRead];    //BytesToRead:sp1接收的字符个数
                 int msglen = sp1.BytesToRead;
-                sp1.Read(byteRead,0, msglen);
+                sp1.Read(byteRead, 0, msglen);
                 string msgrec = System.Text.Encoding.Default.GetString(byteRead);
                 txtReceive.Text += msgrec + "\r\n"; //注意：回车换行必须这样写，单独使用"\r"和"\n"都不会有效果
                 delegateUpdateUI(msgrec);
@@ -289,20 +289,20 @@ namespace CANToolApp
             {
                 strSignal = (string)signal.SelectedItem.ToString();
             }
-            
-            double  strSend = -1;
+
+            double strSend = -1;
             if (txtSend.Text == "")
             {
                 MessageBox.Show("请填写信息！", "Error");
                 return;
             }
             else if (double.TryParse(txtSend.Text, out strSend) == false)
-            
+
             {
                 MessageBox.Show("输入内容有误，请重新输入", "Error");
                 return;
-            }            
-            
+            }
+
             //检查sendcycle非法输入
 
             string str3 = "";
@@ -316,7 +316,7 @@ namespace CANToolApp
                 MessageBox.Show("输入内容有误，请重新输入", "Error");
                 return;
             }
-            else 
+            else
             {
                 int a = int.Parse(sendcycle.Text);
                 if (a < 0 || a > 65535)
@@ -339,6 +339,29 @@ namespace CANToolApp
             //MessageBox.Show(str3, "发送的数据为");
             //sp1.WriteLine(str3);
             sp1.Write(str3);
+            string recData4 = "";
+            System.Threading.Thread.Sleep(3000);
+            recData4 = sp1.ReadLine();
+            if (recData4 == "")
+            {
+                MessageBox.Show("请重新发送", "Error");
+                return;
+            }
+            if (recData4.Equals("\\r"))
+            {
+                MessageBox.Show("接收成功!", "Success");
+                canClose.Enabled = false;
+            }
+            else if (recData4.Equals("\\BEL"))
+            {
+                MessageBox.Show("接收失败!", "Error");
+                return;
+            }
+            else
+            {
+                MessageBox.Show("请检查", "Error");
+                return;
+            }
             //sp1.Write(list, 0, list.Length);
             // sp1.WriteLine(strSend);    //写入数据
             //关闭端口连接
@@ -349,7 +372,7 @@ namespace CANToolApp
 
         }
 
-        
+
         //开关按钮
         private void btnSwitch_Click(object sender, EventArgs e)
         {
@@ -515,7 +538,7 @@ namespace CANToolApp
         {
             txtSend.Text = "";
         }
-        
+
         private void txtSend_MouseLeave(object sender, EventArgs e)
         {
             if (txtSend.Text == "")
@@ -654,7 +677,7 @@ namespace CANToolApp
         private void signal_SelectedIndexChanged(object sender, EventArgs e)
         {
             string strSignal = "";
-            
+
             if (signal.SelectedItem == null)
             {
                 MessageBox.Show("请选择Signal！", "Error");
@@ -816,7 +839,7 @@ namespace CANToolApp
                         break;
                     default:
                         {
-                            MessageBox.Show("CAN速率预置参数错误,请重新选择！","Error");
+                            MessageBox.Show("CAN速率预置参数错误,请重新选择！", "Error");
                             return;
                         }
                 }
@@ -836,9 +859,36 @@ namespace CANToolApp
             //丢弃来自串行驱动程序的传输缓冲区的数据
             sp1.DiscardOutBuffer();
             sp1.WriteLine("V\r");
+            string recData2 = "";
+            System.Threading.Thread.Sleep(3000);
+            recData2 = sp1.ReadLine();
+            if (recData2 == "")
+            {
+                MessageBox.Show("请求失败，请重新发送", "Error");
+                return;
+            }
+            else
+            {
+                int len = recData2.Length;
+                char second = recData2[len - 2];
+                char first = recData2[len - 1];
+                if (second == '\\' && first == 'r')
+                {
+                    string rec1 = recData2.Substring(0, len - 3);
+                    MessageBox.Show("版本为" + rec1, "Success");
+                    txtReceive.Text = rec1;
+                    canClose.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("请重新发送!", "Error");
+                    return;
+                }
+            }
+
         }
     }
 }
-            
-          
+
+
 
