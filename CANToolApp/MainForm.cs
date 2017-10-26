@@ -48,14 +48,7 @@ namespace CANToolApp
             {  
                 colors[i]=Color.FromArgb(rd.Next(0,255), rd.Next(0, 255), rd.Next(0, 255));
             }
-            for (int i = 0; i < 9; i++)
-            {
-                for(int j = 0; j < 8; j++)
-                {
-                    tablecolor[i] = new Color[8];
-                    tablecolor[i][j] = Color.White;
-                }
-            }
+            clearColor();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -360,13 +353,15 @@ namespace CANToolApp
                 msgName = tmp.Split(' ')[0];
                 Console.WriteLine("//////////////////////////////////////" + canData + msgName + item.Text);
                 Decode.DecodeCANSignal(canData, msgName, ref dataTable,out tm);
+                Dictionary<string, string> returnedDatatmp = new Dictionary<string, string>();
                 foreach(string key in tm.ReturnedData.Keys)
                 {
-                    if (!key.Equals(item.Text))
+                    if (key.Equals(item.Text))
                     {
-                        tm.ReturnedData.Remove(key);
+                        returnedDatatmp.Add(key,tm.ReturnedData[key]);
                     }
                 }
+                tm.ReturnedData = returnedDatatmp;
 
                 updateUi(tm);
 
@@ -425,7 +420,7 @@ namespace CANToolApp
 
         public void updateUi(object tablemsg)
         {
-            Console.WriteLine("this is a thread!!");
+            clearColor();
             tm = (TableMsg)tablemsg;
             dataTable.Clear();
             for (int i = 0; i < 8; i++)
@@ -469,7 +464,21 @@ namespace CANToolApp
                 }
                 else
                 {
-
+                    string[] startandlen = str.Split('@')[0].Split('|');
+                    int startpos = int.Parse(startandlen[0]);
+                    int len = int.Parse(startandlen[1]);
+                    int row = startpos / 8;
+                    int col = startpos % 8;
+                    for (int i = 0; i < len; i++)
+                    {
+                        tablecolor[row][7 - col] = colors[num];
+                        col++;
+                        if (col >7)
+                        {
+                            col = 0;
+                            row++;
+                        }
+                    }
                 }
                 num++;
 
@@ -483,6 +492,17 @@ namespace CANToolApp
 
 
 
+        }
+        private void clearColor()
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    tablecolor[i] = new Color[8];
+                    tablecolor[i][j] = Color.White;
+                }
+            }
         }
         
         private enum DrivesDescr { First, Second, Third, Fourth }

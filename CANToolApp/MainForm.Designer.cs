@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer5 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
+            System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.读取ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,7 +62,7 @@
             this.设置ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(621, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(637, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -175,7 +175,7 @@
             // 
             // DashboardShowBt
             // 
-            this.DashboardShowBt.Location = new System.Drawing.Point(496, 325);
+            this.DashboardShowBt.Location = new System.Drawing.Point(510, 325);
             this.DashboardShowBt.Name = "DashboardShowBt";
             this.DashboardShowBt.Size = new System.Drawing.Size(114, 27);
             this.DashboardShowBt.TabIndex = 4;
@@ -213,12 +213,12 @@
             // 
             // treeListView1
             // 
-            treeListViewItemCollectionComparer5.Column = 0;
-            treeListViewItemCollectionComparer5.SortOrder = System.Windows.Forms.SortOrder.Ascending;
-            this.treeListView1.Comparer = treeListViewItemCollectionComparer5;
+            treeListViewItemCollectionComparer1.Column = 0;
+            treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
+            this.treeListView1.Comparer = treeListViewItemCollectionComparer1;
             this.treeListView1.Location = new System.Drawing.Point(12, 31);
             this.treeListView1.Name = "treeListView1";
-            this.treeListView1.Size = new System.Drawing.Size(598, 290);
+            this.treeListView1.Size = new System.Drawing.Size(613, 290);
             this.treeListView1.TabIndex = 8;
             this.treeListView1.UseCompatibleStateImageBehavior = false;
             // 
@@ -228,7 +228,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(12, 358);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(597, 185);
+            this.dataGridView1.Size = new System.Drawing.Size(613, 205);
             this.dataGridView1.TabIndex = 9;
             // 
             // MainForm
@@ -236,7 +236,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(621, 555);
+            this.ClientSize = new System.Drawing.Size(637, 565);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.treeListView1);
             this.Controls.Add(this.CurveShowBt);
