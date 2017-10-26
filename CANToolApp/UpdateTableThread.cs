@@ -13,14 +13,23 @@ namespace CANToolApp
         {
             Console.WriteLine("this is a thread!!");
             TableMsg tm = (TableMsg)tablemsg;
-            /*DataTable table = (DataTable)dataTable;
-            DataRow dr = table.NewRow();
-            dr[0] = "125";
-            dr[1] = "358";
-            table.Rows.Add(dr);*/
-            //Console.WriteLine(str);
-            //table.Columns.Add("he");
-        } 
+            for (int j = 0; j < 8; j++)
+            {
+                Console.WriteLine("this is a thread!!" + tm.Binarydata[j]);
+            }
+            
+            DataTable table = (DataTable)tm.DataTable;
+            
+            for (int i = 0; i < 8; i++)
+            {
+                for(int j = 0; j < 8; j++)
+                {
+                    table.Rows[i].ItemArray[j] = tm.Binarydata[i*8+j];
+                }
+                
+            }
+        }
+
 
 
 

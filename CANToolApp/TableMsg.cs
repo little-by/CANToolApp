@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CANToolApp
 {
-    public class TableMsg
+    public partial class TableMsg
     {
         public TableMsg()
         {
@@ -72,6 +72,19 @@ namespace CANToolApp
         }
 
         public DataTable DataTable
+        {
+            get
+            {
+                return DataTable1;
+            }
+
+            set
+            {
+                DataTable1 = value;
+            }
+        }
+
+        public DataTable DataTable1
         {
             get
             {

@@ -331,7 +331,7 @@ namespace CANToolApp
             }
             //丢弃来自串行驱动程序的接受缓冲区的数据
             sp1.DiscardInBuffer();
-            //丢弃来自串行驱动程序的传输缓冲区的数据
+            //丢弃来自串行驱动程序的传输缓冲区的数据 
             sp1.DiscardOutBuffer();
 
             //使用缓冲区的数据将指定数量的字节写入串行端口

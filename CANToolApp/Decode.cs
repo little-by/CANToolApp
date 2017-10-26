@@ -153,20 +153,21 @@ public class Decode
         return returnedData;
     }
     //重载decode函数，为了显示bit
-    public static TableMsg DecodeCANSignal(string canData, string messageName,DataTable dt)
+    public static TableMsg DecodeCANSignal(string canData, string messageName,ref DataTable dt,out TableMsg tableMsg)
     {
-        TableMsg tableMsg =new TableMsg(dt);
-        SqlHelper.connect();
+        tableMsg =new TableMsg(dt);
+        
         string canId = "";
         int dataLength = 0;
         int[] Binarydata = new int[64];
         try
         {
-            string sqlselectid = "select id from cantoolapp.canmessage messagename=" + messageName;
+            SqlHelper.connect();
+            string sqlselectid = "select id from cantoolapp.canmessage where messagename='" + messageName+"'";
             SqlDataReader sdr = SqlHelper.query(sqlselectid);
             sdr.Read();
             string canIdStr = sdr[0].ToString();
-            sdr.Close();
+            SqlHelper.close();
             dataLength = 16;
             //把data转化为二进制
             char[] binaryData = bianma(canData).ToCharArray();
@@ -188,15 +189,23 @@ public class Decode
             for(k = 0; k < len; k++)
             {
                 Binarydata[k] =int.Parse(""+binaryData[k]);
+                Console.WriteLine(Binarydata[k]);
             }
             tableMsg.Binarydata = Binarydata;
-            string message = "select signalname,start_length_pattern from cantoolapp.cansignal where canmessageid = " + canId;
-            SqlDataReader dr = SqlHelper.query(sqlselectid);
+            SqlHelper.connect();
+            string message = "select signalname,start_length_pattern from cantoolapp.cansignal where canmessageid = '" + canIdStr + "'";
+            SqlDataReader dr = SqlHelper.query(message);
             while (dr.Read())
             {
-                tableMsg.ReturnedData.Add(dr[0].ToString(),dr[1].ToString());
+                string signame = dr[0].ToString();
+                string sigpos = dr[1].ToString();
+                tableMsg.ReturnedData.Add(signame, sigpos);
             }
             SqlHelper.close();
+            for (int j = 0; j < 8; j++)
+            {
+                Console.WriteLine("this is a fun!!" + tableMsg.Binarydata[j]);
+            }
             return tableMsg;
 
         }

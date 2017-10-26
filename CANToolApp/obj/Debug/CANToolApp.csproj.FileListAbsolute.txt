@@ -1,0 +1,17 @@
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\bin\Debug\CANToolApp.exe.config
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\bin\Debug\CANToolApp.exe
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\bin\Debug\CANToolApp.pdb
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\bin\Debug\Microsoft.Practices.Prism.dll
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\bin\Debug\System.Runtime.InteropServices.APIs.dll
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\bin\Debug\System.Windows.Forms.TreeListView.dll
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csprojResolveAssemblyReference.cache
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.CheckForm.resources
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.ComPortForm.resources
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.CurveShow.resources
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.GaugeboardShow.resources
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.MainForm.resources
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.Properties.Resources.resources
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.GenerateResource.Cache
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.exe
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.pdb

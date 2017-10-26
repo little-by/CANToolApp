@@ -12,6 +12,7 @@ using System.Text;
 using JsonSerializerAndDeSerializer;
 using System.Runtime.Serialization.Json;
 using System.Text.RegularExpressions;
+using System.Drawing;
 
 namespace CANToolApp
 {
@@ -31,6 +32,10 @@ namespace CANToolApp
         //Table数据源
         DataTable dataTable = new DataTable();
         //public event DelegateUpdateUI delegateUpdateUI;
+        //绘制signal需要
+        TableMsg tm = null;
+        Color[][] tablecolor = new Color[9][];
+
         private event DelegateSendData delegateSendData;
 
 
@@ -38,7 +43,19 @@ namespace CANToolApp
         {
             m_SyncContext = SynchronizationContext.Current;
             InitializeComponent();
-            
+            Random rd = new Random();
+            for (int i = 0; i < 30; i++)
+            {  
+                colors[i]=Color.FromArgb(rd.Next(0,255), rd.Next(0, 255), rd.Next(0, 255));
+            }
+            for (int i = 0; i < 9; i++)
+            {
+                for(int j = 0; j < 8; j++)
+                {
+                    tablecolor[i] = new Color[8];
+                    tablecolor[i][j] = Color.White;
+                }
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -64,10 +81,12 @@ namespace CANToolApp
                 //8.53对于每列最合适
                 dataGridView1.Columns[i].Width = (int)(dataGridView1.Width / (8.6));
             }
+            
+
 
             //初始化显示表格
             InitTable();
-
+            
 
 
 
@@ -308,10 +327,10 @@ namespace CANToolApp
             string canData = "";
             string msgName = "";
             string tmp="";
-            TableMsg tm = new TableMsg(dataTable);
+            tm = new TableMsg(dataTable);
             TreeListViewItem msgitem = null;
             TreeListViewItem item=treeListView1.GetItemAt(new System.Drawing.Point(e.X,e.Y));
-            Console.WriteLine("//////////////////////////////////////" +  item.Text);
+            //Console.WriteLine("//////////////////////////////////////" +  item.Text);
             if (item.Text.Equals("messageName "))
             {
                 msgitem = item;
@@ -322,7 +341,10 @@ namespace CANToolApp
                 }
                 canData = tmp.Split(' ')[1];
                 msgName=tmp.Split(' ')[0];
-                tm=Decode.DecodeCANSignal(canData, msgName,dataTable);
+                Decode.DecodeCANSignal(canData, msgName,ref dataTable,out tm);
+                Console.WriteLine("//////////////////////////////////////" + canData + msgName + item.Text);
+                updateUi(tm);
+
             }
             else
             {
@@ -333,19 +355,31 @@ namespace CANToolApp
                     tmp = msgdata.Text;
                     //Console.WriteLine("//////////////////////////////////////" + tmp);
                 }
-                Console.WriteLine("//////////////////////////////////////"+tmp+item.Text);
+                
                 canData = tmp.Split(' ')[1];
                 msgName = tmp.Split(' ')[0];
-                tm = Decode.DecodeCANSignal(canData, msgName, dataTable);
-            }
-            Thread th = new Thread(new ParameterizedThreadStart(UpdateTableThread.updateUi));
-            th.Start(tm);
+                Console.WriteLine("//////////////////////////////////////" + canData + msgName + item.Text);
+                Decode.DecodeCANSignal(canData, msgName, ref dataTable,out tm);
+                foreach(string key in tm.ReturnedData.Keys)
+                {
+                    if (!key.Equals(item.Text))
+                    {
+                        tm.ReturnedData.Remove(key);
+                    }
+                }
 
+                updateUi(tm);
+
+            }
+            //Thread th = new Thread(new ParameterizedThreadStart(UpdateTableThread.updateUi));
+            //th.Start(tm);
+            
 
         }
 
         private void InitTable()
         {
+            dataGridView1.RowPrePaint += DataGridView1_RowPrePaint;
             for(int i = 0; i < 8; i++)
             {
                 DataRow dr = dataTable.NewRow();
@@ -364,12 +398,101 @@ namespace CANToolApp
             }
 
         }
+
+        private void DataGridView1_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+
+
+            //Console.WriteLine("index"+e.RowIndex);
+            if (e.RowIndex < tablecolor.Length)
+            {
+                for(int i = 0; i < 8; i++)
+                {
+                    this.dataGridView1.Rows[e.RowIndex].Cells["" + (7 - i)].Style.BackColor = tablecolor[e.RowIndex][i];
+                }
+                
+            }
+                
+
+            
+            
+
+
+
+
+            //throw new NotImplementedException();
+        }
+
+        public void updateUi(object tablemsg)
+        {
+            Console.WriteLine("this is a thread!!");
+            tm = (TableMsg)tablemsg;
+            dataTable.Clear();
+            for (int i = 0; i < 8; i++)
+            {
+                DataRow dr = dataTable.NewRow();
+                for (int j = 0; j < 8; j++)
+                {
+                    //两种存取方式
+                    //dataTable.Rows[0].ItemArray[0] = 0;
+                    dr[j] = tm.Binarydata[8*i+j];
+                }
+                dataTable.Rows.Add(dr);
+
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                dataGridView1.Columns[i].Width = (int)(dataGridView1.Width / (8.53));
+            }
+            //dataGridView1.DataSource = dataTable;
+            int num = 0;
+            foreach (string str in tm.ReturnedData.Values)
+            {
+                if (str.Split('@')[1].Equals("0+"))
+                {
+                    string[] startandlen = str.Split('@')[0].Split('|');
+                    int startpos = int.Parse(startandlen[0]);
+                    int len = int.Parse(startandlen[1]);
+                    int row = startpos / 8;
+                    int col = startpos % 8;
+                    for (int i = 0; i < len; i++)
+                    {
+                        tablecolor[row][7 - col] = colors[num];
+                        col--;
+                        if (col < 0)
+                        {
+                            col = 7;
+                            row++;
+                        }
+                    }
+
+                }
+                else
+                {
+
+                }
+                num++;
+
+            }
+            dataGridView1.Refresh();
+            
+
+
+
+
+
+
+
+        }
+        
         private enum DrivesDescr { First, Second, Third, Fourth }
         private enum Drives { C, D, E, Z }
 
         private enum MessageCol { Name, Value, Data }
 
         private enum FILETYPE { xml, csv, json }
+
+        private Color[] colors = new Color[30];
 
         private void xml文件ToolStripMenuItem_Click(object sender, EventArgs e)
         {
