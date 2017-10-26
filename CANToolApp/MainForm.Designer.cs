@@ -29,10 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer5 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.读取ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.保存为ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.csv文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.json文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xml文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cOM口设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,15 +46,13 @@
             this.DashboardShowBt = new System.Windows.Forms.Button();
             this.CurveShowBt = new System.Windows.Forms.Button();
             this.ShowBt = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.test = new System.Windows.Forms.Button();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.CurveShowBt = new System.Windows.Forms.Button();
+            this.treeListView1 = new System.Windows.Forms.TreeListView();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -60,7 +62,7 @@
             this.设置ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(514, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(621, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -80,12 +82,38 @@
             this.读取ToolStripMenuItem.Name = "读取ToolStripMenuItem";
             this.读取ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.读取ToolStripMenuItem.Text = "读取";
+            this.读取ToolStripMenuItem.Click += new System.EventHandler(this.读取ToolStripMenuItem_Click);
             // 
             // 保存为ToolStripMenuItem
             // 
+            this.保存为ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.csv文件ToolStripMenuItem,
+            this.json文件ToolStripMenuItem,
+            this.xml文件ToolStripMenuItem});
             this.保存为ToolStripMenuItem.Name = "保存为ToolStripMenuItem";
             this.保存为ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.保存为ToolStripMenuItem.Text = "保存";
+            // 
+            // csv文件ToolStripMenuItem
+            // 
+            this.csv文件ToolStripMenuItem.Name = "csv文件ToolStripMenuItem";
+            this.csv文件ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.csv文件ToolStripMenuItem.Text = "csv文件";
+            this.csv文件ToolStripMenuItem.Click += new System.EventHandler(this.csv文件ToolStripMenuItem_Click);
+            // 
+            // json文件ToolStripMenuItem
+            // 
+            this.json文件ToolStripMenuItem.Name = "json文件ToolStripMenuItem";
+            this.json文件ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.json文件ToolStripMenuItem.Text = "json文件";
+            this.json文件ToolStripMenuItem.Click += new System.EventHandler(this.json文件ToolStripMenuItem_Click);
+            // 
+            // xml文件ToolStripMenuItem
+            // 
+            this.xml文件ToolStripMenuItem.Name = "xml文件ToolStripMenuItem";
+            this.xml文件ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.xml文件ToolStripMenuItem.Text = "xml文件";
+            this.xml文件ToolStripMenuItem.Click += new System.EventHandler(this.xml文件ToolStripMenuItem_Click);
             // 
             // 退出ToolStripMenuItem
             // 
@@ -146,9 +174,8 @@
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // DashboardShowBt
-            // ShowBt
             // 
-            this.DashboardShowBt.Location = new System.Drawing.Point(388, 251);
+            this.DashboardShowBt.Location = new System.Drawing.Point(496, 325);
             this.DashboardShowBt.Name = "DashboardShowBt";
             this.DashboardShowBt.Size = new System.Drawing.Size(114, 27);
             this.DashboardShowBt.TabIndex = 4;
@@ -156,22 +183,9 @@
             this.DashboardShowBt.UseVisualStyleBackColor = true;
             this.DashboardShowBt.Click += new System.EventHandler(this.DashboardShowBt_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.dataGridView);
-            this.groupBox1.Location = new System.Drawing.Point(6, 33);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(502, 214);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
             // CurveShowBt
             // 
-            this.CurveShowBt.Location = new System.Drawing.Point(270, 251);
+            this.CurveShowBt.Location = new System.Drawing.Point(12, 327);
             this.CurveShowBt.Name = "CurveShowBt";
             this.CurveShowBt.Size = new System.Drawing.Size(100, 25);
             this.CurveShowBt.TabIndex = 7;
@@ -179,36 +193,66 @@
             this.CurveShowBt.UseVisualStyleBackColor = true;
             this.CurveShowBt.Click += new System.EventHandler(this.CurveShowBt_Click);
             // 
-            // dataGridView
+            // ShowBt
             // 
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(6, 9);
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.RowTemplate.Height = 23;
-            this.dataGridView.Size = new System.Drawing.Size(490, 199);
-            this.dataGridView.TabIndex = 4;
+            this.ShowBt.Location = new System.Drawing.Point(0, 0);
+            this.ShowBt.Name = "ShowBt";
+            this.ShowBt.Size = new System.Drawing.Size(75, 23);
+            this.ShowBt.TabIndex = 0;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // test
+            // 
+            this.test.Location = new System.Drawing.Point(0, 0);
+            this.test.Name = "test";
+            this.test.Size = new System.Drawing.Size(75, 23);
+            this.test.TabIndex = 0;
+            // 
+            // treeListView1
+            // 
+            treeListViewItemCollectionComparer5.Column = 0;
+            treeListViewItemCollectionComparer5.SortOrder = System.Windows.Forms.SortOrder.Ascending;
+            this.treeListView1.Comparer = treeListViewItemCollectionComparer5;
+            this.treeListView1.Location = new System.Drawing.Point(12, 31);
+            this.treeListView1.Name = "treeListView1";
+            this.treeListView1.Size = new System.Drawing.Size(598, 290);
+            this.treeListView1.TabIndex = 8;
+            this.treeListView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 358);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(597, 185);
+            this.dataGridView1.TabIndex = 9;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(514, 290);
+            this.ClientSize = new System.Drawing.Size(621, 555);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.treeListView1);
             this.Controls.Add(this.CurveShowBt);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.DashboardShowBt);
             this.Controls.Add(this.SendBt);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CANToolApp";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,11 +272,14 @@
         private System.Windows.Forms.ToolStripMenuItem 保存为ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cOM口设置ToolStripMenuItem;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Button CurveShowBt;
         private System.Windows.Forms.Button test;
-        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.ToolStripMenuItem csv文件ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem json文件ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xml文件ToolStripMenuItem;
+        private System.Windows.Forms.TreeListView treeListView1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

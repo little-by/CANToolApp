@@ -10,14 +10,13 @@ namespace CANToolApp
 {
     public static class SqlHelper
     {
-        static private SqlConnection con = new SqlConnection();
+        static private SqlConnection con = new SqlConnection("server=bds266769316.my3w.com;database=bds266769316_db;user=bds266769316;pwd=959511586");
         static private SqlCommand com = new SqlCommand();
         static SqlDataReader dr;
-
         public static void connect()
         {
-            con.ConnectionString = "server=bds266769316.my3w.com;database=bds266769316_db;user=bds266769316;pwd=959511586";
-            con.Open();
+            if(!con.State.ToString().ToUpper().Equals("OPEN"))
+                con.Open();
         }
 
         public static SqlDataReader query(string sqlstr)
@@ -42,7 +41,8 @@ namespace CANToolApp
         public static void close()
         {
             dr.Close();
-            con.Close();
+            if (con.State.ToString().ToUpper().Equals("OPEN"))
+                con.Close();
         }
     }
 }

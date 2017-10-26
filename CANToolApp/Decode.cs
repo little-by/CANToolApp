@@ -4,13 +4,14 @@ using CANToolApp;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Collections.Generic;
+using System.Data;
 
 public class Decode
 {
     public static Dictionary<string, string> DecodeCANSignal(string canMessage)
     {
         SqlHelper.connect();
-        
+
         char standardOrExtend = canMessage[0];
         uint canId = 0;
         uint DLC = 0;
@@ -37,21 +38,38 @@ public class Decode
                 dataLength = (int)DLC * 2;
                 data = canMessage.Substring(10, dataLength);
             }
+            //把data转化为二进制
+            char[] binaryData = bianma(data).ToCharArray();
+            int decimalSign = 0;
+
+            int len = binaryData.Length;
+            char[] temp = new char[len];
+            int k = 0;
+            for (k = 0; k < len; k++)
+            {
+                temp[k] = binaryData[k];
+            }
+            for (k = 0; k < len; k++)
+            {
+                int line = k / 8;
+                int row = 7 - k % 8;
+                binaryData[line * 8 + row] = temp[k];
+            }
 
             string message = "select * from cantoolapp.canmessage where id = " + canId;
             string signal = "select * from cantoolapp.cansignal where canmessageid = " + canId;
             SqlDataReader messageExist = SqlHelper.query(message);
-            
+
             if (!messageExist.HasRows)
             {
                 //MessageBox.Show("系统中不存在此message!");
-                return returnedData;
+                return null;
             }
             else
             {
                 messageExist.Read();
                 //MessageBox.Show("系统中存在此message!");
-                returnedData.Add("messageName", messageExist[2].ToString());
+                returnedData.Add("messageName", messageExist[2].ToString() + " " + data);
                 SqlHelper.close();
                 SqlHelper.connect();
                 SqlDataReader reader = SqlHelper.query(signal);
@@ -69,14 +87,12 @@ public class Decode
                         int start = (int)Convert.ToUInt32(startAndLengthAndPattern[0]);
                         int length = (int)Convert.ToUInt32(startAndLengthAndPattern[1]);
                         string pattern = startAndLengthAndPattern[2];
-                        //把data转化为二进制
-                        string binaryData = bianma(data);
-                        int decimalSign = 0;
+
                         //根据上面三个标准求解信号的值
+                        StringBuilder sb = new StringBuilder("");
                         if (pattern == "0+")
                         {
-                            StringBuilder sb = new StringBuilder("");
-                            int i = 0, j = start;
+                            int i = 0, j = start, end = start + length - 1;
                             int line = 0;
                             int leftIndex = 0, rightIndex = 0;
                             for (i = 0; i < length; i++)
@@ -101,26 +117,27 @@ public class Decode
                         }
                         else if (pattern == "1+")
                         {
-                            StringBuilder sb = new StringBuilder("");
-                            int i = 0, j = start;
+                            int i, j = start + length - 1;
                             for (i = 0; i < length; i++)
                             {
                                 sb.Append(binaryData[j]);
-                                j++;
+                                j--;
                             }
                             decimalSign = Convert.ToInt32(sb.ToString(), 2);
                         }
                         else
                         {
-                            MessageBox.Show("暂不支持的数据格式!");
-                            return returnedData;
+                            MessageBox.Show("信号中含有暂不支持的数据格式!");
+                            return null;
                         }
                         double A = (double)reader[4];
                         double B = (double)reader[5];
+                        double C = (double)reader[6];
+                        double D = (double)reader[7];
                         //物理值
                         double phy = A * decimalSign + B;
                         //MessageBox.Show("" + phy);
-                        returnedData.Add((string)reader[1], phy + "");
+                        returnedData.Add((string)reader[1], phy + " [" + C + "|" + D + "]");
                     }
                 }
             }
@@ -135,15 +152,107 @@ public class Decode
         }
         return returnedData;
     }
+    //重载decode函数，为了显示bit
+    public static TableMsg DecodeCANSignal(string canData, string messageName,DataTable dt)
+    {
+        TableMsg tableMsg =new TableMsg(dt);
+        SqlHelper.connect();
+        string canId = "";
+        int dataLength = 0;
+        int[] Binarydata = new int[64];
+        try
+        {
+            string sqlselectid = "select id from cantoolapp.canmessage messagename=" + messageName;
+            SqlDataReader sdr = SqlHelper.query(sqlselectid);
+            sdr.Read();
+            string canIdStr = sdr[0].ToString();
+            sdr.Close();
+            dataLength = 16;
+            //把data转化为二进制
+            char[] binaryData = bianma(canData).ToCharArray();
+            int decimalSign = 0;
+
+            int len = binaryData.Length;
+            char[] temp = new char[len];
+            int k = 0;
+            for (k = 0; k < len; k++)
+            {
+                temp[k] = binaryData[k];
+            }
+            for (k = 0; k < len; k++)
+            {
+                int line = k / 8;
+                int row = 7 - k % 8;
+                binaryData[line * 8 + row] = temp[k];
+            }
+            for(k = 0; k < len; k++)
+            {
+                Binarydata[k] =int.Parse(""+binaryData[k]);
+            }
+            tableMsg.Binarydata = Binarydata;
+            string message = "select signalname,start_length_pattern from cantoolapp.cansignal where canmessageid = " + canId;
+            SqlDataReader dr = SqlHelper.query(sqlselectid);
+            while (dr.Read())
+            {
+                tableMsg.ReturnedData.Add(dr[0].ToString(),dr[1].ToString());
+            }
+            SqlHelper.close();
+            return tableMsg;
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.ToString());
+        }
+        return null;
+    }
+
+
     //将16进制字符串转化为2进制字符串
     public static string bianma(string s)
     {
-        byte[] dataByte = Encoding.Unicode.GetBytes(s);
-        StringBuilder result = new StringBuilder(dataByte.Length * 8);
-        foreach (byte b in dataByte)
+        int len = s.Length;
+        string ret = "";
+        for (int i = 0; i < len; i++)
         {
-            result.Append(Convert.ToString(b, 2).PadLeft(8, '0'));
+            ret += foo(s[i]);
         }
-        return result.ToString();
+        return ret;
+    }
+    public static string foo(char c)
+    {
+        if (c == '0')
+            return "0000";
+        else if (c == '1')
+            return "0001";
+        else if (c == '2')
+            return "0010";
+        else if (c == '3')
+            return "0011";
+        else if (c == '4')
+            return "0100";
+        else if (c == '5')
+            return "0101";
+        else if (c == '6')
+            return "0110";
+        else if (c == '7')
+            return "0111";
+        else if (c == '8')
+            return "1000";
+        else if (c == '9')
+            return "1001";
+        else if (c == 'A')
+            return "1010";
+        else if (c == 'B')
+            return "1011";
+        else if (c == 'C')
+            return "1100";
+        else if (c == 'D')
+            return "1101";
+        else if (c == 'E')
+            return "1110";
+        else if (c == 'F')
+            return "1111";
+        return "";
     }
 }

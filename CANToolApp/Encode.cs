@@ -9,10 +9,14 @@ namespace CANToolApp
     {
         /**
         此函数完成的工作：
-            接收CANMessage的Name和CANSignal的Name
+            接收CANMessage的Name和CANSignal的Name和用户输入的物理值，以及对CANTool向CAN总线发送命令的周期
             返回封装好的字符串
         */
-        public static string EncodeCANSignal(string messageName, string signalName, int input)
+        public static string EncodeCANSignal(string messageName, string signalName, double input)
+        {
+            return Encode.EncodeCANSignal(messageName, signalName, input, "0000");
+        }
+        public static string EncodeCANSignal(string messageName, string signalName, double input, string cycle)
         {
             string result = "";
             SqlHelper.connect();
@@ -50,63 +54,59 @@ namespace CANToolApp
                 else
                 {
                     char[] data = new char[DLC * 8];
-                    for (int i = 0; i < DLC * 8; i++)
+                    for (int k = 0; k < DLC * 8; k++)
                     {
-                        data[i] = '0';
+                        data[k] = '0';
                     }
                     double A = (double)sigReader[4];
                     double B = (double)sigReader[5];
                     double C = (double)sigReader[6];
                     double D = (double)sigReader[7];
-                    double temp = (input - B) / A;
-                    if (!(temp >= C && temp <= D))
+                    if (!(input >= C && input <= D))
                     {
                         MessageBox.Show("输入的数据超出范围，请重新输入！");
                         SqlHelper.close();
                         return null;
                     }
-                    string x = ((int)((input - B) / A)).ToString("x8");
+                    int x = (int)((input - B) / A);
                     // 起始位、bit长度、bit格式
                     string[] startAndLengthAndPattern = sigReader[3].ToString().Split(new char[2] { '|', '@' });
                     int start = (int)Convert.ToUInt32(startAndLengthAndPattern[0]);
                     int length = (int)Convert.ToUInt32(startAndLengthAndPattern[1]);
                     string pattern = startAndLengthAndPattern[2];
-                    string input_binary = Convert.ToString(Convert.ToInt32(x, 16), 2);
-                    input_binary =  input_binary.PadLeft(length, '0');
+                    string input_binary = Convert.ToString(x, 2);
+                    input_binary = input_binary.PadLeft(length, '0');
                     if (pattern == "0+")
                     {
-                        int i = 0, j = start;
+                        int m = 0, n = start;
                         int line = 0;
                         int leftIndex = 0, rightIndex = 0;
-                        for (i = 0; i < length; i++)
+                        for (m = 0; m < length; m++)
                         {
-                            data[j] = input_binary[i];
-                            line = j / 8;
+                            data[n] = input_binary[m];
+                            line = n / 8;
                             leftIndex = 7 * (line + 1) + line;
                             rightIndex = 8 * line;
                             if (line >= 0 && line < 8)
                             {
-                                if (j < leftIndex && j >= rightIndex)
+                                if (n <= leftIndex && n > rightIndex)
                                 {
-                                    j++;
+                                    n--;
                                 }
-                                else if (j == leftIndex && line > 0)
+                                else if (n == rightIndex && line < 7)
                                 {
-                                    j = j - 15;
+                                    n = n + 15;
                                 }
                             }
                         }
                     }
                     else if (pattern == "1+")
                     {
-                        int i = 0, j = start;
-                        for (i = 0; i < length; i++)
+                        int t = 0, j = start;
+                        for (t = length - 1; t >= 0; t--)
                         {
-                            data[j] = input_binary[i];
-                            if (j < 64)
-                            {
-                                j++;
-                            }
+                            data[j] = input_binary[t];
+                            j++;
                         }
                     }
                     else
@@ -118,11 +118,26 @@ namespace CANToolApp
                     SqlHelper.close();
                     string s = new string(data);
                     StringBuilder shex = new StringBuilder();
-                    for (int n = 0; n < s.Length; n = n + 4)
+                    int i = 0;
+                    int len = data.Length;
+                    for (i = 0; i < len; i += 8)
                     {
-                        shex.Append(string.Format("{0:X}", Convert.ToInt32(s.Substring(n, 4), 2)));
+                        int m, n;
+                        int line = i / 8;
+                        StringBuilder tempdata = new StringBuilder();
+                        for (m = 0, n = 7 * (line + 1) + line; m < 4; m++, n--)
+                        {
+                            tempdata.Append(data[n]);
+                        }
+                        shex.Append(string.Format("{0:X}", Convert.ToInt32(tempdata.ToString(), 2)));
+                        tempdata = new StringBuilder();
+                        for (m = 0, n = 7 * (line + 1) + line - 4; m < 4; m++, n--)
+                        {
+                            tempdata.Append(data[n]);
+                        }
+                        shex.Append(string.Format("{0:X}", Convert.ToInt32(tempdata.ToString(), 2)));
                     }
-                    result = tT + canIdHex + DLC + shex + "\\r";
+                    result = tT + canIdHex.ToUpper() + DLC + shex.ToString().ToUpper() + "\r";
                 }
             }
             return result;

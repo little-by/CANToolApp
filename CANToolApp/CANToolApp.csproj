@@ -44,7 +44,15 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.InteropServices.APIs">
+      <HintPath>.\System.Runtime.InteropServices.APIs.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Windows.Forms.TreeListView">
+      <HintPath>.\System.Windows.Forms.TreeListView.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -65,6 +73,12 @@
   <ItemGroup>
     <Compile Include="CANMessageObject.cs" />
     <Compile Include="CANSignalObject.cs" />
+    <Compile Include="CheckForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CheckForm.Designer.cs">
+      <DependentUpon>CheckForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CurveShow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +100,18 @@
     <Compile Include="ComPortForm.Designer.cs">
       <DependentUpon>ComPortForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gauge.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Gauge.Designer.cs">
+      <DependentUpon>Gauge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GaugeboardShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GaugeboardShow.Designer.cs">
+      <DependentUpon>GaugeboardShow.cs</DependentUpon>
+    </Compile>
     <Compile Include="IniFile.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -93,16 +119,17 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GraphVisual.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GraphVisual.Designer.cs">
-      <DependentUpon>GraphVisual.cs</DependentUpon>
-    </Compile>
+    <Compile Include="MsgJson.cs" />
     <Compile Include="Profile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SigJson.cs" />
     <Compile Include="SqlHelper.cs" />
+    <Compile Include="TableMsg.cs" />
+    <Compile Include="XMLProcess.cs" />
+    <EmbeddedResource Include="CheckForm.resx">
+      <DependentUpon>CheckForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ComPortForm.resx">
       <DependentUpon>ComPortForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,11 +137,11 @@
       <DependentUpon>CurveShow.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="UpdateTableThread.cs" />
+    <EmbeddedResource Include="GaugeboardShow.resx">
+      <DependentUpon>GaugeboardShow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GraphVisual.resx">
-      <DependentUpon>GraphVisual.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
