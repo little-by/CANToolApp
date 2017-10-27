@@ -20,12 +20,16 @@ namespace CANToolApp
         string signaleName = "";
         string lastname = "";
         double currentValue = 0;
+        float min = 0;
+        float max = 100;
 
         private event DelegateSendData delegateSendData;
 
         public GaugeboardShow()
         {
             InitializeComponent();
+            timer1.Start();
+            button1.Visible = false;
         }
 
         private void gauge1_ValueInRangeChanged(object sender, Gauge.ValueInRangeChangedEventArgs e)
@@ -68,23 +72,19 @@ namespace CANToolApp
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+
             UpdateQueueValue();
-            //this.SignalChangedChart.Series[0].Points.Clear();
-            for (int i = 0; i < dataQueue.Count; i++)
-            {
-                //this.SignalChangedChart.Series[0].Points.AddXY((i + 1), dataQueue.ElementAt(i));
-                this.gauge1.Value = (float)currentValue;
-            }
+            this.gauge1.Value = (float)currentValue;
+            textBox1.Text = gauge1.Value.ToString();
         }
         private void UpdateQueueValue()
         {
             if (!lastname.Equals(signaleName))
             {
-                dataQueue.Clear();
                 lastname = signaleName;
-                Console.WriteLine("+++++++++++++++++++++++++++++++++++++++++++++---" + signaleName);
+
+
             }
-            Console.WriteLine("+++++++++++++++++++++++++++++++++++++++++++++" + dataQueue.Count);
 
             if (dataQueue.Count > 100)
             {
@@ -116,7 +116,7 @@ namespace CANToolApp
             this.returnedData = returnedData;
             if (returnedData[signaleName] != null || !returnedData[signaleName].Equals(""))
             {
-
+                Console.WriteLine("+++++++++++++++++++++++++++++++++++++++++++++---" + returnedData[signaleName]);
                 string value = returnedData[signaleName];
                 value = value.Split(' ')[0];
 
@@ -136,6 +136,33 @@ namespace CANToolApp
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
+
+        }
+        public void UpdateSignal(List<string> signals)
+        {
+            if (signals != null && signals.Count > 0)
+            {
+                string[] tmparr = signals[0].Split(' ');
+                foreach (string str in tmparr)
+                {
+                    Console.WriteLine(str);
+                }
+                this.signaleName = tmparr[1];
+                string range = tmparr[3].Substring(1, tmparr[3].Length - 2);
+                min = float.Parse(range.Split('|')[0]);
+                max = float.Parse(range.Split('|')[1]);
+                label1.Text = signaleName + ":";
+                this.gauge1.MaxValue = max;
+                this.gauge1.MinValue = min;
+                Console.WriteLine(max);
+                Console.WriteLine(min);
+                this.currentValue = float.Parse(tmparr[2]);
+
+            }
+            else
+            {
+                label1.Text = "未选择信号";
+            }
 
         }
     }

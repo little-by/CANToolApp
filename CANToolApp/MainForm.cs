@@ -23,12 +23,12 @@ namespace CANToolApp
     {
         private static SynchronizationContext m_SyncContext = null;
         //private static TreeListView treeListView1;
-		private System.Windows.Forms.ColumnHeader columnHeader1;
-		private System.Windows.Forms.ColumnHeader columnHeader2;
-		private System.Windows.Forms.ImageList imageList1;
-		private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
         //ComPortForm comform = new ComPortForm();
-        CurveShow csForm=null;
+        CurveShow csForm = null;
         GaugeboardShow gsForm = null;
         //Table数据源
         DataTable dataTable = new DataTable();
@@ -39,7 +39,7 @@ namespace CANToolApp
 
         private event DelegateSendData delegateSendData;
         private event DelegateSendSig delegateSendSig;
-
+        private event DelegateSendSig delegateSendSigForGs;
 
         public MainForm()
         {
@@ -47,8 +47,8 @@ namespace CANToolApp
             InitializeComponent();
             Random rd = new Random();
             for (int i = 0; i < 30; i++)
-            {  
-                colors[i]=Color.FromArgb(rd.Next(0,255), rd.Next(0, 255), rd.Next(0, 255));
+            {
+                colors[i] = Color.FromArgb(rd.Next(0, 255), rd.Next(0, 255), rd.Next(0, 255));
             }
             clearColor();
         }
@@ -70,18 +70,18 @@ namespace CANToolApp
             dataGridView1.DataSource = dataTable;
             //dataGridView1.Width = dataGridView1.Parent.Width;
             //初始化列
-            for(int i = 0; i < 8; i++)
+            for (int i = 0; i < 8; i++)
             {
-                dataTable.Columns.Add("" + (7-i));
+                dataTable.Columns.Add("" + (7 - i));
                 //8.53对于每列最合适
                 dataGridView1.Columns[i].Width = (int)(dataGridView1.Width / (8.6));
             }
-            
+
 
 
             //初始化显示表格
             InitTable();
-            
+
 
 
 
@@ -90,13 +90,13 @@ namespace CANToolApp
         private void sendBt_Click(object sender, EventArgs e)
         {
             CANToolApp.SqlHelper.connect();
-            SqlDataReader dr=CANToolApp.SqlHelper.query("select * from cantoolapp.canmessage");
+            SqlDataReader dr = CANToolApp.SqlHelper.query("select * from cantoolapp.canmessage");
             Console.WriteLine(dr.FieldCount);
             while (dr.Read())
             {
-                for(int i=0;i< dr.FieldCount; i++)
+                for (int i = 0; i < dr.FieldCount; i++)
                 {
-                    Console.WriteLine(dr.GetName(i)+":"+ dr[i].ToString());
+                    Console.WriteLine(dr.GetName(i) + ":" + dr[i].ToString());
                 }
             }
             CANToolApp.SqlHelper.close();
@@ -118,12 +118,12 @@ namespace CANToolApp
         private void CurveShowBt_Click(object sender, EventArgs e)
         {
             List<String> signallist = new List<string>();
-            
-            foreach(TreeListViewItem item in treeListView1.CheckedItems)
+
+            foreach (TreeListViewItem item in treeListView1.CheckedItems)
             {
-                Console.WriteLine("selected ----------------------------------------------------------- "+item.Text);
-                if(!item.Text.StartsWith("messageName"))
-                signallist.Add(item.Text);
+
+                if (!item.Text.StartsWith("messageName"))
+                    signallist.Add(item.Text);
             }
             csForm = new CurveShow();
             delegateSendData += new DelegateSendData(csForm.UpdateData);
@@ -134,19 +134,39 @@ namespace CANToolApp
 
         private void DashboardShowBt_Click(object sender, EventArgs e)
         {
+            List<String> signallist = new List<string>();
+
+            foreach (TreeListViewItem item in treeListView1.CheckedItems)
+            {
+
+                if (!item.Text.StartsWith("messageName"))
+                {
+                    string sig = "";
+                    foreach (ListViewSubItem sub in item.SubItems)
+                    {
+
+                        sig += (" " + sub.Text);
+                    }
+
+                    signallist.Add(sig);
+                }
+
+            }
             gsForm = new GaugeboardShow();
             delegateSendData += new DelegateSendData(gsForm.UpdateData);
+            delegateSendSigForGs += new DelegateSendSig(gsForm.UpdateSignal);
             gsForm.Show();
+            delegateSendSigForGs(signallist);
             //DashboardShow dsForm = new DashboardShow();
             //dsForm.Show();
         }
 
-        
+
         public void UpdateUI(string msgobj)
         {
             if (this.InvokeRequired)
             {
-                this.BeginInvoke(new DelegateUpdateUI(UpdateUI),msgobj);
+                this.BeginInvoke(new DelegateUpdateUI(UpdateUI), msgobj);
             }
             else
             {
@@ -157,18 +177,24 @@ namespace CANToolApp
         {
             string msg = (string)msgobj;
             Dictionary<string, string> returnedData = Decode.DecodeCANSignal(msg);
-            if (csForm!=null)
+            if (csForm != null)
             {
                 delegateSendData(returnedData);
+
             }
-            
+            if (gsForm != null)
+            {
+                delegateSendData(returnedData);
+
+            }
+
 
             TreeListViewItem itemA = new TreeListViewItem("messageName ", 0);
             foreach (string key in returnedData.Keys)
             {
                 if (key == "messageName")
                 {
-                    
+
                     itemA.Expand();
                     itemA.SubItems.Add(returnedData[key]);
                     treeListView1.Items.Add(itemA);
@@ -292,7 +318,7 @@ namespace CANToolApp
             // 
             // CurveShowBt
             // 
-            
+
             //this.CurveShowBt.Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
             this.CurveShowBt.FlatStyle = System.Windows.Forms.FlatStyle.System;
             //this.CurveShowBt.Location = new System.Drawing.Point(8, 425);
@@ -304,7 +330,7 @@ namespace CANToolApp
             // 
             // DashboardShowBt
             // 
-            
+
             //this.DashboardShowBt.Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right);
             this.DashboardShowBt.FlatStyle = System.Windows.Forms.FlatStyle.System;
 
@@ -313,7 +339,7 @@ namespace CANToolApp
             //this.DashboardShowBt.Size = new System.Drawing.Size(128, 20);
             this.DashboardShowBt.TabIndex = 2;
             //this.DashboardShowBt.Text = "Expand / Collapse All";
-            
+
             //this.DashboardShowBt.Click += new System.EventHandler(this.DashboardShowBt_Click);
             // 
             // TryTreeListView
@@ -336,10 +362,10 @@ namespace CANToolApp
         {
             string canData = "";
             string msgName = "";
-            string tmp="";
+            string tmp = "";
             tm = new TableMsg(dataTable);
             TreeListViewItem msgitem = null;
-            TreeListViewItem item=treeListView1.GetItemAt(new System.Drawing.Point(e.X,e.Y));
+            TreeListViewItem item = treeListView1.GetItemAt(new System.Drawing.Point(e.X, e.Y));
             //Console.WriteLine("//////////////////////////////////////" +  item.Text);
             if (item.Text.Equals("messageName "))
             {
@@ -347,11 +373,11 @@ namespace CANToolApp
                 string datastr = "";
                 foreach (ListViewSubItem msgdata in msgitem.SubItems)
                 {
-                    tmp= msgdata.Text;
+                    tmp = msgdata.Text;
                 }
                 canData = tmp.Split(' ')[1];
-                msgName=tmp.Split(' ')[0];
-                Decode.DecodeCANSignal(canData, msgName,ref dataTable,out tm);
+                msgName = tmp.Split(' ')[0];
+                Decode.DecodeCANSignal(canData, msgName, ref dataTable, out tm);
                 Console.WriteLine("//////////////////////////////////////" + canData + msgName + item.Text);
                 updateUi(tm);
 
@@ -365,17 +391,17 @@ namespace CANToolApp
                     tmp = msgdata.Text;
                     //Console.WriteLine("//////////////////////////////////////" + tmp);
                 }
-                
+
                 canData = tmp.Split(' ')[1];
                 msgName = tmp.Split(' ')[0];
                 Console.WriteLine("//////////////////////////////////////" + canData + msgName + item.Text);
-                Decode.DecodeCANSignal(canData, msgName, ref dataTable,out tm);
+                Decode.DecodeCANSignal(canData, msgName, ref dataTable, out tm);
                 Dictionary<string, string> returnedDatatmp = new Dictionary<string, string>();
-                foreach(string key in tm.ReturnedData.Keys)
+                foreach (string key in tm.ReturnedData.Keys)
                 {
                     if (key.Equals(item.Text))
                     {
-                        returnedDatatmp.Add(key,tm.ReturnedData[key]);
+                        returnedDatatmp.Add(key, tm.ReturnedData[key]);
                     }
                 }
                 tm.ReturnedData = returnedDatatmp;
@@ -385,17 +411,17 @@ namespace CANToolApp
             }
             //Thread th = new Thread(new ParameterizedThreadStart(UpdateTableThread.updateUi));
             //th.Start(tm);
-            
+
 
         }
 
         private void InitTable()
         {
             dataGridView1.RowPrePaint += DataGridView1_RowPrePaint;
-            for(int i = 0; i < 8; i++)
+            for (int i = 0; i < 8; i++)
             {
                 DataRow dr = dataTable.NewRow();
-                for(int j = 0; j < 8; j++)
+                for (int j = 0; j < 8; j++)
                 {
                     //两种存取方式
                     //dataTable.Rows[0].ItemArray[0] = 0;
@@ -418,19 +444,12 @@ namespace CANToolApp
             //Console.WriteLine("index"+e.RowIndex);
             if (e.RowIndex < tablecolor.Length)
             {
-                for(int i = 0; i < 8; i++)
+                for (int i = 0; i < 8; i++)
                 {
                     this.dataGridView1.Rows[e.RowIndex].Cells["" + (7 - i)].Style.BackColor = tablecolor[e.RowIndex][i];
                 }
-                
+
             }
-                
-
-            
-            
-
-
-
 
             //throw new NotImplementedException();
         }
@@ -447,7 +466,7 @@ namespace CANToolApp
                 {
                     //两种存取方式
                     //dataTable.Rows[0].ItemArray[0] = 0;
-                    dr[j] = tm.Binarydata[8*i+j];
+                    dr[j] = tm.Binarydata[8 * i + j];
                 }
                 dataTable.Rows.Add(dr);
 
@@ -490,7 +509,7 @@ namespace CANToolApp
                     {
                         tablecolor[row][7 - col] = colors[num];
                         col++;
-                        if (col >7)
+                        if (col > 7)
                         {
                             col = 0;
                             row++;
@@ -501,12 +520,6 @@ namespace CANToolApp
 
             }
             dataGridView1.Refresh();
-            
-
-
-
-
-
 
 
         }
@@ -521,7 +534,7 @@ namespace CANToolApp
                 }
             }
         }
-        
+
         private enum DrivesDescr { First, Second, Third, Fourth }
         private enum Drives { C, D, E, Z }
 
@@ -545,7 +558,7 @@ namespace CANToolApp
             XmlNode root = doc.SelectSingleNode("root");
             int j = 0;
             int i = 0;
-            foreach(TreeListViewItem item in treeListView1.Items)
+            foreach (TreeListViewItem item in treeListView1.Items)
             {
                 //配置realname节点,赋给cname（childname）
 
@@ -577,7 +590,7 @@ namespace CANToolApp
 
                     j++;
                 }
-                
+
                 j = 0;
                 i++;
                 root.AppendChild(data);
@@ -598,14 +611,14 @@ namespace CANToolApp
             openFileDialog.Filter = "xml文件|*.xml|csv文件|*.csv|json文件|*.json";
             openFileDialog.RestoreDirectory = true;
             openFileDialog.FilterIndex = 1;
-            string fName="";
+            string fName = "";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 fName = openFileDialog.FileName;
-                Console.WriteLine(fName+" is opened");
+                Console.WriteLine(fName + " is opened");
             }
             string[] tmp = fName.Split('.');
-            string filetype = tmp[tmp.Length-1];
+            string filetype = tmp[tmp.Length - 1];
 
             if (filetype.Equals("xml"))
             {
@@ -617,23 +630,23 @@ namespace CANToolApp
                 for (int n = 0; n < root.ChildNodes.Count; n++)
                 {
                     Dictionary<string, string> returnedData = new Dictionary<string, string>();
-                    XmlNode signal = doc.SelectSingleNode("/root/data" + n );
-                    
-                    string msg = XMLProcess.Read("data.xml", "/root/data"+n+"/message");
-                        if (msg == null||msg.Equals("")) break;
-                        Console.WriteLine("--------------------------------" + msg+"//"+( signal.ChildNodes.Count - 1));
-                        returnedData.Add("messageName", msg);
+                    XmlNode signal = doc.SelectSingleNode("/root/data" + n);
 
-                        for (int m = 1; m < (signal.ChildNodes.Count); m++)
-                        {
-                            string name = XMLProcess.Read("data.xml", "/root/data" + n + "/signal[" + m + "]","name");
-                            string value = XMLProcess.Read("data.xml", "/root/data" + n + "/signal["+m+"]");
-                            if (name == null||name.Equals("")) break;
+                    string msg = XMLProcess.Read("data.xml", "/root/data" + n + "/message");
+                    if (msg == null || msg.Equals("")) break;
+                    Console.WriteLine("--------------------------------" + msg + "//" + (signal.ChildNodes.Count - 1));
+                    returnedData.Add("messageName", msg);
 
-                            Console.WriteLine("--------------------------------"+name+"   "+value);
+                    for (int m = 1; m < (signal.ChildNodes.Count); m++)
+                    {
+                        string name = XMLProcess.Read("data.xml", "/root/data" + n + "/signal[" + m + "]", "name");
+                        string value = XMLProcess.Read("data.xml", "/root/data" + n + "/signal[" + m + "]");
+                        if (name == null || name.Equals("")) break;
 
-                            returnedData.Add(name, value);
-                        }
+                        Console.WriteLine("--------------------------------" + name + "   " + value);
+
+                        returnedData.Add(name, value);
+                    }
                     addone(returnedData);
                 }
             }
@@ -653,7 +666,7 @@ namespace CANToolApp
                         data.Add(temp[0], temp[1]);
                     }
                     line = sr.ReadLine();
-                    while (line != null &&!line.StartsWith("messageName"))
+                    while (line != null && !line.StartsWith("messageName"))
                     {
                         temp = line.Split(',');
                         data.Add(temp[0], temp[1]);
