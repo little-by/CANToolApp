@@ -38,6 +38,7 @@ namespace CANToolApp
         {
             //InitTreeView(treeView1,0);
             this.timer1.Start();
+            this.SignalChangedChart.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm:ss.ff";
         }
 
         //初始化图表
@@ -59,7 +60,8 @@ namespace CANToolApp
             this.SignalChangedChart.ChartAreas[0].AxisX.MajorGrid.LineColor = System.Drawing.Color.Silver;
             this.SignalChangedChart.ChartAreas[0].AxisY.MajorGrid.LineColor = System.Drawing.Color.Silver;
 
-            this.SignalChangedChart.ChartAreas[0].AxisX.LabelStyle.Format = "HH::mm:ss";
+
+            this.SignalChangedChart.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm:ss";
      
             //设置标题
             this.SignalChangedChart.Titles.Clear();

@@ -45,7 +45,7 @@
             this.SignalChangedChart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.SignalChangedChart.Legends.Add(legend1);
-            this.SignalChangedChart.Location = new System.Drawing.Point(27, 48);
+            this.SignalChangedChart.Location = new System.Drawing.Point(46, 48);
             this.SignalChangedChart.Name = "SignalChangedChart";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
@@ -54,7 +54,7 @@
             series1.Name = "信号1";
             series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
             this.SignalChangedChart.Series.Add(series1);
-            this.SignalChangedChart.Size = new System.Drawing.Size(600, 240);
+            this.SignalChangedChart.Size = new System.Drawing.Size(581, 237);
             this.SignalChangedChart.TabIndex = 0;
             this.SignalChangedChart.Text = "信号变化曲线";
             this.SignalChangedChart.DoubleClick += new System.EventHandler(this.SignalChangedChart_DoubleClick);

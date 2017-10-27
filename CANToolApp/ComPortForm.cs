@@ -231,7 +231,17 @@ namespace CANToolApp
                 if(msgrec != "" && msgrec != null)
                 {
                     txtReceive.Text += msgrec + "\r\n"; //注意：回车换行必须这样写，单独使用"\r"和"\n"都不会有效果
-                    delegateUpdateUI(msgrec);
+                    string sPattern = "^(t|T)(\\d|[ABCDEF]){3,}";
+                    if (System.Text.RegularExpressions.Regex.IsMatch(msgrec, sPattern))
+                    {
+                        System.Console.WriteLine(" - valid");
+                        delegateUpdateUI(msgrec);
+                    }
+                    else
+                    {
+                        System.Console.WriteLine(" - invalid");
+                    }
+                    
                 }
                 sp1.DiscardInBuffer();                      //清空SerialPort控件的Buffer 
                 //try
