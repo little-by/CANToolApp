@@ -67,3 +67,13 @@ F:\1027\CANToolApp\CANToolApp\obj\Debug\CANToolApp.Properties.Resources.resource
 F:\1027\CANToolApp\CANToolApp\obj\Debug\CANToolApp.csproj.GenerateResource.Cache
 F:\1027\CANToolApp\CANToolApp\obj\Debug\CANToolApp.exe
 F:\1027\CANToolApp\CANToolApp\obj\Debug\CANToolApp.pdb
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\bin\Debug\ColorPicker.dll
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\bin\Debug\LedDigital.dll
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\bin\Debug\MVVMBase.dll
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\bin\Debug\LedDigital.pdb
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\bin\Debug\MVVMBase.pdb
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\MainWindow.g.cs
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp_MarkupCompile.cache
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp_MarkupCompile.lref
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\MainWindow.baml
+C:\Users\kotar\gitwork\CANToolApp\CANToolApp\obj\Debug\CANToolApp.g.resources

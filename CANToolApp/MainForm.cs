@@ -13,7 +13,8 @@ using JsonSerializerAndDeSerializer;
 using System.Runtime.Serialization.Json;
 using System.Text.RegularExpressions;
 using System.Drawing;
-
+using System.Windows;
+using LedDigitalDemo;
 namespace CANToolApp
 {
     public delegate void DelegateSendSig(List<string> sigs);
@@ -30,6 +31,7 @@ namespace CANToolApp
         //ComPortForm comform = new ComPortForm();
         CurveShow csForm = null;
         GaugeboardShow gsForm = null;
+        MainWindow ledwindow = null;
         //Table数据源
         DataTable dataTable = new DataTable();
         //public event DelegateUpdateUI delegateUpdateUI;
@@ -162,6 +164,37 @@ namespace CANToolApp
             //dsForm.Show();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //LedDigitalDemo.MainWindow mw=LedDigitalDemo.MainWindow;
+            //Uri uri=new Uri("MainWindow.xaml", UriKind.Relative);
+            List<String> signallist = new List<string>();
+
+            foreach (TreeListViewItem item in treeListView1.CheckedItems)
+            {
+
+                if (!item.Text.StartsWith("messageName"))
+                {
+                    string sig = "";
+                    foreach (ListViewSubItem sub in item.SubItems)
+                    {
+
+                        sig += (" " + sub.Text);
+                    }
+
+                    signallist.Add(sig);
+                }
+
+            }
+            
+            ledwindow = new CANToolApp.MainWindow();
+            delegateSendData += new DelegateSendData(ledwindow.UpdateData);
+            delegateSendSigForGs += new DelegateSendSig(ledwindow.UpdateSignal);
+            ledwindow.Show();
+            delegateSendSigForGs(signallist);
+            
+        }
+
 
         public void UpdateUI(string msgobj)
         {
@@ -181,9 +214,12 @@ namespace CANToolApp
             if (csForm != null)
             {
                 delegateSendData(returnedData);
-
             }
             if (gsForm != null)
+            {
+                delegateSendData(returnedData);
+            }
+            if (ledwindow != null)
             {
                 delegateSendData(returnedData);
 
@@ -814,6 +850,8 @@ namespace CANToolApp
             //comform.delegateUpdateUI += new DelegateUpdateUI(csForm.UpdateData);
             comform.Show();
         }
+
+        
     }
 
 }
