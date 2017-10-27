@@ -36,7 +36,6 @@
             this.SignalChangedChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.SignalChangedChart)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,13 +49,15 @@
             this.SignalChangedChart.Name = "SignalChangedChart";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series1.IsXValueIndexed = true;
             series1.Legend = "Legend1";
             series1.Name = "信号1";
-            series1.YValuesPerPoint = 2;
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
             this.SignalChangedChart.Series.Add(series1);
             this.SignalChangedChart.Size = new System.Drawing.Size(600, 240);
             this.SignalChangedChart.TabIndex = 0;
             this.SignalChangedChart.Text = "信号变化曲线";
+            this.SignalChangedChart.DoubleClick += new System.EventHandler(this.SignalChangedChart_DoubleClick);
             // 
             // label1
             // 
@@ -93,6 +94,5 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart SignalChangedChart;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Timer timer2;
     }
 }
