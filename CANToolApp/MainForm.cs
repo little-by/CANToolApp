@@ -106,8 +106,7 @@ namespace CANToolApp
         {
 
         }
-
-<<<<<<< HEAD
+        
         private void cOM口设置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ComPortForm comform = new ComPortForm();
@@ -116,8 +115,6 @@ namespace CANToolApp
             //comform.delegateUpdateUI += new DelegateUpdateUI(csForm.UpdateData);
             comform.Show();
         }
-=======
->>>>>>> ebc1913173750d51844681b756eaeb40cacc14c6
 
         private void CurveShowBt_Click(object sender, EventArgs e)
         {
