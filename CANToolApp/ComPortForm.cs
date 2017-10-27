@@ -300,7 +300,7 @@ namespace CANToolApp
 
             string str3 = "";
             int strcheck = -1;
-            if (sendcycle.Text == "")
+            if (sendcycle.Text == "Range：0 - 65535")
             {
                 str3 = Encode.EncodeCANSignal(strMessage, strSignal, strSend);
             }
