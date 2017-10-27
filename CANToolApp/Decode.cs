@@ -42,10 +42,12 @@ public class Decode
                 dataLength = (int)DLC * 2;
                 data = canMessage.Substring(10, dataLength);
             }
-            /*else
+            else
             {
-                delegateUpdateLog(canMessage + "需要是标准帧或扩展帧的一种！");
-            }*/
+                //delegateUpdateLog(canMessage + "需要是标准帧或扩展帧的一种！");
+                Console.WriteLine("数据需要是标准帧或扩展帧的一种！");
+                return null;
+            }
             //把data转化为二进制
             char[] binaryData = bianma(data).ToCharArray();
             int decimalSign = 0;
@@ -145,6 +147,12 @@ public class Decode
                         //物理值
                         double phy = A * decimalSign + B;
                         //MessageBox.Show("" + phy);
+                        if (!(phy >= C && phy <= D))
+                        {
+                            Console.WriteLine((string)reader[1] + "物理值超出范围");
+                            returnedData.Add((string)reader[1], phy + " [" + C + "|" + D + "]" + " Out of range!");
+
+                        }
                         returnedData.Add((string)reader[1], phy + " [" + C + "|" + D + "]");
                     }
                 }
@@ -210,10 +218,10 @@ public class Decode
                 tableMsg.ReturnedData.Add(signame, sigpos);
             }
             SqlHelper.close();
-            for (int j = 0; j < 8; j++)
+            /*for (int j = 0; j < 8; j++)
             {
                 Console.WriteLine("this is a fun!!" + tableMsg.Binarydata[j]);
-            }
+            }*/
             return tableMsg;
 
         }
