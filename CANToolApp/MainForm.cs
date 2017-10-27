@@ -546,10 +546,15 @@ namespace CANToolApp
 
         private void xml文件ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "xml file|*.xml";
+            saveFileDialog.Title = "Save an Xml File";
+            saveFileDialog.ShowDialog();
+
             XmlDocument doc = new XmlDocument();
             //加载登录名单的xml文档
-
-            doc.Load(AppDomain.CurrentDomain.BaseDirectory.ToString() + "data.xml");
+            doc.LoadXml("<root></root>");
+            //doc.Load(AppDomain.CurrentDomain.BaseDirectory.ToString() + "data.xml");
 
             //CANToolApp.XMLProcess.Insert("data.xml", "users", "test", "", "lll");
 
@@ -595,7 +600,13 @@ namespace CANToolApp
                 i++;
                 root.AppendChild(data);
             }
-            doc.Save(AppDomain.CurrentDomain.BaseDirectory.ToString() + "data.xml");
+            if (saveFileDialog.FileName != "")
+            {
+                doc.Save(saveFileDialog.FileName);
+            }
+
+            
+            
             /*XmlDocument doc = new XmlDocument();
             doc.Load(AppDomain.CurrentDomain.BaseDirectory.ToString() + "data.xml");
             XmlNode xn = doc.SelectSingleNode("root/row/ko");
