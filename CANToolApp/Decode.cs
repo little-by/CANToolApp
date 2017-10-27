@@ -42,10 +42,10 @@ public class Decode
                 dataLength = (int)DLC * 2;
                 data = canMessage.Substring(10, dataLength);
             }
-            else
+            /*else
             {
                 delegateUpdateLog(canMessage + "需要是标准帧或扩展帧的一种！");
-            }
+            }*/
             //把data转化为二进制
             char[] binaryData = bianma(data).ToCharArray();
             int decimalSign = 0;

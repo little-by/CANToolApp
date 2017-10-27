@@ -111,7 +111,7 @@ namespace CANToolApp
         {
             ComPortForm comform = new ComPortForm();
             comform.delegateUpdateUI += new DelegateUpdateUI(UpdateUI);
-            Decode.delegateUpdateLog += new DelegateUpdateLog(comform.output);
+            //Decode.delegateUpdateLog += new DelegateUpdateLog(comform.output);
             //comform.delegateUpdateUI += new DelegateUpdateUI(csForm.UpdateData);
             comform.Show();
         }

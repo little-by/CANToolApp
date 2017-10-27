@@ -965,7 +965,7 @@ namespace CANToolApp
             
 
         }
-        public void output(string log)
+        /*public void output(string log)
         {
             txtReceive.AppendText(DateTime.Now.ToString("HH:mm:ss ") + log + "\r\n");
             write(log);
@@ -978,7 +978,7 @@ namespace CANToolApp
             sw.WriteLine(DateTime.Now.ToString("HH:mm:ss " + msg));
             sw.Close();
             sw.Dispose();
-        }
+        }*/
     }
 }
 
