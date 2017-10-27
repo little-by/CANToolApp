@@ -217,12 +217,8 @@ namespace CANToolApp
         {
             if (sp1.IsOpen)     //此处可能没有必要判断是否打开串口，但为了严谨性，我还是加上了
             {
-                //输出当前时间
-                // DateTime dt = DateTime.Now;
-                //txtReceive.Text += dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
-                txtReceive.SelectAll();
-                txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
-
+                
+              
                 byte[] byteRead = new byte[sp1.BytesToRead];    //BytesToRead:sp1接收的字符个数
                 int msglen = sp1.BytesToRead;
                 sp1.Read(byteRead, 0, msglen);
@@ -230,7 +226,7 @@ namespace CANToolApp
            //     MessageBox.Show(msgrec);
                 if(msgrec != "" && msgrec != null)
                 {
-                    txtReceive.Text += msgrec + "\r\n"; //注意：回车换行必须这样写，单独使用"\r"和"\n"都不会有效果
+                   
                     string sPattern = "^(t|T)(\\d|[ABCDEF]){3,}";
                     if (System.Text.RegularExpressions.Regex.IsMatch(msgrec, sPattern))
                     {
@@ -244,26 +240,8 @@ namespace CANToolApp
                     
                 }
                 sp1.DiscardInBuffer();                      //清空SerialPort控件的Buffer 
-                //try
-                //{
-                //    Byte[] receivedData = new Byte[sp1.BytesToRead];        //创建接收字节数组
-                //    sp1.Read(receivedData, 0, receivedData.Length);         //读取数据
-                //    //string text = sp1.Read();   //Encoding.ASCII.GetString(receivedData);
-                //    sp1.DiscardInBuffer();                                  //清空SerialPort控件的Buffer
-                //    //这是用以显示字符串
-                //    //    string strRcv = null;
-                //    //    for (int i = 0; i < receivedData.Length; i++ )
-                //    //    {
-                //    //        strRcv += ((char)Convert.ToInt32(receivedData[i])) ;
-                //    //    }
-                //    //    txtReceive.Text += strRcv + "\r\n";             //显示信息
-                //    //}
-                //}
-                //catch (System.Exception ex)
-                //{
-                //    MessageBox.Show(ex.Message, "出错提示");
-                //   // txtSend.Text = "";
-                //}
+               
+               
             }
             else
             {
@@ -501,11 +479,7 @@ namespace CANToolApp
             }
         }
 
-        //清空按钮
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            txtReceive.Text = "";       //清空文本
-        }
+        
 
         //退出按钮
         private void btnExit_Click(object sender, EventArgs e)
@@ -557,6 +531,7 @@ namespace CANToolApp
         }
         private void txtSend_Click(object sender, EventArgs e)
         {
+            if(txtSend.Text.Contains("Range:"))
             txtSend.Text = "";
         }
 
@@ -619,10 +594,7 @@ namespace CANToolApp
 
         }
 
-        private void txtReceive_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void cbParity_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -911,6 +883,38 @@ namespace CANToolApp
             }
         }
 
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sendcycle_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+        private void sendcycle_MouseLeave(object sender, EventArgs e)
+        {
+            if (sendcycle.Text == "")
+            {
+                sendcycle.Text = "Range：0 - 65535";
+            }
+        }
+        private void sendcycle_Click(object sender, EventArgs e)
+        {
+            if (sendcycle.Text.Equals("Range：0 - 65535"))
+                sendcycle.Text = "";
+                   
+        }
         private void canVersion_Click(object sender, EventArgs e)
         {
             if (!sp1.IsOpen) //如果没打开
@@ -948,8 +952,7 @@ namespace CANToolApp
                 {
                     string rec1 = recData2.Substring(0, len - 2);
                     MessageBox.Show("版本为" + rec1, "Success");
-                   // txtReceive.Text = rec1;
-                    //canVersion.Enabled = false;
+                   
                 }
                 else
                 {
