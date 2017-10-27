@@ -59,9 +59,9 @@ namespace CANToolApp
 
             InitTreeList();
             //AddItems();
-            addone("t3588A5SD566D9F8SD565");
-            string str = XMLProcess.Read("data.xml", "/root/data0/message");
-            Console.WriteLine("-----------------------------------------dadadasda" + str);
+            //addone("t3588A5SD566D9F8SD565");
+            //string str = XMLProcess.Read("data.xml", "/root/data0/message");
+            //Console.WriteLine("-----------------------------------------dadadasda" + str);
 
             //下面是显示每个message的bit用到的程序
             //DataGridView的数据源
@@ -111,6 +111,7 @@ namespace CANToolApp
         {
             ComPortForm comform = new ComPortForm();
             comform.delegateUpdateUI += new DelegateUpdateUI(UpdateUI);
+            Decode.delegateUpdateLog += new DelegateUpdateLog(comform.output);
             //comform.delegateUpdateUI += new DelegateUpdateUI(csForm.UpdateData);
             comform.Show();
         }

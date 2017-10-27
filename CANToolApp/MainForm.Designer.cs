@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
+            System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer2 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.读取ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -194,9 +194,9 @@
             // 
             // treeListView1
             // 
-            treeListViewItemCollectionComparer1.Column = 0;
-            treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
-            this.treeListView1.Comparer = treeListViewItemCollectionComparer1;
+            treeListViewItemCollectionComparer2.Column = 0;
+            treeListViewItemCollectionComparer2.SortOrder = System.Windows.Forms.SortOrder.Ascending;
+            this.treeListView1.Comparer = treeListViewItemCollectionComparer2;
             this.treeListView1.Location = new System.Drawing.Point(12, 31);
             this.treeListView1.Name = "treeListView1";
             this.treeListView1.Size = new System.Drawing.Size(613, 290);

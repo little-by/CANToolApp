@@ -6,18 +6,22 @@ using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Data;
 
+public delegate void DelegateUpdateLog(string logobj);
 public class Decode
 {
+
+    public static DelegateUpdateLog delegateUpdateLog;
     public static Dictionary<string, string> DecodeCANSignal(string canMessage)
     {
         SqlHelper.connect();
-
+        
         char standardOrExtend = canMessage[0];
         uint canId = 0;
         uint DLC = 0;
         int dataLength = 0;
         string data = "";
         Dictionary<string, string> returnedData = new Dictionary<string, string>();
+        
         try
         {
             if (standardOrExtend == 't')

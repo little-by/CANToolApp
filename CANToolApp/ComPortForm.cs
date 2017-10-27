@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Collections;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace CANToolApp
 {
@@ -960,6 +961,20 @@ namespace CANToolApp
 
             
 
+        }
+        public void output(string log)
+        {
+            txtReceive.AppendText(DateTime.Now.ToString("HH:mm:ss ") + log + "\r\n");
+            write(log);
+        }
+
+        public void write(string msg)
+        {
+            string logPath = Path.GetDirectoryName(Application.ExecutablePath);
+            System.IO.StreamWriter sw = System.IO.File.AppendText(logPath + "/log.txt");
+            sw.WriteLine(DateTime.Now.ToString("HH:mm:ss " + msg));
+            sw.Close();
+            sw.Dispose();
         }
     }
 }
