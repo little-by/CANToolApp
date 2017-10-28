@@ -29,44 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.picturebox1 = new System.Windows.Forms.PictureBox();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.gauge1 = new CANToolApp.Gauge();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.picturebox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // picturebox1
-            // 
-            this.picturebox1.BackColor = System.Drawing.Color.Lime;
-            this.picturebox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picturebox1.Location = new System.Drawing.Point(55, 12);
-            this.picturebox1.Name = "picturebox1";
-            this.picturebox1.Size = new System.Drawing.Size(45, 27);
-            this.picturebox1.TabIndex = 1;
-            this.picturebox1.TabStop = false;
-            // 
-            // trackBar1
-            // 
-            this.trackBar1.Location = new System.Drawing.Point(55, 56);
-            this.trackBar1.Maximum = 400;
-            this.trackBar1.Minimum = -100;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar1.Size = new System.Drawing.Size(45, 237);
-            this.trackBar1.TabIndex = 2;
-            this.trackBar1.TickFrequency = 100;
-            this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
-            this.trackBar1.ValueChanged += new System.EventHandler(this.trackbar1_ValueChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(215, 279);
+            this.button1.Location = new System.Drawing.Point(94, 286);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(131, 23);
             this.button1.TabIndex = 9;
@@ -76,7 +48,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(245, 244);
+            this.textBox1.Location = new System.Drawing.Point(124, 251);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(75, 21);
@@ -113,7 +85,7 @@
         ""};
             this.gauge1.CapText = "";
             this.gauge1.Center = new System.Drawing.Point(100, 105);
-            this.gauge1.Location = new System.Drawing.Point(178, 21);
+            this.gauge1.Location = new System.Drawing.Point(62, 28);
             this.gauge1.MaxValue = 400F;
             this.gauge1.MinValue = -100F;
             this.gauge1.Name = "gauge1";
@@ -189,7 +161,6 @@
             this.gauge1.TabIndex = 0;
             this.gauge1.Text = "aGauge1";
             this.gauge1.Value = 50F;
-            this.gauge1.ValueInRangeChanged += new CANToolApp.Gauge.ValueInRangeChangedDelegate(this.gauge1_ValueInRangeChanged);
             // 
             // timer1
             // 
@@ -198,7 +169,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(243, 226);
+            this.label1.Location = new System.Drawing.Point(122, 233);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 18;
@@ -208,18 +179,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(478, 326);
+            this.ClientSize = new System.Drawing.Size(340, 326);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.trackBar1);
-            this.Controls.Add(this.picturebox1);
             this.Controls.Add(this.gauge1);
+            this.MaximumSize = new System.Drawing.Size(356, 365);
+            this.MinimumSize = new System.Drawing.Size(356, 365);
             this.Name = "GaugeboardShow";
             this.Text = "Gauge Test Window";
             this.Load += new System.EventHandler(this.GaugeboardShow_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.picturebox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,8 +197,6 @@
         #endregion
 
         private Gauge gauge1;
-        private System.Windows.Forms.PictureBox picturebox1;
-        private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Timer timer1;

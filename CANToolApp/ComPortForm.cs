@@ -214,17 +214,17 @@ namespace CANToolApp
             sp1.Close();
         }
 
+        string error = "" + (char)7;
+
         void sp1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             if (sp1.IsOpen)     //此处可能没有必要判断是否打开串口，但为了严谨性，我还是加上了
             {
-                
-              
                 byte[] byteRead = new byte[sp1.BytesToRead];    //BytesToRead:sp1接收的字符个数
                 int msglen = sp1.BytesToRead;
                 sp1.Read(byteRead, 0, msglen);
                 string msgrec = System.Text.Encoding.Default.GetString(byteRead);
-           //     MessageBox.Show(msgrec);
+                //MessageBox.Show(msgrec);
                 if(msgrec != "" && msgrec != null)
                 {
                    
@@ -233,6 +233,18 @@ namespace CANToolApp
                     {
                         System.Console.WriteLine(" - valid");
                         delegateUpdateUI(msgrec);
+                    }
+                    else if (msgrec.Equals("\r"))
+                    {
+                        MessageBox.Show("Success!", "Success");
+                    }
+                    else if (msgrec.Equals(error))
+                    {
+                        MessageBox.Show("Failure!", "Error");
+                    }
+                    else if (msgrec.StartsWith("S"))
+                    {
+                        MessageBox.Show(msgrec, "Version");
                     }
                     else
                     {
@@ -248,9 +260,6 @@ namespace CANToolApp
             {
                 MessageBox.Show("请打开某个串口", "错误提示");
             }
-
-            //"t3588A5SD566D9F8SD565"
-
         }
 
         //发送按钮
@@ -332,44 +341,6 @@ namespace CANToolApp
             //MessageBox.Show(str3, "发送的数据为");
             //sp1.Write(str3);
             sp1.Write(str3);
-            string recData4 = "";
-            System.Threading.Thread.Sleep(3000);
-  //          recData4 = sp1.Read();
-            Byte[] receivedData = new Byte[sp1.BytesToRead];        //创建接收字节数组
-            sp1.Read(receivedData, 0, receivedData.Length);
-            //recData = receivedData.ToString();
-            for (int i = 0; i < receivedData.Length; i++)
-            {
-                recData4 += ((char)Convert.ToInt32(receivedData[i]));
-            }
-            if (recData4 == "")
-            {
-                MessageBox.Show("请重新发送", "Error");
-                return;
-            }
-            if (recData4.Equals("\\r"))
-            {
-                MessageBox.Show("发送成功!", "Success");
-               // canClose.Enabled = false;
-            }
-            else if (recData4.Equals("\\BEL"))
-            {
-                MessageBox.Show("请打开cantool装置", "Error");
-                return;
-            }
-            else
-            {
-                MessageBox.Show("请检查输入", "Error");
-                return;
-            }
-            //sp1.Write(list, 0, list.Length);
-            // sp1.Write(strSend);    //写入数据
-            //关闭端口连接
-            //         sp1.Close();
-            //当前线程挂起500毫秒
-            //           System.Threading.Thread.Sleep(500);
-
-
         }
 
 
@@ -709,39 +680,7 @@ namespace CANToolApp
             sp1.DiscardInBuffer();
             //丢弃来自串行驱动程序的传输缓冲区的数据
             sp1.DiscardOutBuffer();
-            sp1.Write("O1\\r");
-            string recData = "";
-            System.Threading.Thread.Sleep(3000);
-            //recData = sp1.ReadLine();
-            Byte[] receivedData = new Byte[sp1.BytesToRead];        //创建接收字节数组
-            sp1.Read(receivedData, 0, receivedData.Length);
-            //recData = receivedData.ToString();
-            for (int i = 0; i < receivedData.Length; i++)
-            {
-                recData += ((char)Convert.ToInt32(receivedData[i]));
-            }
-            if (recData == "")
-            {
-                MessageBox.Show("请求失败，请重新发送", "Error");
-                return;
-            }
-            else if (recData.Equals("\\r"))
-            {
-                MessageBox.Show("Open Success!", "Success");
-                canOpen.Enabled = false;
-                canClose.Enabled = true;
-
-            }
-            else if (recData.Equals("\\BEL"))
-            {
-                MessageBox.Show("Open Failure!", "Error");
-                return;
-            }
-            else
-            {
-                MessageBox.Show("请检查", "Error");
-                return;
-            }
+            sp1.Write("O1\r");
         }
 
         private void canClose_Click(object sender, EventArgs e)
@@ -755,36 +694,7 @@ namespace CANToolApp
             sp1.DiscardInBuffer();
             //丢弃来自串行驱动程序的传输缓冲区的数据
             sp1.DiscardOutBuffer();
-            sp1.Write("C\\r");
-            string recData1 = "";
-            System.Threading.Thread.Sleep(3000);
-            Byte[] receivedData = new Byte[sp1.BytesToRead];        //创建接收字节数组
-            sp1.Read(receivedData, 0, receivedData.Length);
-            for (int i = 0; i < receivedData.Length; i++)
-            {
-                recData1 += ((char)Convert.ToInt32(receivedData[i]));
-            }
-            if (recData1 == "")
-            {
-                MessageBox.Show("请求失败，请重新发送", "Error");
-                return;
-            }
-            else if (recData1.Equals("\\r"))
-            {
-                MessageBox.Show("Close Success!", "Success");
-                canClose.Enabled = false;
-                canOpen.Enabled = true;
-            }
-            else if (recData1.Equals("\\BEL"))
-            {
-                MessageBox.Show("Close Failure!", "Error");
-                return;
-            }
-            else
-            {
-                MessageBox.Show("请检查", "Error");
-                return;
-            }
+            sp1.Write("C\r");
         }
 
         private void canRate_SelectedIndexChanged(object sender, EventArgs e)
@@ -820,31 +730,31 @@ namespace CANToolApp
                 switch (canRate.Text)
                 {
                     case "10":
-                        sp1.Write("S0\\r");
+                        sp1.Write("S0\r");
                         break;
                     case "20":
-                        sp1.Write("S1\\r");
+                        sp1.Write("S1\r");
                         break;
                     case "50":
-                        sp1.Write("S2\\r");
+                        sp1.Write("S2\r");
                         break;
                     case "100":
-                        sp1.Write("S3\\r");
+                        sp1.Write("S3\r");
                         break;
                     case "125":
-                        sp1.Write("S4\\r");
+                        sp1.Write("S4\r");
                         break;
                     case "250":
-                        sp1.Write("S5\\r");
+                        sp1.Write("S5\r");
                         break;
                     case "500":
-                        sp1.Write("S6\\r");
+                        sp1.Write("S6\r");
                         break;
                     case "800":
-                        sp1.Write("S7\\r");
+                        sp1.Write("S7\r");
                         break;
                     case "1024":
-                        sp1.Write("S8\\r");
+                        sp1.Write("S8\r");
                         break;
                     default:
                         {
@@ -852,35 +762,6 @@ namespace CANToolApp
                             return;
                         }
                 }
-
-            }
-            string recData1 = "";
-            System.Threading.Thread.Sleep(3000);
-            Byte[] receivedData = new Byte[sp1.BytesToRead];        //创建接收字节数组
-            sp1.Read(receivedData, 0, receivedData.Length);
-            for (int i = 0; i < receivedData.Length; i++)
-            {
-                recData1 += ((char)Convert.ToInt32(receivedData[i]));
-            }
-            if (recData1 == "")
-            {
-                MessageBox.Show("请重新发送", "Error");
-                return;
-            }
-            else if (recData1.Equals("\\r"))
-            {
-                MessageBox.Show("Rate send Success!", "Success");
-               
-            }
-            else if (recData1.Equals("\\BEL"))
-            {
-                MessageBox.Show("Rate send Failure!", "Error");
-                return;
-            }
-            else
-            {
-                MessageBox.Show("请检查", "Error");
-                return;
             }
         }
 
@@ -905,7 +786,7 @@ namespace CANToolApp
         }
         private void sendcycle_MouseLeave(object sender, EventArgs e)
         {
-            if (sendcycle.Text == "")
+            if (sendcycle.Text.Equals(""))
             {
                 sendcycle.Text = "Range：0 - 65535";
             }
@@ -916,6 +797,12 @@ namespace CANToolApp
                 sendcycle.Text = "";
                    
         }
+
+        private void groupBox4_Enter(object sender, EventArgs e)
+        {
+
+        }
+
         private void canVersion_Click(object sender, EventArgs e)
         {
             if (!sp1.IsOpen) //如果没打开
@@ -928,42 +815,7 @@ namespace CANToolApp
             //丢弃来自串行驱动程序的传输缓冲区的数据
             sp1.DiscardOutBuffer();
 
-            sp1.Write("V\\r");
-            string recData2 = "";
-            System.Threading.Thread.Sleep(3000);
-            //recData2 = sp1.ReadLine();
-            Byte[] receivedData = new Byte[sp1.BytesToRead];        //创建接收字节数组
-            sp1.Read(receivedData, 0, receivedData.Length);
-            for (int i = 0; i < receivedData.Length; i++)
-            {
-                recData2 += ((char)Convert.ToInt32(receivedData[i]));
-            }
-
-            if (recData2 == "")
-            {
-                MessageBox.Show("请求失败，请重新发送", "Error");
-                return;
-            }
-            else
-            {
-                int len = recData2.Length;
-                char second = recData2[len - 2];
-                char first = recData2[len - 1];
-                if (second == '\\' && first == 'r')
-                {
-                    string rec1 = recData2.Substring(0, len - 2);
-                    MessageBox.Show("版本为" + rec1, "Success");
-                   
-                }
-                else
-                {
-                    MessageBox.Show("请重新发送!", "Error");
-                    return;
-                }
-            }
-
-            
-
+            sp1.Write("V\r");
         }
         /*public void output(string log)
         {

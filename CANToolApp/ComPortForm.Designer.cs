@@ -398,6 +398,7 @@
             this.groupBox4.TabIndex = 23;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "CanTool Settings";
+            this.groupBox4.Enter += new System.EventHandler(this.groupBox4_Enter);
             // 
             // sendRate
             // 

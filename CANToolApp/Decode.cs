@@ -205,7 +205,6 @@ public class Decode
             for(k = 0; k < len; k++)
             {
                 Binarydata[k] =int.Parse(""+binaryData[k]);
-                Console.WriteLine(Binarydata[k]);
             }
             tableMsg.Binarydata = Binarydata;
             SqlHelper.connect();

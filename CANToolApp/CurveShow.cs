@@ -37,6 +37,8 @@ namespace CANToolApp
         private void CurveShow_Load(object sender, EventArgs e)
         {
             //InitTreeView(treeView1,0);
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.timer1.Start();
             this.SignalChangedChart.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm:ss.ff";
         }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
+            System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer9 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.读取ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,7 +78,7 @@
             // 读取ToolStripMenuItem
             // 
             this.读取ToolStripMenuItem.Name = "读取ToolStripMenuItem";
-            this.读取ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.读取ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.读取ToolStripMenuItem.Text = "读取";
             this.读取ToolStripMenuItem.Click += new System.EventHandler(this.读取ToolStripMenuItem_Click);
             // 
@@ -89,7 +89,7 @@
             this.json文件ToolStripMenuItem,
             this.xml文件ToolStripMenuItem});
             this.保存为ToolStripMenuItem.Name = "保存为ToolStripMenuItem";
-            this.保存为ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.保存为ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.保存为ToolStripMenuItem.Text = "保存";
             // 
             // csv文件ToolStripMenuItem
@@ -116,8 +116,9 @@
             // 退出ToolStripMenuItem
             // 
             this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
-            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.退出ToolStripMenuItem.Text = "退出";
+            this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
             // 
             // 设置ToolStripMenuItem
             // 
@@ -186,9 +187,9 @@
             // 
             // treeListView1
             // 
-            treeListViewItemCollectionComparer1.Column = 0;
-            treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
-            this.treeListView1.Comparer = treeListViewItemCollectionComparer1;
+            treeListViewItemCollectionComparer9.Column = 0;
+            treeListViewItemCollectionComparer9.SortOrder = System.Windows.Forms.SortOrder.Ascending;
+            this.treeListView1.Comparer = treeListViewItemCollectionComparer9;
             this.treeListView1.Location = new System.Drawing.Point(12, 31);
             this.treeListView1.Name = "treeListView1";
             this.treeListView1.Size = new System.Drawing.Size(613, 290);
@@ -201,7 +202,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(12, 358);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(613, 205);
+            this.dataGridView1.Size = new System.Drawing.Size(611, 230);
             this.dataGridView1.TabIndex = 9;
             // 
             // button1
@@ -219,13 +220,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(637, 565);
+            this.ClientSize = new System.Drawing.Size(637, 596);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.treeListView1);
             this.Controls.Add(this.CurveShowBt);
             this.Controls.Add(this.DashboardShowBt);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
