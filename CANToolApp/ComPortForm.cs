@@ -241,6 +241,8 @@ namespace CANToolApp
                     else if (msgrec.Equals(error))
                     {
                         MessageBox.Show("Failure!", "Error");
+                        canClose.Enabled = true;
+                        canOpen.Enabled = true;
                     }
                     else if (msgrec.StartsWith("S"))
                     {
@@ -351,7 +353,6 @@ namespace CANToolApp
         //开关按钮
         private void btnSwitch_Click(object sender, EventArgs e)
         {
-            //serialPort1.IsOpen
             if (!sp1.IsOpen)
             {
                 try
@@ -414,22 +415,19 @@ namespace CANToolApp
                     tsBaudRate.Text = "Baud Rate：" + sp1.BaudRate + "|";
                     tsDataBits.Text = "Data Bits：" + sp1.DataBits + "|";
                     tsStopBits.Text = "Stop Bits：" + sp1.StopBits + "|";
-                    tsParity.Text = "Parity：" + sp1.Parity + "|";
-
+                    tsParity.Text = "Parity：" + sp1.Parity + "|";                    
+                    sp1.Open();     //打开串口
                     //设置必要控件不可用
                     cbSerial.Enabled = false;
                     cbBaudRate.Enabled = false;
                     cbDataBits.Enabled = false;
                     cbStop.Enabled = false;
                     cbParity.Enabled = false;
-
-                    sp1.Open();     //打开串口
                     btnSwitch.Text = "Close";
                 }
                 catch (System.Exception ex)
                 {
-                    MessageBox.Show("Error:" + ex.Message, "Error");
-                    tmSend.Enabled = false;
+                    MessageBox.Show("Error: " + "该串口已被占用", "Error");
                     return;
                 }
             }
@@ -450,8 +448,7 @@ namespace CANToolApp
                 cbParity.Enabled = true;
 
                 sp1.Close();                    //关闭串口
-                btnSwitch.Text = "Open";
-                // tmSend.Enabled = false;         //关闭计时器
+                btnSwitch.Text = "Open";               
             }
         }
 
@@ -685,6 +682,8 @@ namespace CANToolApp
             //丢弃来自串行驱动程序的传输缓冲区的数据
             sp1.DiscardOutBuffer();
             sp1.Write("O1\r");
+            canOpen.Enabled = false;
+            canClose.Enabled = true;
         }
 
         private void canClose_Click(object sender, EventArgs e)
@@ -699,6 +698,8 @@ namespace CANToolApp
             //丢弃来自串行驱动程序的传输缓冲区的数据
             sp1.DiscardOutBuffer();
             sp1.Write("C\r");
+            canClose.Enabled = false;
+            canOpen.Enabled = true;
         }
 
         private void canRate_SelectedIndexChanged(object sender, EventArgs e)

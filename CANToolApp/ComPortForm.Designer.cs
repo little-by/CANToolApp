@@ -51,7 +51,6 @@
             this.txtSend = new System.Windows.Forms.RichTextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnSend = new System.Windows.Forms.Button();
-            this.tmSend = new System.Windows.Forms.Timer(this.components);
             this.btnExit = new System.Windows.Forms.Button();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -537,7 +536,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSwitch;
         private System.Windows.Forms.Button btnSend;
-        private System.Windows.Forms.Timer tmSend;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.ComboBox cbBaudRate;
         private System.Windows.Forms.Label label5;
