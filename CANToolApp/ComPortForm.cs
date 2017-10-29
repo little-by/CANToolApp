@@ -340,7 +340,11 @@ namespace CANToolApp
 
             //MessageBox.Show(str3, "发送的数据为");
             //sp1.Write(str3);
-            sp1.Write(str3);
+            if (str3!=null&&!str3.Equals(""))
+            {
+                sp1.Write(str3);
+            }
+            
         }
 
 

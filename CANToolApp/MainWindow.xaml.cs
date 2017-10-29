@@ -117,15 +117,20 @@ namespace CANToolApp
         public void UpdateData(Dictionary<string, string> returnedData)
         {
             this.returnedData = returnedData;
-            if (returnedData[signaleName] != null || !returnedData[signaleName].Equals(""))
-            {
-                Console.WriteLine("+++++++++++++++++++++++++++++++++++++++++++++---" + returnedData[signaleName]);
-                string value = returnedData[signaleName];
-                value = value.Split(' ')[0];
+            try {
+                if (returnedData[signaleName] != null || !returnedData[signaleName].Equals(""))
+                {
+                    string value = returnedData[signaleName];
+                    value = value.Split(' ')[0];
 
-                currentValue = Double.Parse(value);
+                    currentValue = Double.Parse(value);
+                }
             }
-        }
+            catch(Exception e)
+            {
+                Console.WriteLine("未接收到当前选择的信号值");
+            }
+}
         private void cleardata()
         {
             //timer1.Stop();
