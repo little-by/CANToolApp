@@ -473,7 +473,7 @@ namespace CANToolApp
                 {
                     //两种存取方式
                     //dataTable.Rows[0].ItemArray[0] = 0;
-                    dr[j] = tm.Binarydata[8 * i + j];
+                    dr[7-j] = tm.Binarydata[8 * i + j];
                 }
                 dataTable.Rows.Add(dr);
 
