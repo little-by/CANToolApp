@@ -42,7 +42,7 @@ namespace INIFILE
     /// </summary>
     public class IniFile : CustomIniFile
     {
-        [DllImport("kernel32")]
+        [DllImport("kernel32")]//返回取得字符串缓冲区的长度
         private static extern uint GetPrivateProfileString(
             string lpAppName,    // points to section name 
             string lpKeyName,    // points to key name 
@@ -52,7 +52,7 @@ namespace INIFILE
             string lpFileName     // points to initialization filename 
         );
 
-        [DllImport("kernel32")]
+        [DllImport("kernel32")]//返回0表示失败，非0为成功
         private static extern bool WritePrivateProfileString(
             string lpAppName,    // pointer to section name 
             string lpKeyName,    // pointer to key name 
