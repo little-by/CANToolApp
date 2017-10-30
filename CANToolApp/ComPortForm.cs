@@ -273,6 +273,11 @@ namespace CANToolApp
                 MessageBox.Show("请先打开串口！", "Error");
                 return;
             }
+            if (canOpen.Enabled)
+            {
+                MessageBox.Show("请先打开CANTool装置！", "Error");
+                return;
+            }
             string strMessage = "";
             string strSignal = "";
             if (message.SelectedItem == null)
@@ -424,6 +429,10 @@ namespace CANToolApp
                     cbStop.Enabled = false;
                     cbParity.Enabled = false;
                     btnSwitch.Text = "Close";
+                    canClose.Enabled = false;
+                    sendRate.Enabled = true;
+
+
                 }
                 catch (System.Exception ex)
                 {
@@ -476,7 +485,7 @@ namespace CANToolApp
             Regex r = new Regex(patten);
             Match m = r.Match(e.KeyChar.ToString());
 
-            if (m.Success)//&&(txtSend.Text.LastIndexOf(" ") != txtSend.Text.Length-1))
+            if (m.Success)
             {
                 e.Handled = false;
             }
@@ -684,6 +693,7 @@ namespace CANToolApp
             sp1.Write("O1\r");
             canOpen.Enabled = false;
             canClose.Enabled = true;
+            sendRate.Enabled = false;
         }
 
         private void canClose_Click(object sender, EventArgs e)
@@ -700,6 +710,7 @@ namespace CANToolApp
             sp1.Write("C\r");
             canClose.Enabled = false;
             canOpen.Enabled = true;
+            sendRate.Enabled = true;
         }
 
         private void canRate_SelectedIndexChanged(object sender, EventArgs e)
