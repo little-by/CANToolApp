@@ -640,16 +640,20 @@ namespace CANToolApp
                     Dictionary<string, string> returnedData = new Dictionary<string, string>();
                     XmlNode signal = doc.SelectSingleNode("/root/data" + n);
 
-                    string msg = XMLProcess.Read("data.xml", "/root/data" + n + "/message");
+                    string msg = XMLProcess.Read(fName, "/root/data" + n + "/message");
                     if (msg == null || msg.Equals("")) break;
                     returnedData.Add("messageName", msg);
 
-                    for (int m = 1; m < (signal.ChildNodes.Count); m++)
+                    XmlNodeList xns = doc.SelectNodes("/root/data" + n + "/signal");
+                    for (int m = 0; m < xns.Count; m++)
                     {
-                        string name = XMLProcess.Read("data.xml", "/root/data" + n + "/signal[" + m + "]", "name");
-                        string value = XMLProcess.Read("data.xml", "/root/data" + n + "/signal[" + m + "]");
+                        string name = xns[m].Attributes["name"].Value;
+                        string value=xns[m].InnerText;
                         if (name == null || name.Equals("")) break;
+                        if (returnedData.ContainsKey(name)) break;  
                         returnedData.Add(name, value);
+                       
+                        
                     }
                     addone(returnedData);
                 }

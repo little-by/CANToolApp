@@ -53,7 +53,7 @@ namespace CANToolApp
             XmlDocument xmldoc = new XmlDocument();
             try
             {
-                string filename = AppDomain.CurrentDomain.BaseDirectory.ToString() + strPath;
+                string filename = strPath;
                 if (File.Exists(filename)) xmldoc.Load(filename);
             }
             catch (Exception e)
