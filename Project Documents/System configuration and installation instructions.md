@@ -43,10 +43,10 @@
 数据库：采用部署在远程的数据库，用户不需要进行配置
 安装：
 运行安装文件CANToolAppSetup.exe
-![安装1]https://github.com/little-by/store/blob/master/CANToolApp/1.png
-![安装2]https://github.com/little-by/store/blob/master/CANToolApp/2.png
-![安装3]https://github.com/little-by/store/blob/master/CANToolApp/3.png
-![安装4]https://github.com/little-by/store/blob/master/CANToolApp/4.png
+![1]（https://github.com/little-by/store/blob/master/CANToolApp/1.png）
+![2]（https://github.com/little-by/store/blob/master/CANToolApp/2.png）
+![3]（https://github.com/little-by/store/blob/master/CANToolApp/3.png）
+![4]（https://github.com/little-by/store/blob/master/CANToolApp/4.png）
 
 
 ## 3. 系统启动
