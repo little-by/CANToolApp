@@ -44,13 +44,13 @@
 安装：
 运行安装文件CANToolAppSetup.exe
 
-![1]（https://github.com/little-by/store/blob/master/CANToolApp/1.png）
+![1](https://github.com/little-by/store/blob/master/CANToolApp/1.png)
 
-![2]（https://github.com/little-by/store/blob/master/CANToolApp/2.png）
+![2](https://github.com/little-by/store/blob/master/CANToolApp/2.png)
 
-![3]（https://github.com/little-by/store/blob/master/CANToolApp/3.png）
+![3](https://github.com/little-by/store/blob/master/CANToolApp/3.png)
 
-![4]（https://github.com/little-by/store/blob/master/CANToolApp/4.png）
+![4](https://github.com/little-by/store/blob/master/CANToolApp/4.png)
 
 
 ## 3. 系统启动
