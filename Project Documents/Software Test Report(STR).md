@@ -39,7 +39,7 @@
 | 输入 |  没有正确点击各个下拉框按钮进行选择，最后点击Open按钮  |  
 | 操作步骤 |   错误操作按钮 |  
 | 预期输出 |   会有提示端口已被占用，不能打开端口 | 
-| 实际输出 |   https://github.com/QhdJiaYou/CANToolAppImage/blob/master/10.jpg | 
+| 实际输出 |   ![](https://github.com/QhdJiaYou/CANToolAppImage/blob/master/10.jpg) | 
 | 测试结论 |  通过  | 
 
 ### 2.用户设置CanTool装置信息
@@ -66,7 +66,7 @@
 | 输入 |    发送字符串“O1\r”|  
 | 操作步骤 |   点击Open按钮 |  
 | 预期输出 |   用户接收到打开成功（Success）的提示，使CANTool装置进入工作状态，本地Open按钮不可再次触发 | 
-| 实际输出 |   https://github.com/QhdJiaYou/CANToolAppImage/blob/master/2.jpg | 
+| 实际输出 |   ![](https://github.com/QhdJiaYou/CANToolAppImage/blob/master/2.jpg) | 
 | 测试结论 |  通过  | 
 
 2.第二组
@@ -96,7 +96,7 @@
 | 输入 |    发送字符串“C\r”|  
 | 操作步骤 |   点击Close按钮 |  
 | 预期输出 |   用户接收到关闭成功（Success）的提示，使CANTool装置进入CAN初始化状态，本地Close按钮不可再次触发 | 
-| 实际输出 |   https://github.com/QhdJiaYou/CANToolAppImage/blob/master/4.jpg | 
+| 实际输出 |   ![](https://github.com/QhdJiaYou/CANToolAppImage/blob/master/4.jpg) | 
 | 测试结论 |  通过  | 
 
 4.第四组
@@ -126,7 +126,7 @@
 | 输入 |    发送字符串“V\r”|  
 | 操作步骤 |   点击Version按钮 |  
 | 预期输出 |   无论是在CANTool装置Open状态还是close状态，用户都能接收到CANTool装置返回的版本信息 | 
-| 实际输出 |   https://github.com/QhdJiaYou/CANToolAppImage/blob/master/3.jpg | 
+| 实际输出 |   ![](https://github.com/QhdJiaYou/CANToolAppImage/blob/master/3.jpg) | 
 | 测试结论 |  通过  | 
 
 6.第六组
@@ -156,7 +156,7 @@
 | 输入 |    发送字符串“Sn\r”|  
 | 操作步骤 |   从速率下拉框中选择好设置速率，点击Send按钮 |
 | 预期输出 |   用户接收到设置成功（Success）的提示 | 
-| 实际输出 |   https://github.com/QhdJiaYou/CANToolAppImage/blob/master/5.jpg | 
+| 实际输出 |   ![](https://github.com/QhdJiaYou/CANToolAppImage/blob/master/5.jpg) | 
 | 测试结论 |  通过  | 
 
 8.第八组
@@ -196,7 +196,7 @@
 | 输入|封装好的CAN信息字符串 |  
 | 操作步骤 |  用户从下拉框中选择Message信息，然后选择对应的Signals信息，填写规定范围的物理值，填写发送周期（不是必选项），最后点击Send按钮  |  
 | 预期输出 |  在正常通信的情况下，用户收到成功发送的提示  | 
-| 实际输出 |  https://github.com/QhdJiaYou/CANToolAppImage/blob/master/6.jpg  | 
+| 实际输出 |  ![](https://github.com/QhdJiaYou/CANToolAppImage/blob/master/6.jpg)  | 
 | 测试结论 |  通过  | 
 
 2.第二组
@@ -211,7 +211,7 @@
 | 输入 |  封装好的CAN信息字符串|  
 | 操作步骤 |  用户从下拉框中选择Message信息，然后选择对应的Signals信息，填写规定范围的物理值，填写发送周期（不是必选项），最后点击Send按钮  |  
 | 预期输出 |  在正常通信的情况下，用户收到先打开CANTool装置的提示 | 
-| 实际输出 |  https://github.com/QhdJiaYou/CANToolAppImage/blob/master/8.jpg  | 
+| 实际输出 |  ![](https://github.com/QhdJiaYou/CANToolAppImage/blob/master/8.jpg)  | 
 | 测试结论 |  通过  | 
 
 3.第三组
@@ -226,7 +226,7 @@
 | 输入 |  封装好的CAN信息字符串|  
 | 操作步骤 |  用户从下拉框中选择Message信息，然后选择对应的Signals信息，填写规定范围的物理值，填写发送周期（不是必选项），最后点击Send按钮  |  
 | 预期输出 |  在正常通信的情况下，用户收到先打开COM口的提示 | 
-| 实际输出 |  https://github.com/QhdJiaYou/CANToolAppImage/blob/master/9.jpg  | 
+| 实际输出 |  ![](https://github.com/QhdJiaYou/CANToolAppImage/blob/master/9.jpg)  | 
 | 测试结论 |  通过  | 
 
 ### 4.信号的折线图显示
