@@ -13,19 +13,20 @@
 
 
 ## 1. 引言
-本说明书详细叙述了本软件在配置和安装过程中的步骤和注意事项，包括系统的运行环境、如何安装、数据导入、系统启动等内容。安装人员在进行实际安装前务必详细阅读本手册。
+程序已经使用installshield打包，并附带了.net framework 4.5.2,用户只需要更提示安装即可。
 
 ## 2. 运行环境
-本部分介绍了软件运行的环境，包括硬件环境、软件环境、网络环境和所需的数据与安装包。
+ 需要.net framework 4.5.2，这一项已经打包在程序中。
+ 需要连接网络，由于数据库部署在服务器，需要联网查询。
 
 ### 2.1 硬件环境
 1. 安装CanToolApp for Windows的主机硬件至少满足以下要求：
-- CPU：主频不低于 2.0GHz    
+- CPU：主频不低于 2.0GHz    
 - 内存：不低于 1G  
 - 硬盘：不低于 20G
 
 2. 与CanToolApp for Windows通信的CanTool装置的要求：
-
+根据发送结果能够正确反馈。
 
 ### 2.2 软件环境
 1. 安装CanToolApp for Windows的操作系统至少满足以下要求：
@@ -35,19 +36,18 @@
 在软件使用过程需要联网。
 
 ### 2.4 数据与安装包
-
-//描述下系统提供的数据文件和安装文件。
+在安装文件中可以找到CANToolAppSetup.exe，还有供演示的三个格式的文件。
 
 
 ### 2.5 配置与安装
+数据库：采用部署在远程的数据库，用户不需要进行配置
+安装：
+运行安装文件CANToolAppSetup.exe
+![安装1]https://github.com/little-by/store/blob/master/CANToolApp/1.png
+![安装2]https://github.com/little-by/store/blob/master/CANToolApp/2.png
+![安装3]https://github.com/little-by/store/blob/master/CANToolApp/3.png
+![安装4]https://github.com/little-by/store/blob/master/CANToolApp/4.png
 
-//描述系统运行所需的软件的安装和配置过程，
-如数据库
-数据的导入
 
-
-## 3. 系统配置与安装
-
-//描述系统的安装配置过程 截图+描述
-
-## 4. 系统启动
+## 3. 系统启动
+在安装目录找到CANToolApp.exe,打开即可
