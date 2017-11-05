@@ -24,7 +24,7 @@
 | 输入 |   用户没有选择并设置好COM口 |  
 | 操作步骤 |   点击各个下拉框按钮进行选择，最后点击Open按钮 |  
 | 预期输出 |   能够和CANTool装置进行通信 | 
-| 实际输出 |  https://github.com/QhdJiaYou/CANToolAppImage/blob/master/1.jpg  | 
+| 实际输出 |  ![1](https://github.com/QhdJiaYou/CANToolAppImage/blob/master/1.jpg)  | 
 | 测试结论 |  通过  | 
 
 2.第二组
